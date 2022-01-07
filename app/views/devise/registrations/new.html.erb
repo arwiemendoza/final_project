@@ -5,21 +5,21 @@
 
   <div class="field">
     <%= f.label 'Signing up to be a helper?' %>
-    <%= f.check_box :helper, value: true %>
+    <%= f.check_box :helper, value: true %></br>
   </div>
 
   <div class="field">
-    <%= f.label :first_name %><br />
+    <%= f.label :first_name %></br>
     <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
   </div>
 
   <div class="field">
-    <%= f.label :last_name %><br />
+    <%= f.label :last_name %></br>
     <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %></br>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
@@ -27,12 +27,12 @@
     <%= f.label :password %>
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+    <% end %></br>
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :password_confirmation %></br>
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
