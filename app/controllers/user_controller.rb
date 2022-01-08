@@ -1,9 +1,13 @@
 class UserController < ApplicationController
-    before_action :is_admin
-    before_action :is_helper
+    before_action :is_admin, except: [:show]
+    before_action :is_helper, except: [:show]
 
     def index 
 
+    end
+
+    def show
+        @user = User.find(params[:id])
     end
 
     private

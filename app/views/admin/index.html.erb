@@ -1,2 +1,30 @@
 <h1><center>Admin</center></h1>
 
+<h2>Pending Users:</h2>
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Helper</th>
+        <th colspan="1"></th>
+    </tr>
+
+    <% @users.each do |user|%>
+        <% if user.user_status == 'Pending' %>
+            <tr>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.helper %></td>
+                <td class="d-inline justify-content-lg-center">
+                    <% if user.helper %>
+                        <%= link_to 'Review', helper_url(user.id), class: "btn btn-outline-dark btn-sm" %>
+                    <% else %>
+                        <%= link_to 'Review', user_show_url(user.id), class: "btn btn-outline-dark btn-sm" %>
+                    <% end %>
+                </td>
+            </tr>    
+        <%end%>
+    <%end%>
+</table>
