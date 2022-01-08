@@ -12,15 +12,37 @@ RSpec.describe User, type: :model do
         expect(user.errors).to be_present
         end
 
-        it '2. Is not valid without last name' do
+        it '2. First name should have minimum of 3 characters' do
+            user.first_name = 'xy'
+
+        expect(user).to_not be_valid
+        expect(user.errors).to be_present
+        end
+
+        it '3. Is not valid without last name' do
             user.last_name = nil
 
         expect(user).to_not be_valid
         expect(user.errors).to be_present
         end
 
-        it '1. User status is Pending by default' do
+        it '4. User status is Pending by default' do
             user.user_status = "Approved"
+
+        expect(user).to_not be_valid
+        expect(user.errors).to be_present
+        end
+
+        it '5. User password should have minimum of 6 characters' do
+            user.password = '12345'
+
+        expect(user).to_not be_valid
+        expect(user.errors).to be_present
+        end
+
+        it '6. User password and confirm password should match' do
+            user.password = '12345'
+            user.password_confirmation = '12345667'
 
         expect(user).to_not be_valid
         expect(user.errors).to be_present
