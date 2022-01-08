@@ -1,0 +1,52 @@
+<h1><center>Approved Users</center></h1>
+
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Helper</th>
+        <th colspan="1"></th>
+    </tr>
+
+    <% @user.each do |user|%>
+        <% if user.user_status == 'Approved' && user.helper == false%>
+            <tr>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.helper %></td>
+                <td class="d-inline justify-content-lg-center">
+                        <%= link_to 'Review', admin_path(user.id), class: "btn btn-outline-dark btn-sm" %>
+                </td>
+            </tr>    
+        <%end%>
+    <%end%>
+</table>
+
+<h1><center>Approved Helpers</center></h1>
+
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th>Helper</th>
+        <th colspan="1"></th>
+    </tr>
+
+    <% @user.each do |user|%>
+        <% if user.user_status == 'Approved' && user.helper%>
+            <tr>
+                <td><%= user.first_name %></td>
+                <td><%= user.last_name %></td>
+                <td><%= user.email %></td>
+                <td><%= user.helper %></td>
+                <td class="d-inline justify-content-lg-center">
+                        <%= link_to 'Review', admin_path(user.id), class: "btn btn-outline-dark btn-sm" %>
+                </td>
+            </tr>    
+        <%end%>
+    <%end%>
+</table>
+
