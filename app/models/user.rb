@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: {minimum: 3}
   validates :last_name, presence: true
 
+  has_many :categories
   # def is_user_admin
   #   if authenticate_user! && current_user.admin
   #       return true

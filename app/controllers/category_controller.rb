@@ -7,17 +7,17 @@ class CategoryController < ApplicationController
     end
     
     def show
-        @category = Category.find(params[:id])
+        current_user.categories.find(params[:user_id])
     end
     
     def new
-        @category = Category.new
+        user = current_user.categories.create!(category_params)
     end
     
     def create
-        @category = Category.create!(category_params)
+        user = current_user.categories.create!(category_params)
     
-        if @category.save 
+        if user 
             redirect_to categories_path
         else
             render :new
@@ -52,12 +52,14 @@ class CategoryController < ApplicationController
     def is_user_admin
         if authenticate_user! && current_user.admin
             return true
-        end
+        else
+            return false
     end
 
     def is_user_helper
         if authenticate_user! && current_user.helper
             return true
-        end
+        else
+            return false
     end
 end
