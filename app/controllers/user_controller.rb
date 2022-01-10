@@ -10,6 +10,14 @@ class UserController < ApplicationController
         @user = User.find(params[:id])
     end
 
+    def additional_information
+
+    end
+
+    def request_job
+
+    end
+
     private
     def is_admin
         if authenticate_user! && current_user.admin

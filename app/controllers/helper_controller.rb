@@ -8,4 +8,15 @@ class HelperController < ApplicationController
         @user = User.find(params[:id])
     end
 
+    def additional_information
+
+    end
+
+    def accept_job
+
+    end
+
+    def reject_job
+
+    end
 end
