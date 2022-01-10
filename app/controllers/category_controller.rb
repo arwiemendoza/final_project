@@ -1,4 +1,5 @@
 class CategoryController < ApplicationController
+    before_action :set_user_id
     before_action :is_user_admin
     before_action :is_user_helper, only: %i[show]
     
@@ -16,7 +17,6 @@ class CategoryController < ApplicationController
     
     def create
         user = current_user.categories.create!(category_params)
-    
         if user 
             redirect_to categories_path
         else
@@ -45,6 +45,10 @@ class CategoryController < ApplicationController
     
     private 
     
+    def set_user_id
+		@user_id = current_user.id
+	end
+    
     def category_params
         params.require(:category).permit(:name)
     end
@@ -54,6 +58,7 @@ class CategoryController < ApplicationController
             return true
         else
             return false
+        end
     end
 
     def is_user_helper
@@ -61,5 +66,8 @@ class CategoryController < ApplicationController
             return true
         else
             return false
+        end
     end
+
+
 end
