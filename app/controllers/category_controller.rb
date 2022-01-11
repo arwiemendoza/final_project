@@ -12,11 +12,12 @@ class CategoryController < ApplicationController
     end
     
     def new
-        admin_category = current_user.Category.create!(category_params)
+        user = current_user.Category.create!(category_params)
     end
     
     def create
-        admin_category = Category.create!(category_params)
+        user = current_user.admin
+        Category.create!(category_params)
         if admin_category
             redirect_to categories_path
         else

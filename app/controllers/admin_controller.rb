@@ -4,6 +4,20 @@ class AdminController < ApplicationController
         @users = User.all
     end
 
+    def new
+        @category = Category.new
+    end
+    
+    def create
+        @category = Category.new(category_params)
+        
+        if @category.save
+            redirect_to categories_path
+        else
+            render :new
+        end
+    end
+
     def approve_status
         user = User.find(params[:id])
         user.update(user_status: "Approved")
@@ -27,6 +41,7 @@ class AdminController < ApplicationController
     def user_list
         @user = User.all
     end
+    
 
     def search
         respond_to do |format|
@@ -42,5 +57,12 @@ class AdminController < ApplicationController
         end
       
     end
+
+    private    
+    
+    def category_params
+        params.require(:category).permit(:name)
+    end
+
 
 end
