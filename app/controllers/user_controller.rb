@@ -3,19 +3,11 @@ class UserController < ApplicationController
     before_action :is_helper
 
     def index 
-
+        @categories = Category.all
     end
 
     def show
         @user = User.find(params[:id])
-    end
-
-    def additional_information
-
-    end
-
-    def request_job
-
     end
 
     private

@@ -1,1 +1,9 @@
 <h1><center>Client</center></h1>
+
+<h1> Categories </h1>
+
+<% @categories.each do |category|%>
+    <td>
+        <th><%= category.name %></th>
+    </td>    
+<%end%>

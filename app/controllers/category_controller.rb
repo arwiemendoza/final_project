@@ -1,10 +1,10 @@
 class CategoryController < ApplicationController
-    before_action :set_user_id
     before_action :is_user_admin
     before_action :is_user_helper, only: %i[show]
     
     def index
         @categories = current_user.categories
+        @ccategories = Category.new
     end
     
     def show
@@ -18,7 +18,7 @@ class CategoryController < ApplicationController
     def create
         if is_user_admin
             category = current_user.categories.create!(category_params)
-            redirect_to category
+            redirect_to category_index_path
         else
             render :new
         end
@@ -32,22 +32,18 @@ class CategoryController < ApplicationController
         @category = Category.find(params[:id])
     
         if @category.update(category_params)
-            redirect_to categories_path
+            redirect_to category_index_path
         else
             render :edit
         end
     end
     
-    def delete
-        category.find(params[:id]).destroy
-        redirect_to categories_path
+    def destroy
+        Category.find(params[:id]).destroy
+        redirect_to category_index_path
     end 
     
     private 
-    
-    def set_user_id
-		@user_id = current_user.id
-	end
     
     def category_params
         params.require(:category).permit(:name)

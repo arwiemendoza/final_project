@@ -1,7 +1,36 @@
-<h1> Category </h1>
 
-<% @categories.each do |category|%>
-    <tr>
-        <tr><%= category.name %></tr>
-    </tr>    
-<%end%>
+<h1> Category </h1>
+<%= form_for @ccategories, url: category_index_path do |f| %>
+
+    <div class="field">
+        <%= f.label :name %><br/>
+        <%= f.text_field :name %>
+    </div>
+
+    <div class="actions">
+     <%= f.submit "Create" %>
+   </div>
+
+<% end %>
+
+<br/>
+<br/>
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>Category name</th>
+        <th colspan="2"></th>
+    </tr>
+
+    <% @categories.each do |category|%>
+            <tr>
+                <td><%= category.name %></td>
+                <td class="d-inline justify-content-lg-center">
+                    <%= link_to 'Edit', edit_category_path(category.id), class: "btn btn-outline-dark btn-sm" %>
+                </td>
+                <td class="d-inline justify-content-lg-center">
+                    <%= link_to 'Delete', category_path(category.id), method: :delete,class: "btn btn-outline-dark btn-sm" %>
+                </td>
+            </tr>    
+        <%end%>
+
+</table>
