@@ -31,7 +31,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 #file upload
 gem 'carrierwave', '1.3.1'
 gem 'cloudinary', '~>1.13.2'
-gem 'rmagick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

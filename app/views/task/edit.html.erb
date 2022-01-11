@@ -1,0 +1,19 @@
+<%= form_for @category, url: category_path do |f| %>
+    <div class="field">
+     <%= f.label :name %><br />
+     <%= f.text_field :name, autocomplete: "name" %>
+   </div>
+
+   
+   <div class="field">
+    <%= f.label :description %><br/>
+    <%= f.text_field :description %>
+  </div>
+
+ 
+   <div class="actions">
+     <%= f.submit 'Edit' %>
+     <%= link_to 'Cancel', category_index_path %>
+   </div>
+
+ <% end %>

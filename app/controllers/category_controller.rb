@@ -1,6 +1,7 @@
 class CategoryController < ApplicationController
     before_action :is_user_admin
-    before_action :is_user_helper, only: %i[show]
+    before_action :admin_only, only: [:new,:create,:edit,:update,:destroy] 
+    before_action :is_user_helper
     
     def index
         @categories = current_user.categories
@@ -8,7 +9,8 @@ class CategoryController < ApplicationController
     end
     
     def show
-        @category = current_user.categories.find(params[:id])
+        @category = Category.find(params[:id])
+        
     end
     
     def new
@@ -46,24 +48,21 @@ class CategoryController < ApplicationController
     private 
     
     def category_params
-        params.require(:category).permit(:name)
+        params.require(:category).permit(:name, :description)
     end
 
     def is_user_admin
-        if authenticate_user! && current_user.admin
-            return true
-        else
-            return false
-        end
+        authenticate_user! && current_user.admin
     end
 
     def is_user_helper
-        if authenticate_user! && current_user.helper
-            return true
-        else
-            return false
-        end
+        authenticate_user! && current_user.helper 
     end
 
+    def admin_only
+        if current_user.admin == false
+            redirect_to "/"
+        end
+    end
 
 end
