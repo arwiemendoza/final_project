@@ -1,10 +1,7 @@
 <h1> Category </h1>
 
-<table>
-    <tr class="table-dark">
-    <th>Label</th>
-    </tr>
-        <tr>
-            
-        </tr>  
-</table>
+<% @categories.each do |category|%>
+    <tr>
+        <tr><%= category.name %></tr>
+    </tr>    
+<%end%>

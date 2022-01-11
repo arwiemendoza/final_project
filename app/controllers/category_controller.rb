@@ -4,22 +4,21 @@ class CategoryController < ApplicationController
     before_action :is_user_helper, only: %i[show]
     
     def index
-        @categories = Category.all
+        @categories = current_user.categories
     end
     
     def show
-        current_user.categories.find(params[:user_id])
+        @category = current_user.categories.find(params[:id])
     end
     
     def new
-        user = current_user.Category.create!(category_params)
+        user = current_user.categories.create!(category_params)
     end
     
     def create
-        user = current_user.admin
-        Category.create!(category_params)
-        if admin_category
-            redirect_to categories_path
+        if is_user_admin
+            category = current_user.categories.create!(category_params)
+            redirect_to category
         else
             render :new
         end
