@@ -17,20 +17,15 @@ class TasksController < ApplicationController
     end
     
     def create
-        # @category = Category.find(params[:category_id])
-        # t = params[:task]
-        # @category.tasks.create!(
-        #     name: t[:name], 
-        #     details: t[:details], 
-        #     date: t[:date], 
-        #     hourly_rate: t[:hourly_rate], 
-        #     category_id: @category.id
-        # )
-        # redirect_to @category
-
         @category = Category.find(params[:category_id])
-        @category.tasks.create!(task_params)
-        redirect_to category_tasks_path(@category.id)
+        if @category.tasks.create!(task_params)
+            redirect_to category_tasks_path(@category.id)
+            flash[:alert] = "Task was successfully created."
+
+        else
+            flash[:notice]
+            redirect_to category_tasks_path(@category.id)
+        end
     end
     
     def edit
@@ -41,7 +36,7 @@ class TasksController < ApplicationController
         @task = Task.find(params[:id])
     
         if @task.update(task_params)
-            redirect_to task
+            redirect_to category_tasks_path
         else
             render :edit
         end
@@ -49,7 +44,7 @@ class TasksController < ApplicationController
     
     def destroy
         Task.find(params[:id]).destroy
-        redirect_to task
+        redirect_to category_tasks_path
     end 
     
     private 

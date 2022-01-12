@@ -5,5 +5,5 @@
 <h5> Category description </h5>
 <%= @category.description %><br />
       
-<%= link_to 'Back', :back, class: "btn btn-outline-dark btn-sm" %>
+<%= link_to 'Back', user_index_url, class: "btn btn-outline-dark btn-sm" %>
 <%= link_to 'Create Task', category_tasks_path(@category.id), class: "btn btn-outline-dark btn-sm" %>

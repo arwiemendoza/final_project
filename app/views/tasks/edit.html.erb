@@ -1,19 +1,30 @@
-<%= form_for @category, url: category_path do |f| %>
-    <div class="field">
-     <%= f.label :name %><br />
-     <%= f.text_field :name, autocomplete: "name" %>
-   </div>
+<%= form_for @task, url: category_task_path do |f| %>
 
-   
-   <div class="field">
-    <%= f.label :description %><br/>
-    <%= f.text_field :description %>
+  <div class="field">
+      <%= f.label :name %><br/>
+      <%= f.text_field :name %>
   </div>
 
- 
-   <div class="actions">
-     <%= f.submit 'Edit' %>
-     <%= link_to 'Cancel', category_index_path %>
-   </div>
+  <div class="field">
+      <%= f.label :details %><br/>
+      <%= f.text_field :details %>
+  </div>
 
- <% end %>
+  <div class="field">
+      <%= f.label :date %><br/>
+      <%= f.date_field :date %>
+  </div>
+
+  <div class="field">
+      <%= f.label :hourly_rate %><br/>
+      <%= f.number_field :hourly_rate %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit 'Update' %>
+    <%= link_to 'Cancel', category_tasks_path %>
+  </div>
+
+
+<% end %>
