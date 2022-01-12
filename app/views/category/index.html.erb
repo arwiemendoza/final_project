@@ -31,6 +31,9 @@
                 <td><%= category.name %></td>
                 <td><%= category.description %></td>
                 <td class="d-inline justify-content-lg-center">
+                    <%= link_to 'Show', category_path(category.id), class: "btn btn-outline-dark btn-sm" %>
+                </td>
+                <td class="d-inline justify-content-lg-center">
                     <%= link_to 'Edit', edit_category_path(category.id), class: "btn btn-outline-dark btn-sm" %>
                 </td>
                 <td class="d-inline justify-content-lg-center">

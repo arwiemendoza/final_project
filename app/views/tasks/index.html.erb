@@ -21,6 +21,10 @@
         <%= f.number_field :hourly_rate %>
     </div>
 
+    <div class="field">
+        <%= f.hidden_field :created_by, value: current_user.id%>
+    </div>
+
     <div class="actions">
         <%= f.submit "Create" %>
     </div>
@@ -30,6 +34,8 @@
 <% end %>
 <br/>
 <br/>
+
+
 <table class="table table-hover table-striped table-bordered table-sm">
     <tr class="table-dark">
         <th>Name</th>
@@ -41,13 +47,15 @@
     </tr>
 
     <% @tasks.each do |task|%>
-        <tr>
-            <td><%= task.name %></td>
-            <td><%= task.details %></td>
-            <td><%= task.date %></td>
-            <td><%= task.hourly_rate %></td>
-            <td><%= link_to 'Edit', edit_category_task_path(params[:category_id], task), class: "btn btn-outline-dark btn-sm" %></td>
-            <td><%= link_to 'Delete', category_task_path(params[:category_id], task),method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
-        </tr>    
+        <% if task.created_by == current_user.id %>    
+            <tr>
+                <td><%= task.name %></td>
+                <td><%= task.details %></td>
+                <td><%= task.date %></td>
+                <td><%= task.hourly_rate %></td>
+                <td><%= link_to 'Edit', edit_category_task_path(params[:category_id], task), class: "btn btn-outline-dark btn-sm" %></td>
+                <td><%= link_to 'Delete', category_task_path(params[:category_id], task),method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
+            </tr>  
+        <%end%> 
     <%end%>
 </table>

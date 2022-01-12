@@ -4,6 +4,34 @@
 <%= @category.name %><br />
 <h5> Category description </h5>
 <%= @category.description %><br />
-      
-<%= link_to 'Back', user_index_url, class: "btn btn-outline-dark btn-sm" %>
-<%= link_to 'Create Task', category_tasks_path(@category.id), class: "btn btn-outline-dark btn-sm" %>
+
+<% if current_user.admin %>  
+    <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %>
+<% else %>
+    <%= link_to 'Back', user_index_url, class: "btn btn-outline-dark btn-sm" %>
+    <%= link_to 'Create Task', category_tasks_path(@category.id), class: "btn btn-outline-dark btn-sm" %>
+<% end %>
+
+
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>Name</th>
+        <th>Details</th>
+        <th>Date</th>
+        <th>Hourly Rate</th>
+        <th></th>
+        <th></th>
+    </tr>
+
+    <% @tasks.each do |task|%> 
+            <tr>
+                <td><%= task.name %></td>
+                <td><%= task.details %></td>
+                <td><%= task.date %></td>
+                <td><%= task.hourly_rate %></td>
+                <% if current_user.admin %>
+                    <td><%= link_to 'Delete', category_task_path(params[:id]), method: :destroy, class: "btn btn-outline-dark btn-sm" %></td>
+                <% end %>
+            </tr>  
+    <%end%>
+</table>

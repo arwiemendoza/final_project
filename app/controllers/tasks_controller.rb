@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-    before_action :user_only, only: [:index, :new, :create, :edit, :update, :destroy] 
+    before_action :user_only, only: [ :new, :edit, :update] 
 
     def index
         @category = Category.find(params[:category_id])
@@ -49,7 +49,7 @@ class TasksController < ApplicationController
     
     private 
     def task_params
-        params.require(:task).permit(:name, :details, :hourly_rate, :date, :category_id)
+        params.require(:task).permit(:name, :details, :hourly_rate, :date, :category_id, :created_by)
     end
 
     def user_only

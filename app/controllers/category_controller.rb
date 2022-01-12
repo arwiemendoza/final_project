@@ -10,6 +10,7 @@ class CategoryController < ApplicationController
     
     def show
         @category = Category.find(params[:id])
+        @tasks = @category.tasks.all
     end
     
     def new
