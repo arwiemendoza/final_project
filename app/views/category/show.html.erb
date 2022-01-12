@@ -6,4 +6,4 @@
 <%= @category.description %><br />
       
 <%= link_to 'Back', :back, class: "btn btn-outline-dark btn-sm" %>
- 
+<%= link_to 'Create Task', category_tasks_path(@category.id), class: "btn btn-outline-dark btn-sm" %>

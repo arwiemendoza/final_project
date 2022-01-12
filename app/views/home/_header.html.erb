@@ -43,6 +43,10 @@
               </li>
 
               <li class="nav-item">
+                <%= link_to 'Tasks', new_category_task_path(1), class:'nav-link'%>
+              </li>
+
+              <li class="nav-item">
                 <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class:'nav-link'%>
               </li>
 

@@ -1,0 +1,47 @@
+<h1> Tasks </h1>
+<%= form_for @task, url: category_tasks_path do |f| %>
+
+    <div class="field">
+        <%= f.label :name %><br/>
+        <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+        <%= f.label :details %><br/>
+        <%= f.text_field :details %>
+    </div>
+
+    <div class="field">
+        <%= f.label :date %><br/>
+        <%= f.date_field :date %>
+    </div>
+
+    <div class="field">
+        <%= f.label :hourly_rate %><br/>
+        <%= f.number_field :hourly_rate %>
+    </div>
+
+    <div class="actions">
+     <%= f.submit "Create" %>
+   </div>
+
+<% end %>
+<br/>
+<br/>
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>Name</th>
+        <th>Details</th>
+        <th>Date</th>
+        <th>Hourly Rate</th>
+    </tr>
+
+    <% @tasks.each do |task|%>
+        <tr>
+            <td><%= task.name %></td>
+            <td><%= task.details %></td>
+            <td><%= task.date %></td>
+            <td><%= task.hourly_rate %></td>
+        </tr>    
+    <%end%>
+</table>
