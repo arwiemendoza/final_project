@@ -26,11 +26,15 @@
 
           <% elsif current_user.helper %>
             <li class="nav-item">
-              <%= link_to 'Edit', edit_user_registration_path, class:'nav-link'%>
+              <%= link_to 'Home', helper_index_path, class:'nav-link'%>
             </li>
 
             <li class="nav-item">
-              <%= link_to 'Helper', edit_user_registration_path, class:'nav-link'%>
+              <%= link_to 'Category', category_index_path(params[:id]), class:'nav-link'%>
+            </li>
+            
+            <li class="nav-item">
+              <%= link_to 'Edit', edit_user_registration_path, class:'nav-link'%>
             </li>
 
             <li class="nav-item">
@@ -39,11 +43,15 @@
 
             <% else %>
               <li class="nav-item">
-                <%= link_to 'Edit', edit_user_registration_path, class:'nav-link'%>
+                <%= link_to 'Home', user_index_url, class:'nav-link'%>
               </li>
 
               <li class="nav-item">
-                <%= link_to 'Category', user_index_url, class:'nav-link'%>
+                <%= link_to 'Category', category_index_path(params[:id]), class:'nav-link'%>
+              </li>
+
+              <li class="nav-item">
+                <%= link_to 'Edit', edit_user_registration_path, class:'nav-link'%>
               </li>
 
               <li class="nav-item">

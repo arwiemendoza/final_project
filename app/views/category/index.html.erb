@@ -1,22 +1,22 @@
 
 <h1> Category </h1>
-<%= form_for @ccategories, url: category_index_path do |f| %>
+    <% if current_user.admin %>
+        <%= form_for @ccategories, url: category_index_path do |f| %>
+            <div class="field">
+                <%= f.label :name %><br/>
+                <%= f.text_field :name %>
+            </div>
 
-    <div class="field">
-        <%= f.label :name %><br/>
-        <%= f.text_field :name %>
-    </div>
+            <div class="field">
+                <%= f.label :description %><br/>
+                <%= f.text_field :description %>
+            </div>
 
-    <div class="field">
-        <%= f.label :description %><br/>
-        <%= f.text_field :description %>
-    </div>
-
-    <div class="actions">
-     <%= f.submit "Create" %>
-   </div>
-
-<% end %>
+            <div class="actions">
+                <%= f.submit "Create" %>
+            </div>
+        <% end %>
+    <% end %>
 <br/>
 <br/>
 <table class="table table-hover table-striped table-bordered table-sm">
@@ -27,19 +27,20 @@
     </tr>
 
     <% @categories.each do |category|%>
-            <tr>
-                <td><%= category.name %></td>
-                <td><%= category.description %></td>
-                <td class="d-inline justify-content-lg-center">
-                    <%= link_to 'Show', category_path(category.id), class: "btn btn-outline-dark btn-sm" %>
-                </td>
+        <tr>
+            <td><%= category.name %></td>
+            <td><%= category.description %></td>
+            <td class="d-inline justify-content-lg-center">
+                <%= link_to 'Show', category_path(category.id), class: "btn btn-outline-dark btn-sm" %>
+            </td>
+            <% if current_user.admin %>
                 <td class="d-inline justify-content-lg-center">
                     <%= link_to 'Edit', edit_category_path(category.id), class: "btn btn-outline-dark btn-sm" %>
                 </td>
                 <td class="d-inline justify-content-lg-center">
                     <%= link_to 'Delete', category_path(category.id), method: :delete,class: "btn btn-outline-dark btn-sm" %>
                 </td>
-            </tr>    
-        <%end%>
-
+            <% end %>
+        </tr>    
+    <%end%>
 </table>

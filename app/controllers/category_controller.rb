@@ -4,7 +4,7 @@ class CategoryController < ApplicationController
     before_action :is_user_helper
     
     def index
-        @categories = current_user.categories
+        @categories = User.find(1).categories
         @ccategories = Category.new
     end
     

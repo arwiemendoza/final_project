@@ -3,7 +3,8 @@ class UserController < ApplicationController
     before_action :is_helper
 
     def index 
-        @user = User.find(1)
+        @users = User.all
+        @categories = Category.all
     end
 
     def show
