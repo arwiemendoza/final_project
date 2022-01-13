@@ -19,6 +19,7 @@
         <th>Details</th>
         <th>Date</th>
         <th>Hourly Rate</th>
+        <th>ID</th>
         <th></th>
         <th></th>
     </tr>
@@ -29,8 +30,9 @@
                 <td><%= task.details %></td>
                 <td><%= task.date %></td>
                 <td><%= task.hourly_rate %></td>
+                <td><%= task.id %></td>
                 <% if current_user.admin %>
-                    <td><%= link_to 'Delete', category_task_path(params[:id]), method: :destroy, class: "btn btn-outline-dark btn-sm" %></td>
+                    <td><%= link_to 'Delete', category_task_path(params[:id], task.id), method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
                 <% end %>
             </tr>  
     <%end%>
