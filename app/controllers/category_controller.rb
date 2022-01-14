@@ -44,7 +44,7 @@ class CategoryController < ApplicationController
         Category.find(params[:id]).destroy
         redirect_to category_index_path
     end 
-    
+
     private 
     
     def category_params

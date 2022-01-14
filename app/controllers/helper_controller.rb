@@ -3,7 +3,7 @@ class HelperController < ApplicationController
     def index
         @users = User.all
         @categories = Category.all
-        @category = @categories.find(3)
+        @category = @categories.find(1)
         @tasks = Task.all
     end
 

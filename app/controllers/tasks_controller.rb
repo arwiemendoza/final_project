@@ -46,10 +46,18 @@ class TasksController < ApplicationController
         Task.find(params[:id]).destroy
         redirect_to category_tasks_path
     end 
+
+    def accept_task
+        task = Task.find(params[:id])
+        task.update(helper_id: current_user.id)
+        task.save
+        flash[:notice] = "User status updated."
+        redirect_to helper_index_path
+    end
     
     private 
     def task_params
-        params.require(:task).permit(:name, :details, :hourly_rate, :date, :category_id, :created_by)
+        params.require(:task).permit(:name, :details, :hourly_rate, :date, :category_id, :created_by, :helper_id)
     end
 
     def user_only
