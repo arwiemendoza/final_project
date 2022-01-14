@@ -1,1 +1,30 @@
 <h1><center>Helper Landing Page</center></h1>
+
+<h3>Pending Tasks</h3>
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>Task Name</th>
+        <th>Details</th>
+        <th>Date</th>
+        <th>Hourly Rate</th>
+        <th>ID</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+
+
+        <% @tasks.each do |task|%> 
+            <tr>
+            <td><%= task.category_id %></td>
+                <td><%= task.name %></td>
+                <td><%= task.details %></td>
+                <td><%= task.date %></td>
+                <td><%= task.hourly_rate %></td>
+                <td><%= task.id %></td>
+            </tr>  
+
+    <%end%>
+</table>
+
+<h3>Accomplished Tasks</h3>
