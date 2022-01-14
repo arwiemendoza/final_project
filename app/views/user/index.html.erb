@@ -1,1 +1,28 @@
 <h1><center>Client Landing Page</center></h1>
+
+
+<h3>Pending Tasks</h3>
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>Task Name</th>
+        <th>Details</th>
+        <th>Date</th>
+        <th>Hourly Rate</th>
+        <th>Helper ID</th>
+    </tr>
+
+
+    <% @tasks.each do |task|%>
+        <% if task.created_by == current_user.id %>
+                <tr>
+                    <td><%= task.name %></td>
+                    <td><%= task.details %></td>
+                    <td><%= task.date %></td>
+                    <td><%= task.hourly_rate %></td>
+                    <td><%= link_to task.helper_id, helper_path(task)  %></td>
+                </tr>
+        <%end%>
+    <%end%>
+</table>
+
+<h3>Accomplished Tasks</h3>

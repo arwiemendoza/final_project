@@ -5,6 +5,7 @@ class UserController < ApplicationController
     def index 
         @users = User.all
         @categories = Category.all
+        @tasks = Task.all
     end
 
     def show

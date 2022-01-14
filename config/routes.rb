@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'user_index' => 'user#index', as: :user_index
   get 'user_show/:id' => 'user#show', as: :user_show
 
+
   get 'approve_status/:id' => 'admin#approve_status', as: :approve_status
   get 'reject_status/:id' => 'admin#reject_status', as: :reject_status
 
