@@ -9,6 +9,8 @@ class HelperController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        @categories = Category.all
+        @task = Task.all
         
     end
 

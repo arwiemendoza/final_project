@@ -54,6 +54,14 @@ class TasksController < ApplicationController
         flash[:notice] = "User status updated."
         redirect_to helper_index_path
     end
+
+    def accept_helper
+        task = Task.find(params[:id])
+        task.update(task_status: 'Approved')
+        task.save
+        flash[:notice] = "Task status updated."
+        redirect_to user_index_path
+    end
     
     private 
     def task_params
