@@ -19,7 +19,9 @@
                     <td><%= task.details %></td>
                     <td><%= task.date %></td>
                     <td><%= task.hourly_rate %></td>
-                    <td><%= link_to task.helper_id, helper_path(task.helper_id)  %></td>
+                    <% if task.helper_id != nil %>
+                        <td><%= link_to task.helper_id, helper_path(task.helper_id)  %></td>
+                    <% end %>
                 </tr>
         <%end%>
     <%end%>
