@@ -22,7 +22,7 @@
                     <td><%= task.hourly_rate %></td>
                     <% if task.helper_id != nil %>
                         <td><%= link_to task.helper_id, helper_path(task.helper_id)  %></td>
-                        <td><%= link_to 'Accept', accept_helper_path(@categories, @task),method: :patch, class: "btn btn-outline-dark btn-sm" %></td>
+                        <td><%= link_to 'Accept', accept_helper_path(@categories, task.id),method: :patch, class: "btn btn-outline-dark btn-sm" %></td>
                     <% end %> 
                 </tr>
         <%end%>
