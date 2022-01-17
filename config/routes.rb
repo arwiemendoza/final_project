@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   get 'user_list' => 'admin#user_list', as: :user_list
 
-  patch 'category/:category_id/tasks/:id/accept_task' => 'tasks#accept_task', as: :accept_task
+  get 'category/:category_id/tasks/:id/accept_task' => 'tasks#accept_task', as: :accept_task
 
   patch 'category/:category_id/tasks/:id/accept_helper' => 'tasks#accept_helper', as: :accept_helper
 end
