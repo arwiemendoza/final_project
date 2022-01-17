@@ -21,4 +21,6 @@ Rails.application.routes.draw do
 
   patch 'category/:category_id/tasks/:id/accept_helper' => 'tasks#accept_helper', as: :accept_helper
 
+  post 'user/:id/deposit' => 'user#deposit', as: :deposit
+  post 'withdraw' => 'user#withdraw', as: :withdraw
 end

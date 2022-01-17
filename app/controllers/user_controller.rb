@@ -5,7 +5,7 @@ class UserController < ApplicationController
     def index 
         @users = User.all
         @categories = Category.all
-    @tasks = Task.all
+        @tasks = Task.all
     end
 
     def show
@@ -14,6 +14,21 @@ class UserController < ApplicationController
     end
 
     def destroy
+    end
+
+    def deposit
+        user = current_user
+        user.balance += params[:amount].to_i
+        @balance = current_user.balance
+        user.save
+        @amount = params[:amount].to_i
+    end
+
+    def withdraw
+        user = current_user
+        user.balance -= params[:amount].to_i
+        @balance = current_user.balance
+        user.save
     end
 
     private
@@ -29,5 +44,4 @@ class UserController < ApplicationController
         end
     end
 
-    def money
 end

@@ -7,7 +7,37 @@
 <h5><%= @balance %></h5>
 <br>
 
+<h1> Deposit Money </h1>
+<%= form_with url: deposit_path do |f| %>
 
-<%= link_to 'Wallet', %>
+    <div class="field">
+        <%= f.label :amount %><br/>
+        <%= f.number_field :amount %>
+    </div>   
+
+    <div class="actions">
+        <%= f.submit "Deposit" %>
+    </div>
+
+<% end %>
+
+<br>
+
+<h1> Withdraw Money </h1>
+<%= form_with url: withdraw_path do |f| %>
+
+    <div class="field">
+        <%= f.label :amount %><br/>
+        <%= f.number_field :amount %>
+    </div>   
+
+    <div class="actions">
+        <%= f.submit "Withdraw" %>
+    </div>
+
+<% end %>
+
 <%= link_to 'Back', :back %>
 </div>
+
+

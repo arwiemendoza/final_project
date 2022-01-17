@@ -8,6 +8,6 @@ class User < ApplicationRecord
   validates :first_name, presence: true, length: {minimum: 3}, format: { with: /\A[a-zA-Z]+\z/, message: "can only include letters"}
   validates :last_name, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "can only include letters"}
 
-  has_many :categories
+  has_many :categories 
 
 end
