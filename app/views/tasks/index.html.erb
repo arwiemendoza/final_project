@@ -33,8 +33,11 @@
     </div>
 
     <div class="field">
-        <%= f.hidden_field :created_by, value: current_user.id%>
+        <%= f.hidden_field :created_by, value: current_user.first_name + ' ' + current_user.last_name%>
+        <%= f.hidden_field :client_id, value: current_user.id %>
     </div>
+
+    
 
     <div class="actions">
         <%= f.submit "Create" %>
@@ -58,7 +61,7 @@
     </tr>
 
     <% @tasks.each do |task|%>
-        <% if task.created_by == current_user.id %>    
+        <% if task.created_by == current_user.first_name + ' ' + current_user.last_name %>    
             <tr>
                 <td><%= task.name %></td>
                 <td><%= task.details %></td>

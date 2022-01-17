@@ -5,10 +5,13 @@ class TasksController < ApplicationController
         @category = Category.find(params[:category_id])
         @tasks = @category.tasks
         @task = Task.new
+        @users = User.all
+
     end
     
     def show
         @task = Task.find(params[:id])
+        @user = User.find(params[:id])
     end
     
     def new
@@ -65,7 +68,7 @@ class TasksController < ApplicationController
     
     private 
     def task_params
-        params.require(:task).permit(:name, :details, :hourly_rate, :date, :category_id, :created_by, :helper_id)
+        params.require(:task).permit(:name, :details, :hourly_rate, :date, :category_id, :created_by, :client_id, :helper_id)
     end
 
     def user_only

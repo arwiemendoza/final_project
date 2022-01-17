@@ -23,10 +23,15 @@
         <th>Details</th>
         <th>Date</th>
         <th>Hourly Rate</th>
-        <th>ID</th>
-        <th></th>
-        <th></th>
-        <th></th>
+         <% if current_user.helper%>
+            <th>Client Name</th>
+        <% elsif current_user.admin %>
+            <th></th>
+        <% else %>
+            <th></th>
+            <th></th>
+        <% end %>
+
     </tr>
 
     <% @tasks.each do |task|%> 
@@ -35,12 +40,13 @@
             <td><%= task.details %></td>
             <td><%= task.date %></td>
             <td><%= task.hourly_rate %></td>
-            <td><%= task.id %></td>
+            
             <% if current_user.admin %>
                 <td><%= link_to 'Delete', category_task_path(params[:id], task.id), method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
             <% elsif current_user.helper%>
+                <td><%= link_to task.created_by, user_show_path(task.client_id)  %></td>
                 <td><%= link_to 'Accept', accept_task_path(@category, task.id), class: "btn btn-outline-dark btn-sm" %></td>
-            <% elsif task.created_by == current_user.id %>    
+            <% elsif task.client_id == current_user.id %>    
                 <td><%= link_to 'Edit', edit_category_task_path(params[:id], task), class: "btn btn-outline-dark btn-sm" %></td>
                 <td><%= link_to 'Delete', category_task_path(params[:id], task),method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
             <% end %>

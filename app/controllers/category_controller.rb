@@ -11,6 +11,7 @@ class CategoryController < ApplicationController
     def show
         @category = Category.find(params[:id])
         @tasks = @category.tasks.all
+        @users = User.all
     end
     
     def new

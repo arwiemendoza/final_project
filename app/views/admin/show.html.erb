@@ -1,9 +1,10 @@
 <h1><center>Admin BOKBOK</center></h1>
 
 <div class="container h-2/4 flex justify-center items-center ">
-<h5><%= @user.first_name %></h1>
-<h5><%= @user.last_name %></h1>
-<h5><%= @user.email %></h1>
+<h5><%= @user.first_name %></h5>
+<h5><%= @user.last_name %></h5>
+<h5><%= @user.email %></h5>
+<h5><%= @user.balance %></h5>
 <br>
 <% if @user.user_status == "Pending"%>
     <%= link_to 'Approve', approve_status_path(@user), class: "btn btn-outline-dark btn-sm" %>

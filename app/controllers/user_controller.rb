@@ -5,7 +5,7 @@ class UserController < ApplicationController
     def index 
         @users = User.all
         @categories = Category.all
-        @tasks = Task.all
+    @tasks = Task.all
     end
 
     def show
@@ -15,6 +15,8 @@ class UserController < ApplicationController
     def destroy
 
     end
+
+    
 
     private
     def is_admin
