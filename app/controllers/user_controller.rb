@@ -10,13 +10,11 @@ class UserController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        @balance = current_user.balance
     end
 
     def destroy
-
     end
-
-    
 
     private
     def is_admin
@@ -30,4 +28,6 @@ class UserController < ApplicationController
             redirect_to root_path
         end
     end
+
+    def money
 end
