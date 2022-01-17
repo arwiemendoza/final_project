@@ -19,8 +19,8 @@ Rails.application.routes.draw do
 
   get 'category/:category_id/tasks/:id/accept_task' => 'tasks#accept_task', as: :accept_task
 
-  patch 'category/:category_id/tasks/:id/accept_helper' => 'tasks#accept_helper', as: :accept_helper
+  get 'category/:category_id/tasks/:id/accept_helper' => 'tasks#accept_helper', as: :accept_helper
 
   post 'user/:id/deposit' => 'user#deposit', as: :deposit
-  post 'withdraw' => 'user#withdraw', as: :withdraw
+  post 'user/:id/withdraw' => 'user#withdraw', as: :withdraw
 end

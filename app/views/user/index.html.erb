@@ -8,7 +8,7 @@
         <th>Details</th>
         <th>Date</th>
         <th>Hourly Rate</th>
-        <th>Helper ID</th>
+        <th>Helper IDs</th>
         <th>Action</th>
 
     </tr>
@@ -21,11 +21,11 @@
                     <td><%= task.details %></td>
                     <td><%= task.date %></td>
                     <td><%= task.hourly_rate %></td>
-                    <% if task.helper_id == nil %>
+                    <% if task.helper_applicants == [] %>
                         <td>No Helper Applicants</td>
                         <td>None </td>
                     <% else %>
-                        <td><%= link_to task.helper_id, helper_path(task.helper_id)  %></td>
+                        <td><%= link_to task.helper_applicants, helper_path(task.helper_applicants)  %></td>
                         <td><%= link_to 'Accept', accept_helper_path(@categories, task.id),method: :patch, class: "btn btn-outline-dark btn-sm" %></td>
                     <% end %> 
                 </tr>

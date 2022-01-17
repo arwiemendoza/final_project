@@ -52,7 +52,8 @@ class TasksController < ApplicationController
 
     def accept_task
         task = Task.find(params[:id])
-        task.update(helper_id: current_user.id)
+        @array = task.helper_applicants.push(current_user.id)
+        task.update(helper_applicants: @array)
         task.save
         flash[:notice] = "User status updated."
         redirect_to helper_index_path
@@ -66,9 +67,10 @@ class TasksController < ApplicationController
         redirect_to user_index_path
     end
     
+
     private 
     def task_params
-        params.require(:task).permit(:name, :details, :hourly_rate, :date, :category_id, :created_by, :client_id, :helper_id)
+        params.require(:task).permit(:name, :details, :hourly_rate, :date, :category_id, :created_by, :client_id, :helper_id, :helper_applicants)
     end
 
     def user_only

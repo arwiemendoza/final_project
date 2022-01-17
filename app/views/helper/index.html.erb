@@ -12,7 +12,7 @@
 
 
     <% @tasks.each do |task|%>
-        <% if task.helper_id == current_user.id %> 
+        <% if task.helper_applicants.index(current_user.id) == current_user.id %> 
             <tr>
                 <td><%= task.name %></td>
                 <td><%= task.details %></td>
