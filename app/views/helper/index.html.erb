@@ -12,7 +12,9 @@
 
 
     <% @tasks.each do |task|%>
-        <% if task.helper_applicants.index(current_user.id) == current_user.id %> 
+        <% if task.helper_applicants != [] %>
+            <% taskk = task.helper_applicants.index(current_user.id) %>
+            <% if task.helper_applicants[taskk] == current_user.id %> 
             <tr>
                 <td><%= task.name %></td>
                 <td><%= task.details %></td>
@@ -20,7 +22,8 @@
                 <td><%= task.hourly_rate %></td>
                 <td><%= task.created_by %></td>
             </tr>
-        <%end%>
+            <%end%>
+        <% end %>
     <%end%>
 </table>
 
