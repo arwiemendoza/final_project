@@ -8,11 +8,9 @@
         <th>Details</th>
         <th>Date</th>
         <th>Hourly Rate</th>
-        <th>Helper IDs</th>
+        <th>Applicants </th>
         <th>Action</th>
-
     </tr>
-
 
     <% @tasks.each do |task|%>
         <% if task.created_by == current_user.first_name + ' ' + current_user.last_name %>
@@ -23,10 +21,16 @@
                     <td><%= task.hourly_rate %></td>
                     <% if task.helper_applicants == [] %>
                         <td>No Helper Applicants</td>
-                        <td>None </td>
+                        <td> </td>
                     <% else %>
-                        <td><%= link_to task.helper_applicants, helper_path(task.helper_applicants)  %></td>
-                        <td><%= link_to 'Accept', accept_helper_path(@categories, task.id),method: :patch, class: "btn btn-outline-dark btn-sm" %></td>
+                        <% ids = task.helper_applicants.to_a%>
+                        <% task_id = task.id%>
+                        <td>
+                            <% ids.each do |id|%>
+                                <%= link_to User.find(id).first_name, show_applicant_path(task_id, id)  %>
+                            <% end %>
+                        </td>
+                        <td><%= link_to 'Accept', accept_helper_path(@categories, task.id), class: "btn btn-outline-dark btn-sm" %></td>
                     <% end %> 
                 </tr>
         <%end%>

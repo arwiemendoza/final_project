@@ -6,7 +6,6 @@ class TasksController < ApplicationController
         @tasks = @category.tasks
         @task = Task.new
         @users = User.all
-
     end
     
     def show
@@ -60,9 +59,11 @@ class TasksController < ApplicationController
     end
 
     def accept_helper
-        task = Task.find(params[:id])
+        @user_id = User.find(params[:user_id]).id
+        task = Task.find(params[:task_id])
         task.update(task_status: "Approved")
-        task.save
+        task.update(helper_id: @user_id)
+        task.save!
         flash[:notice] = "Task status updated."
         redirect_to user_index_path
     end

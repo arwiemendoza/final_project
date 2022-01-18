@@ -1,0 +1,8 @@
+<div class="container h-2/4 flex justify-center items-center ">
+    <h5><%= @user.first_name %></h5>
+    <h5><%= @user.last_name %></h5>
+    <h5><%= @user.email %></h5>
+    <br>
+    <td><%= link_to 'Accept', accept_helper_path(@task_id, @user.id), class: "btn btn-outline-dark btn-sm" %></td>
+    <%= link_to 'Back', :back %>
+</div>
