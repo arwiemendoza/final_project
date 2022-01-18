@@ -20,8 +20,10 @@ Rails.application.routes.draw do
 
   get 'tasks/:task_id/user/:user_id/accept_helper' => 'tasks#accept_helper', as: :accept_helper
 
-  get 'tasks/:task_id/finish_task' => 'tasks#finish_task', as: :finish_task
+  get 'tasks/:task_id/complete_task' => 'tasks#complete_task', as: :complete_task
   
+  get 'tasks/:task_id/finish_task' => 'tasks#finish_task', as: :finish_task
+
   get 'task/:id/helper/:user_id' => 'helper#show_applicant', as: :show_applicant
 
   post 'user/:id/deposit' => 'user#deposit', as: :deposit

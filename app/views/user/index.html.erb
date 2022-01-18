@@ -1,6 +1,7 @@
 <h1><center>Client Landing Page</center></h1>
-
-<h3>Created Tasks</h3>
+<br>
+<h2>Ongoing</h2>
+<h3>Pending Tasks</h3>
 <table class="table table-hover table-striped table-bordered table-sm">
     <tr class="table-dark">
         <th>Task Name</th>
@@ -34,7 +35,8 @@
 </table>
 <br>
 <br>
-<h3>Pending Tasks</h3>
+
+<h3>Scheduled Tasks</h3>
 <table class="table table-hover table-striped table-bordered table-sm">
     <tr class="table-dark">
         <th>Task Name</th>
@@ -45,7 +47,7 @@
     </tr>
 
     <% @tasks.each do |task|%>
-        <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id != nil && task.task_status == "Approved" && task.task_status != "Completed"%>
+        <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id != nil && task.task_status == "Approved"%>
             <tr>
                 <td><%= task.name %></td>
                 <td><%= task.details %></td>
@@ -58,7 +60,8 @@
 </table>
 <br>
 <br>
-<h3>Finished Tasks</h3>
+
+<h3>Confirm Task Status</h3>
 <table class="table table-hover table-striped table-bordered table-sm">
     <tr class="table-dark">
         <th>Task Name</th>
@@ -66,6 +69,7 @@
         <th>Date</th>
         <th>Hourly Rate</th>
         <th>Helper </th>
+        <th>Action </th>
     </tr>
 
     <% @tasks.each do |task|%>
@@ -76,7 +80,35 @@
                 <td><%= task.date %></td>
                 <td><%= task.hourly_rate %></td>
                 <td><%= task.helper_id %></td>
+                <td><%= link_to 'Confirm', finish_task_path(task.id) %></td>
             </tr>
         <%end%>
     <%end%>
 </table>
+<br>
+<br>
+
+<h2>Past</h2>
+<h3>Task History</h3>
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>Task Name</th>
+        <th>Details</th>
+        <th>Date</th>
+        <th>Hourly Rate</th>
+        <th>Helper </th>
+    </tr>
+
+    <% @tasks.each do |task|%>
+        <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id != nil && task.task_status == "Finished"%>
+            <tr>
+                <td><%= task.name %></td>
+                <td><%= task.details %></td>
+                <td><%= task.date %></td>
+                <td><%= task.hourly_rate %></td>
+                <td><%= task.helper_id %></td>
+            </tr>
+        <%end%>
+    <%end%>
+</table>
+<br>

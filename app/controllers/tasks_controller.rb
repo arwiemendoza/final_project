@@ -68,15 +68,22 @@ class TasksController < ApplicationController
         redirect_to user_index_path
     end
 
-    def finish_task
+    def complete_task
         task = Task.find(params[:task_id])
         task.update(task_status: "Completed")
         task.save!
         flash[:notice] = "Task status updated."
         redirect_to user_index_path
     end
-    
 
+    def finish_task
+        task = Task.find(params[:task_id])
+        task.update(task_status: "Finished")
+        task.save!
+        flash[:notice] = "Task status updated."
+        redirect_to user_index_path
+    end
+    
     private 
     def task_params
         params.require(:task).permit(:name, :details, :hourly_rate, :date, :category_id, :created_by, :client_id, :helper_id, :helper_applicants)
