@@ -45,7 +45,7 @@
     </tr>
 
     <% @tasks.each do |task|%>
-        <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id != nil && task.task_status == "Approved"%>
+        <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id != nil && task.task_status == "Approved" && task.task_status != "Completed"%>
             <tr>
                 <td><%= task.name %></td>
                 <td><%= task.details %></td>
@@ -69,7 +69,7 @@
     </tr>
 
     <% @tasks.each do |task|%>
-        <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id != nil && task.task_status == "Finished"%>
+        <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id != nil && task.task_status == "Completed"%>
             <tr>
                 <td><%= task.name %></td>
                 <td><%= task.details %></td>
