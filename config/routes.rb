@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get 'category/:category_id/tasks/:id/accept_task' => 'tasks#accept_task', as: :accept_task
 
   get 'tasks/:task_id/user/:user_id/accept_helper' => 'tasks#accept_helper', as: :accept_helper
+
+  get 'tasks/:task_id/finish_task' => 'tasks#finish_task', as: :finish_task
   
   get 'task/:id/helper/:user_id' => 'helper#show_applicant', as: :show_applicant
 

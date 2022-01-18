@@ -34,11 +34,38 @@
         <th>Date</th>
         <th>Hourly Rate</th>
         <th>Client Name</th>
+        <th></th>
     </tr>
 
 
     <% @tasks.each do |task|%>
-        <% if task.helper_id == current_user.id%>
+        <% if task.helper_id == current_user.id &&  task.task_status != "Completed" %>
+        <tr>
+            <td><%= task.name %></td>
+            <td><%= task.details %></td>
+            <td><%= task.date %></td>
+            <td><%= task.hourly_rate %></td>
+            <td><%= task.created_by %></td>
+            <td><%= link_to 'Finish', finish_task_path(task, @user_id) %></td>
+        </tr>
+        <%end%>
+    <% end %>
+</table>
+<br>
+<br>
+<h3>Accomplished Tasks</h3>
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>Task Name</th>
+        <th>Details</th>
+        <th>Date</th>
+        <th>Hourly Rate</th>
+        <th>Client Name</th>
+    </tr>
+
+
+    <% @tasks.each do |task|%>
+        <% if task.task_status == "Completed" %>
         <tr>
             <td><%= task.name %></td>
             <td><%= task.details %></td>
@@ -49,6 +76,3 @@
         <%end%>
     <% end %>
 </table>
-<br>
-<br>
-<h3>Accomplished Tasks</h3>

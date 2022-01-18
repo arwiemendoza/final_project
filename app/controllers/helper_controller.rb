@@ -18,4 +18,5 @@ class HelperController < ApplicationController
         @task = Task.all
         @task_id = Task.find(params[:id])
     end
+
 end

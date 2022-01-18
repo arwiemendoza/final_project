@@ -67,6 +67,14 @@ class TasksController < ApplicationController
         flash[:notice] = "Task status updated."
         redirect_to user_index_path
     end
+
+    def finish_task
+        task = Task.find(params[:task_id])
+        task.update(task_status: "Completed")
+        task.save!
+        flash[:notice] = "Task status updated."
+        redirect_to user_index_path
+    end
     
 
     private 
