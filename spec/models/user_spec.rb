@@ -55,14 +55,14 @@ RSpec.describe User, type: :model do
         expect(user.errors).to be_present
         end
         
-        it '8. First name does not have special characters' do
+        it '8. First name should not have special characters' do
             user.first_name = "!@#$%^&*"
 
         expect(user).to_not be_valid
         expect(user.errors).to be_present
         end
 
-        it '9. Last name does not have special characters' do
+        it '9. Last name should not have special characters' do
             user.last_name = "!@#$%^&*"
 
         expect(user).to_not be_valid
