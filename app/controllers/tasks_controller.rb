@@ -51,11 +51,17 @@ class TasksController < ApplicationController
 
     def accept_task
         task = Task.find(params[:id])
-        @array = task.helper_applicants.push(current_user.id)
-        task.update(helper_applicants: @array)
-        task.save
-        flash[:notice] = "User status updated."
-        redirect_to helper_index_path
+        @array = task.helper_applicants.to_a
+        if @array.include?(current_user.id) == true
+            flash[:notice] = "You already applied for this task."
+            redirect_to category_path
+        else
+            @array.push(current_user.id)
+            task.update(helper_applicants: @array)
+            task.save
+            flash[:notice] = "Thank you for applyin."
+            redirect_to helper_index_path
+        end
     end
 
     def accept_helper

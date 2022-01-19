@@ -11,6 +11,7 @@ class UserController < ApplicationController
     def show
         @user = User.find(params[:id])
         @balance = current_user.balance
+        rate_user
     end
 
     def destroy
@@ -29,6 +30,14 @@ class UserController < ApplicationController
         user.balance -= params[:amount].to_i
         @balance = current_user.balance
         user.save
+    end
+
+    def rate_user
+        @users
+        user_rate = user.rating.push(params[:input_rating])
+        @user.update
+
+
     end
 
     private
