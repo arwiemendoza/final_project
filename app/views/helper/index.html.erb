@@ -1,6 +1,8 @@
 <h1><center>Helper Landing Page</center></h1>
 
 <h3>Applied Tasks</h3>
+<br>
+<h2>Ongoing</h2>
 <table class="table table-hover table-striped table-bordered table-sm">
     <tr class="table-dark">
         <th>Task Name</th>
@@ -40,7 +42,7 @@
 
 
     <% @tasks.each do |task|%>
-        <% if task.helper_id == current_user.id && task.task_status != "Completed" %>
+        <% if task.helper_id == current_user.id && task.task_status == "Approved" %>
         <tr>
             <td><%= task.name %></td>
             <td><%= task.details %></td>
@@ -53,8 +55,8 @@
     <% end %>
 </table>
 <br>
-
 <br>
+<h2>Past</h2>
 <h3>Accomplished Tasks</h3>
 <table class="table table-hover table-striped table-bordered table-sm">
     <tr class="table-dark">
@@ -63,17 +65,19 @@
         <th>Date</th>
         <th>Hourly Rate</th>
         <th>Client Name</th>
+        <th>Helper ID</th>
     </tr>
 
 
     <% @tasks.each do |task|%>
-        <% if task.helper_id == current_user.id && task.task_status == "Completed" %>
+        <% if task.helper_id == current_user.id && task.task_status == "Completed" || task.helper_id == current_user.id && task.task_status == "Finished" %>
         <tr>
             <td><%= task.name %></td>
             <td><%= task.details %></td>
             <td><%= task.date %></td>
             <td><%= task.hourly_rate %></td>
             <td><%= task.created_by %></td>
+            <td><%= task.helper_id %></td>
         </tr>
         <%end%>
     <% end %>
