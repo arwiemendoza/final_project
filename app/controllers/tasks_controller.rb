@@ -78,8 +78,19 @@ class TasksController < ApplicationController
 
     def finish_task
         task = Task.find(params[:task_id])
+        rate = task.hourly_rate
+        client = User.find(task.client_id)
+        helper = User.find(task.helper_id)
+
+
         task.update(task_status: "Finished")
+        client.update(balance: client.balance - rate)
+        helper.update(balance: helper.balance + rate)
+
         task.save!
+        client.save!
+        helper.save!
+        
         flash[:notice] = "Task status updated."
         redirect_to user_index_path
     end
