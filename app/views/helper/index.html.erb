@@ -17,7 +17,7 @@
         <% array = task.helper_applicants.to_a %>
         <% if array.include?(current_user.id) == true && task.helper_id == nil%> 
         <tr>
-            <td><%= task.name %></td>
+            <td><%= link_to task.name, show_task_info_path(task.id) %></td>
             <td><%= task.details %></td>
             <td><%= task.date %></td>
             <td><%= task.hourly_rate %></td>

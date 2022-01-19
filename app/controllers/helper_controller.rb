@@ -39,4 +39,9 @@ class HelperController < ApplicationController
         redirect_to user_index_path(@task.client_id)
     end
 
+    
+    def show_task_info
+        @task = Task.find(params[:id])
+    end
+
 end

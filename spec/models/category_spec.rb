@@ -19,6 +19,16 @@ RSpec.describe Category, type: :model do
     expect(category).to_not be_valid
     expect(category.errors).to be_present
     end
+
+    
+    it '3. Category should not have same name' do
+
+      category.name = "Apple"
+      category.name = "Apple"
+
+  expect(category).to_not be_valid
+  expect(category.errors).to be_present
+  end
   
   end
 

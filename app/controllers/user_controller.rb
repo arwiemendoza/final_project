@@ -51,6 +51,7 @@ class UserController < ApplicationController
         redirect_to user_index_path(@task.helper_id)
     end
 
+
     private
     def is_admin
         if authenticate_user! && current_user.admin
