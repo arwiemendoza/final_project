@@ -1,0 +1,15 @@
+<h1><center>Rate Helper </center></h1>
+<%= @task.name %>
+<%= @task.details %>
+<%= @task.date %>
+<%= @task.hourly_rate %>
+<%= @task.helper_id %>
+<%= @helper.email %>
+
+<%= form_with url: patch_rate_helper_path do |f| %>
+    <div class="field">
+        <%= f.label 'Rating' %><br/>
+        <%= f.number_field :input_rating %>
+        <%= f.submit "Submit" %>
+    </div>
+<% end %>

@@ -19,4 +19,24 @@ class HelperController < ApplicationController
         @task_id = Task.find(params[:id])
     end
 
+    def get_rate_helper
+        @task = Task.find(params[:id])
+        @helper = User.find(params[:helper_id])
+    end
+    
+    def patch_rate_helper
+        @task = Task.find(params[:id])
+        @helper = User.find(params[:helper_id])
+
+        @array = @helper.rating.to_a
+        input = params[:input_rating].to_i
+        @array.push(input)
+        @helper.update(rating: @array)
+        @helper.save!
+
+        @task.update(rated_by_client: true)
+        @task.save!
+        redirect_to user_index_path(@task.client_id)
+    end
+
 end

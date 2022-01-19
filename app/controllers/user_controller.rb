@@ -1,6 +1,6 @@
 class UserController < ApplicationController
     before_action :is_admin
-    before_action :is_helper
+    before_action :is_helper, except: [:show, :get_rate_client, :patch_rate_client]
 
     def index 
         @users = User.all
@@ -11,7 +11,6 @@ class UserController < ApplicationController
     def show
         @user = User.find(params[:id])
         @balance = current_user.balance
-        rate_user
     end
 
     def destroy
@@ -32,12 +31,24 @@ class UserController < ApplicationController
         user.save
     end
 
-    def rate_user
-        @users
-        user_rate = user.rating.push(params[:input_rating])
-        @user.update
+    def get_rate_client
+        @task = Task.find(params[:id])
+        @client = User.find(params[:client_id])
+    end
+    
+    def patch_rate_client
+        @task = Task.find(params[:id])
+        @client = User.find(params[:client_id])
 
+        @array = @client.rating.to_a
+        input = params[:input_rating].to_i
+        @array.push(input)
+        @client.update(rating: @array)
+        @client.save!
 
+        @task.update(rated_by_helper: true)
+        @task.save!
+        redirect_to user_index_path(@task.helper_id)
     end
 
     private

@@ -26,6 +26,12 @@ Rails.application.routes.draw do
 
   get 'task/:id/helper/:user_id' => 'helper#show_applicant', as: :show_applicant
 
+  get 'task/:id/helper/:helper_id/getrate' => 'helper#get_rate_helper', as: :get_rate_helper
+  post 'task/:id/helper/:helper_id/patchrate' => 'helper#patch_rate_helper', as: :patch_rate_helper
+
+  get 'task/:id/client/:client_id/getrate' => 'user#get_rate_client', as: :get_rate_client
+  post 'task/:id/client/:client_id/patchrate' => 'user#patch_rate_client', as: :patch_rate_client
+
   post 'user/:id/deposit' => 'user#deposit', as: :deposit
   post 'user/:id/withdraw' => 'user#withdraw', as: :withdraw
 end

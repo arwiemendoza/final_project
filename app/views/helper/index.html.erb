@@ -66,6 +66,7 @@
         <th>Hourly Rate</th>
         <th>Client Name</th>
         <th>Helper ID</th>
+        <th>Rate Client</th>
     </tr>
 
 
@@ -78,6 +79,11 @@
             <td><%= task.hourly_rate %></td>
             <td><%= task.created_by %></td>
             <td><%= task.helper_id %></td>
+            <% if task.rated_by_helper? %>
+                <td>Done</td>
+            <% else %>
+                <td><%= link_to 'Rate Client', get_rate_client_path(task.id, task.client_id) %></td>
+            <% end %>
         </tr>
         <%end%>
     <% end %>

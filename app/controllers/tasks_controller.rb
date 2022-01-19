@@ -103,7 +103,7 @@ class TasksController < ApplicationController
     
     private 
     def task_params
-        params.require(:task).permit(:name, :details, :hourly_rate, :date, :category_id, :created_by, :client_id, :helper_id, :helper_applicants)
+        params.require(:task).permit(:name, :details, :hourly_rate, :date, :category_id, :created_by, :client_id, :helper_id, :helper_applicants, :rated_by_helper, :rated_by_client)
     end
 
     def user_only

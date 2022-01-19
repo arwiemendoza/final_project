@@ -97,6 +97,7 @@
         <th>Date</th>
         <th>Hourly Rate</th>
         <th>Helper </th>
+        <th>Rate Helper</th>
     </tr>
 
     <% @tasks.each do |task|%>
@@ -107,6 +108,11 @@
                 <td><%= task.date %></td>
                 <td><%= task.hourly_rate %></td>
                 <td><%= task.helper_id %></td>
+                <% if task.rated_by_client? %>
+                    <td>Done</td>
+                <% else %>
+                    <td><%= link_to 'Rate Helper', get_rate_helper_path(task.id, task.helper_id) %></td>
+                <% end %>
             </tr>
         <%end%>
     <%end%>
