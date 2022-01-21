@@ -20,11 +20,10 @@
 <table class="table table-hover table-striped table-bordered table-sm">
     <tr class="table-dark">
         <th>Name</th>
-        <th>Details</th>
         <th>Date</th>
         <th>Hourly Rate</th>
          <% if current_user.helper%>
-            <th>Client Name</th>
+            <th>Action</th>
         <% elsif current_user.admin %>
             <th></th>
         <% else %>
@@ -36,15 +35,13 @@
 
     <% @tasks.each do |task|%> 
         <tr>
-            <td><%= link_to task.name, show_task_info_path(task.id) %></td>
-            <td><%= task.details %></td>
+            <td><%= link_to task.name, show_task_info_path(task.id, task.client_id) %></td>
             <td><%= task.date %></td>
             <td><%= task.hourly_rate %></td>
             
             <% if current_user.admin %>
                 <td><%= link_to 'Delete', category_task_path(params[:id], task.id), method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
             <% elsif current_user.helper%>
-                <td><%= link_to task.created_by, user_show_path(task.client_id)  %></td>
                 <td><%= link_to 'Accept', accept_task_path(@category, task.id), class: "btn btn-outline-dark btn-sm" %></td>
             <% elsif task.client_id == current_user.id %>    
                 <td><%= link_to 'Edit', edit_category_task_path(params[:id], task), class: "btn btn-outline-dark btn-sm" %></td>

@@ -1,10 +1,33 @@
-<h1><%= @task.name %></h1>
-
-<h3>Details</h3>
+<h1>Task Information</h1>
+<br>
+<br>
+<h2><%= @task.name %></h2>
+<h4>Details</h4>
 <%= @task.details %>
-<h3>Date</h3>
+<br>
+<br>
+<h4>Date</h4>
 <%= @task.date %>
-<h3>Rate</h3>
+<br>
+<br>
+<h4>Rate</h4>
 <%= @task.hourly_rate %>
+<br>
+<br>
+<br>
+<br>
+<h1>Client Information</h1>
+<h2><%= @client.first_name + ' ' + @client.last_name%></h2>
+<h4>Email</h4>
+<%= @client.email %>
+<br>
+<br>
+<h4>Rating</h4>
+<% array = @client.rating.to_a %>
+<% ave = array.sum/array.length %>
+<%= ave %><span>/5</span>
+<br>
+<br>
+
 <br>
 <%= link_to 'Back' , :back %>

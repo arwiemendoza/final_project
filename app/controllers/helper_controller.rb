@@ -41,7 +41,8 @@ class HelperController < ApplicationController
 
     
     def show_task_info
-        @task = Task.find(params[:id])
+        @task = Task.find(params[:task_id])
+        @client = User.find(params[:client_id])
     end
 
 end

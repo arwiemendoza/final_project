@@ -6,10 +6,8 @@
 <table class="table table-hover table-striped table-bordered table-sm">
     <tr class="table-dark">
         <th>Task Name</th>
-        <th>Details</th>
         <th>Date</th>
-        <th>Hourly Rate</th>
-        <th>Client Name</th>
+        <th>Rate</th>
     </tr>
 
 
@@ -17,11 +15,9 @@
         <% array = task.helper_applicants.to_a %>
         <% if array.include?(current_user.id) == true && task.helper_id == nil%> 
         <tr>
-            <td><%= link_to task.name, show_task_info_path(task.id) %></td>
-            <td><%= task.details %></td>
+            <td><%= link_to task.name, show_task_info_path(task.id, task.client_id) %></td>
             <td><%= task.date %></td>
             <td><%= task.hourly_rate %></td>
-            <td><%= task.created_by %></td>
         </tr>
         <%end%>
     <% end %>
@@ -33,10 +29,8 @@
 <table class="table table-hover table-striped table-bordered table-sm">
     <tr class="table-dark">
         <th>Task Name</th>
-        <th>Details</th>
         <th>Date</th>
-        <th>Hourly Rate</th>
-        <th>Client Name</th>
+        <th>Rate</th>
         <th></th>
     </tr>
 
@@ -44,11 +38,9 @@
     <% @tasks.each do |task|%>
         <% if task.helper_id == current_user.id && task.task_status == "Approved" %>
         <tr>
-            <td><%= task.name %></td>
-            <td><%= task.details %></td>
+            <td><%= link_to task.name, show_task_info_path(task.id, task.client_id) %></td>
             <td><%= task.date %></td>
             <td><%= task.hourly_rate %></td>
-            <td><%= task.created_by %></td>
             <td><%= link_to 'Complete', complete_task_path(task.id) %></td>
         </tr>
         <%end%>
@@ -61,24 +53,16 @@
 <table class="table table-hover table-striped table-bordered table-sm">
     <tr class="table-dark">
         <th>Task Name</th>
-        <th>Details</th>
         <th>Date</th>
-        <th>Hourly Rate</th>
-        <th>Client Name</th>
-        <th>Helper ID</th>
         <th>Rate Client</th>
     </tr>
 
 
     <% @tasks.each do |task|%>
         <% if task.helper_id == current_user.id && task.task_status == "Completed" || task.helper_id == current_user.id && task.task_status == "Finished" %>
-        <tr>
-            <td><%= task.name %></td>
-            <td><%= task.details %></td>
+        <tr>            
+            <td><%= link_to task.name, show_task_info_path(task.id, task.client_id) %></td>
             <td><%= task.date %></td>
-            <td><%= task.hourly_rate %></td>
-            <td><%= task.created_by %></td>
-            <td><%= task.helper_id %></td>
             <% if task.rated_by_helper? %>
                 <td>Done</td>
             <% else %>
