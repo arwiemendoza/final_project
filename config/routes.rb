@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :attachments
   root 'home#index'
   devise_for :users
   resources :admin 
   resources :helper
+  resources :attachments
   resources :category do 
     resources :tasks
   end
@@ -34,6 +34,12 @@ Rails.application.routes.draw do
 
   get 'task/:id/client/:client_id/getrate' => 'user#get_rate_client', as: :get_rate_client
   post 'task/:id/client/:client_id/patchrate' => 'user#patch_rate_client', as: :patch_rate_client
+
+  get 'client_additional_info' => 'user#client_additional_info', as: :client_additional_info
+  post 'patch/client_additional_info' => 'user#client_patch_additional_info', as: :client_patch_additional_info
+
+  get 'helper_additional_info' => 'helper#helper_additional_info', as: :helper_additional_info
+  post 'patch/helper_additional_info' => 'helper#helper_patch_additional_info', as: :helper_patch_additional_info
 
   post 'user/:id/deposit' => 'user#deposit', as: :deposit
   post 'user/:id/withdraw' => 'user#withdraw', as: :withdraw

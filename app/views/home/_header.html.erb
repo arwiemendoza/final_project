@@ -25,50 +25,66 @@
             </li>
 
           <% elsif current_user.helper %>
-            <li class="nav-item">
-              <%= link_to 'Home', helper_index_path, class:'nav-link'%>
-            </li>
-
-            <li class="nav-item">
-              <%= link_to 'Category', category_index_path(params[:id]), class:'nav-link'%>
-            </li>
-
-             <li class="nav-item">
-                <%= link_to 'Account', helper_path(current_user), class:'nav-link' %>
-              </li>  
-        
-            <li class="nav-item">
-              <%= link_to 'Edit', edit_user_registration_path, class:'nav-link'%>
-            </li>
-
-            <li class="nav-item">
-              <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class:'nav-link'%>
-            </li>
-
-            <% else %>
+            <% if current_user.mobile_number == nil %>
               <li class="nav-item">
-                <%= link_to 'Home', user_index_url, class:'nav-link'%>
+                <%= link_to 'Update Account', edit_user_registration_path, class:'nav-link'%>
               </li>
 
               <li class="nav-item">
-                <%= link_to 'Account', user_show_path(current_user), class:'nav-link' %>
-              </li>  
+                <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class:'nav-link'%>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to 'Home', helper_index_path, class:'nav-link'%>
+              </li>
 
               <li class="nav-item">
                 <%= link_to 'Category', category_index_path(params[:id]), class:'nav-link'%>
               </li>
 
               <li class="nav-item">
+                  <%= link_to 'Account', helper_path(current_user), class:'nav-link' %>
+                </li>  
+          
+              <li class="nav-item">
                 <%= link_to 'Edit', edit_user_registration_path, class:'nav-link'%>
               </li>
 
-            
               <li class="nav-item">
                 <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class:'nav-link'%>
               </li>
-
             <% end %>
+            <% else %>
+              <% if current_user.mobile_number == nil %>
+                <li class="nav-item">
+                  <%= link_to 'Update Account', edit_user_registration_path, class:'nav-link'%>
+                </li>
 
+                <li class="nav-item">
+                  <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class:'nav-link'%>
+                </li>
+              <% else %>
+                <li class="nav-item">
+                  <%= link_to 'Home', user_index_url, class:'nav-link'%>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to 'Account', user_show_path(current_user), class:'nav-link' %>
+                </li>  
+
+                <li class="nav-item">
+                  <%= link_to 'Category', category_index_path(params[:id]), class:'nav-link'%>
+                </li>
+
+                <li class="nav-item">
+                  <%= link_to 'Edit', edit_user_registration_path, class:'nav-link'%>
+                </li>
+              
+                <li class="nav-item">
+                  <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class:'nav-link'%>
+                </li>
+              <% end %>
+            <% end %>
         <% end %>
       </ul>
     </div>

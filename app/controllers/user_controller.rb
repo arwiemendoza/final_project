@@ -51,6 +51,19 @@ class UserController < ApplicationController
         redirect_to user_index_path(@task.helper_id)
     end
 
+    def client_additional_info
+        @user = current_user
+    end
+
+    def client_patch_additional_info
+        @user = current_user
+        # no_input = params[:mobile_number].to_i
+        # loc_input = params[:location]
+        @user.update(mobile_number: params[:mobile_number])
+        @user.update(location: params[:location])
+        @user.save!
+        redirect_to user_index_path
+    end
 
     private
     def is_admin

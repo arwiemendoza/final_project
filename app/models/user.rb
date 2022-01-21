@@ -9,5 +9,5 @@ class User < ApplicationRecord
   validates :last_name, presence: true, format: { with: /\A[a-zA-Z]+\z/, message: "can only include letters"}
 
   has_many :categories 
-
+  has_many :attachments 
 end

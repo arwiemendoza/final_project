@@ -3,7 +3,10 @@ class HelperController < ApplicationController
     def index
         @users = User.all
         @categories = Category.all
-        @category = @categories.find(1)
+        if @categories == []
+        else
+            @category = @categories.find(1)
+        end
         @tasks = Task.all
     end
 
@@ -39,10 +42,20 @@ class HelperController < ApplicationController
         redirect_to user_index_path(@task.client_id)
     end
 
-    
     def show_task_info
         @task = Task.find(params[:task_id])
         @client = User.find(params[:client_id])
     end
 
+    def helper_additional_info
+        @user = current_user
+    end
+
+    def helper_patch_additional_info
+        @user = current_user
+        @user.update(mobile_number: params[:mobile_number])
+        @user.update(location: params[:location])
+        @user.save!
+        redirect_to user_index_path
+    end
 end
