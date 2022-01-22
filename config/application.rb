@@ -18,5 +18,8 @@ module FinalProject
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+
+    config.hosts << "https://53f2-124-107-208-99.ngrok.io"
+
   end
 end
