@@ -17,13 +17,15 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css' rel='stylesheet'/>
 
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.js"></script>
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-directions/v4.1.0/mapbox-gl-directions.css" type="text/css">
+
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.min.js'></script>
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.7.0/mapbox-gl-geocoder.css' type='text/css' />
 
   </head>
 
   <body>
-  Ed pogi
     <%= render 'home/header' %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
@@ -31,62 +33,68 @@
     <div id='map'></div>
 
     <script>
-      // Add your Mapbox access token
       mapboxgl.accessToken = 'pk.eyJ1IjoiaGFuZHlidW5ueSIsImEiOiJja3lwOHdxZmIwN3NwMm9veTkycHFwcXd3In0.v_s_1-4y8gSAXEZkons7Fw';
-      const map = new mapboxgl.Map({
-        container: 'map', // Specify the container ID
-        style: 'mapbox://styles/mapbox/streets-v11', // Specify which map style to use
-        center: [-122.42136449,37.80176523], // Specify the starting position
-        zoom: 14.5, // Specify the starting zoom
-      });
-
-      const geocoder = new MapboxGeocoder({
-      // Initialize the geocoder
-      accessToken: mapboxgl.accessToken, // Set the access token
-      mapboxgl: mapboxgl, // Set the mapbox-gl instance
-      marker: false // Do not use the default marker style
-    });
-
-      // Add the geocoder to the map
-        map.addControl(geocoder);
-
-      map.on('load', () => {
-      map.addSource('single-point', {
-    type: 'geojson',
-    data: {
-      type: 'FeatureCollection',
-      features: []
-    }
-  });
-
-  map.addLayer({
-    id: 'point',
-    source: 'single-point',
-    type: 'circle',
-    paint: {
-      'circle-radius': 10,
-      'circle-color': '#448ee4'
-    }
-  });
-
-
-  geocoder.on('result', (event) => {
-    alert(event.result.geometry.coordinates)
-    map.getSource('single-point').setData(event.result.geometry);
-  });
-});
-
-      function getLocation() {
-        if(navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
-        }else {
-          alert("Geolocation is not supported by this browser.");
-        }
+      
+      navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {enableHighAccuracy: true})
+    
+      function successLocation(position){
+        console.log(position)
+        setupMap([position.coords.longitude, position.coords.latitude])
       }
-      getLocation();
+  
+      function errorLocation(){
+        setupMap([14.556586, 121.023415])
+      }
 
+      function setupMap(center){
+       const map = new mapboxgl.Map({
+         container: 'map',
+         style: 'mapbox://styles/mapbox/streets-v11',
+         center: center,
+         zoom: 15
+       });
+ 
+       const nav = new mapboxgl.NavigationControl();
+       map.addControl(nav)
+ 
+       const geocoder = new MapboxGeocoder({
+         accessToken: mapboxgl.accessToken,
+         mapboxgl: mapboxgl
+       })
+       map.addControl(geocoder, 'top-center')
+ 
+       const directions = new MapboxDirections({
+         accessToken: mapboxgl.accessToken,
+         mapboxgl: mapboxgl
+       })
+       map.addControl(directions, 'top-left')
+
+       map.on('load', () => {
+        map.addSource('single-point', {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: []
+          }
+        });
+
+        map.addLayer({
+          id: 'point',
+          source: 'single-point',
+          type: 'circle',
+          paint: {
+            'circle-radius': 10,
+            'circle-color': '#448ee4'
+          }
+        });
+
+        geocoder.on('result', (event) => {
+          alert(event.result.geometry.coordinates)
+          map.getSource('single-point').setData(event.result.geometry);
+        });
+      });
+     }
     </script>
-
   </body>
 </html>
 
