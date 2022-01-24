@@ -1,0 +1,156 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ *{
+     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+ }
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* #map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+} */
+
+.loginContainer {
+	display: flex;
+	flex-direction: column;
+    justify-content: center;
+	align-items: stretch;
+    background: #9BD1E5;
+	height: 100vh;    
+    gap: 2em;
+}
+
+.logoContainer{
+    display: flex;
+	flex-direction: column;
+    justify-content: center;
+	align-items: center;
+}
+
+.loginFormContainer {
+    padding: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    border-radius: 15px;
+    color: rgb(78, 77, 77);
+    font-size: 13px;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 21px;
+}
+
+.loginEmailContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	align-items: stretch;
+    width: 300px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1em;
+    border-radius: 15px;
+    color: rgb(78, 77, 77);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    gap: 5px;
+} 
+
+.loginEmailInputContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+
+.emailInput {
+    width: 100%;
+    border-style: none;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.loginPasswordContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	align-items: stretch;
+    width: 300px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1em;
+    border-radius: 15px;
+    color: rgb(78, 77, 77);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    gap: 5px;
+}  
+
+.loginPasswordInputContainer{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.passwordInput {
+    width: 100%;
+    border-style: none;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.loginRememberContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+	align-items: stretch;
+}
+
+.loginRemember {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.loginButton {
+    height: 40px;
+    width: 299px;
+    border-radius: 20PX;
+    background: #286BA6;
+    border-style: none;
+    color: white;
+}
+
+@media only screen and (min-width: 600px) {
+    .loginEmailContainer {
+        width: 300px;
+    }
+
+    .loginPasswordContainer {
+        width: 300px;
+    }
+
+    .loginButton {
+        width: 300px;
+    }
+}

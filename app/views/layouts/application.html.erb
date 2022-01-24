@@ -26,9 +26,14 @@
   </head>
 
   <body>
+    
     <%= render 'home/header' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+<%
+=begin%>
+     <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p> 
+<%
+=end%>
     <%= yield %>
     <div id='map'></div>
 

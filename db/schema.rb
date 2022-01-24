@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 2022_01_21_121826) do
     t.string "task_status"
     t.integer "client_id"
     t.integer "helper_applicants", default: [], array: true
+    t.boolean "rated", default: false
     t.boolean "rated_by_client", default: false
     t.boolean "rated_by_helper", default: false
     t.index ["category_id"], name: "index_tasks_on_category_id"
