@@ -71,21 +71,23 @@ body {
     justify-content: center;
 	align-items: stretch;
     width: 300px;
-    height: 70px;
+    height: 55px;
     background: rgba(255, 255, 255, 0.8);
-    padding: 1em;
+    padding: 1em 1em 1em 1.2em;
     border-radius: 15px;
     color: rgb(78, 77, 77);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     gap: 5px;
 } 
+.emailLabel, .passwordLabel {
+    font-size: 11px;
+}
 
 .emailInputContainer{
     display: flex;
     flex-direction: row;
     gap: 10px;
 }
-
 
 .emailInput {
     width: 100%;
@@ -99,9 +101,9 @@ body {
     justify-content: center;
 	align-items: stretch;
     width: 300px;
-    height: 60px;
+    height: 55px;
     background: rgba(255, 255, 255, 0.8);
-    padding: 1em;
+    padding: 1em 1em 1em 1.2em;
     border-radius: 15px;
     color: rgb(78, 77, 77);
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -120,17 +122,17 @@ body {
     background: rgba(255, 255, 255, 0.1);
 }
 
+.checkbox {
+    transform: scale(1.2), translateY(100px)
+}
+
 .loginRememberContainer {
     display: flex;
     flex-direction: row;
     justify-content: center;
 	align-items: stretch;
-}
-
-.loginRemember {
-    display: flex;
-    flex-direction: row;
-    gap: 1em;
+    gap: 10px;
+    text-align: center;
 }
 
 .loginButton, .signupButton {
@@ -140,32 +142,73 @@ body {
     background: #286BA6;
     border-style: none;
     color: white;
+    font-size: 16px;
+}
+
+.helperCheckbox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	align-items: stretch;
+    width: 300px;
+    height: 55px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1em 1em 1em 1.2em;
+    border-radius: 15px;
+    color: rgb(78, 77, 77);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    gap: 5px;
 }
 
 .nameContainer{
     display: flex;
     flex-direction: row;
     justify-content: center;
-	align-items: center;
+	align-items: stretch;
+    width: 300px;
+    height: 55px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1em 1em 1em 1.2em;
+    border-radius: 15px;
+    color: rgb(78, 77, 77);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    gap: 5px;
+}
+
+.userTypeContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	align-items: stretch;
+    width: 300px;
+    height: 55px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1em 1em 1em 1.2em;
+    border-radius: 15px;
+    color: rgb(78, 77, 77);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    gap: 0px;
+}
+
+.answerContainer, .yesContainer, .noContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 
 
 
-
-
-
-
 @media only screen and (min-width: 600px) {
-    .loginEmailContainer {
+    .emailContainer {
         width: 300px;
     }
 
-    .loginPasswordContainer {
+    .passwordContainer {
         width: 300px;
     }
 
-    .loginButton {
+    .loginButton, .signupButton {
         width: 300px;
     }
 }

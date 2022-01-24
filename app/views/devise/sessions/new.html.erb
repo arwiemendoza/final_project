@@ -40,7 +40,7 @@
 
 
           <div class='passwordContainer'>
-            <%= f.label :password %>
+            <%= f.label :password, class:'passwordLabel' %>
             <div class='passwordInputContainer'>
                 <div class='passwordIcon'>
                   <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,10 +54,8 @@
 
           <div class='loginRememberContainer'>
             <% if devise_mapping.rememberable? %>
-              <div class="field loginRemember">
-                <%= f.check_box :remember_me %>
+                <%= f.check_box :remember_me ,class: 'checkbox' %>
                 <%= f.label :remember_me %>
-              </div>
             <% end %>
           </div>
 

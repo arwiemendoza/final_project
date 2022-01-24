@@ -24,68 +24,80 @@
 
   <div class='formContainer'>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-
-      <div class='signupForm'>
-      <div class="field">
-        <%= f.label 'Signing up to be a helper?' %>
-        <%= f.check_box :helper, value: true %></br>
-      </div>
-
-      <div class='nameContainer'>
-          <div class="field">
-            <%= f.label :first_name %></br>
-            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+      <div class='form'>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        
+        <div class='field userTypeContainer'>
+          <%= f.label 'Do you want to be a HELPER' %>
+          <div class='answerContainer'>
+              <div class='yesContainer'>
+                <%= f.check_box :helper, value: true %>
+                <%= f.label 'Yes, I want to be a helper' %>
+              </div>
+              <div class='noContainer'>
+                <%= f.check_box :helper, value: false %>
+                <%= f.label 'No' %>
+              </div>
           </div>
-     
-          <div class="field">
-            <%= f.label :last_name %></br>
-            <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+        </div>
+
+        <div class='nameContainer'>
+            <div class="field">
+              <%= f.label :first_name %>
+              <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class:'fnameInput' %>
+            </div>
+      
+            <div class="field">
+              <%= f.label :last_name %>
+              <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+            </div>
+        </div>
+
+        <div class="emailContainer " >
+              <%= f.label :email_address, class:'emailLabel'%>
+              <div class="emailInputContainer">
+                  <div class='emailIcon'>
+                      <svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18.6289 5.46289C17.7383 6.16797 15.8086 7.57812 12.9141 9.65625L12.543 9.95312C11.9492 10.3984 11.5039 10.7324 11.1328 10.918C10.5391 11.2891 9.98242 11.4375 9.5 11.4375C8.98047 11.4375 8.46094 11.2891 7.86719 10.9551C7.49609 10.7695 7.05078 10.4355 6.45703 9.99023L6.08594 9.65625C3.08008 7.50391 1.1875 6.09375 0.371094 5.46289C0.296875 5.42578 0.185547 5.42578 0.111328 5.46289C0.0371094 5.5 0 5.57422 0 5.64844V13.2188C0 13.7383 0.148438 14.1465 0.519531 14.4805C0.853516 14.8516 1.26172 15 1.78125 15H17.2188C17.7012 15 18.1094 14.8516 18.4805 14.4805C18.8145 14.1465 19 13.7383 19 13.2188V5.64844C19 5.57422 18.9258 5.5 18.8516 5.42578C18.7773 5.38867 18.7031 5.38867 18.6289 5.46289ZM9.5 10.25C9.16602 10.25 8.75781 10.1016 8.3125 9.80469C8.01562 9.65625 7.64453 9.39648 7.16211 8.98828L6.79102 8.72852C3.74805 6.50195 1.66992 4.98047 0.59375 4.12695L0.333984 3.94141C0.111328 3.79297 0 3.5332 0 3.23633V2.53125C0 2.04883 0.148438 1.64062 0.519531 1.26953C0.853516 0.935547 1.26172 0.75 1.78125 0.75H17.2188C17.7012 0.75 18.1094 0.935547 18.4805 1.26953C18.8145 1.64062 19 2.04883 19 2.53125V3.23633C19 3.5332 18.8887 3.79297 18.666 3.94141L18.4805 4.08984C17.4043 4.94336 15.3262 6.50195 12.209 8.72852L11.8379 8.98828C11.3184 9.39648 10.9473 9.65625 10.6875 9.80469C10.2051 10.1016 9.79688 10.25 9.5 10.25Z" fill="#286BA6"/>
+                      </svg>
+                  </div>
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'emailInput' %>
+              </div>
+        </div>
+
+        <div class='passwordContainer'>
+          <%= f.label :password %>
+          <div class="passwordInputContainer">
+              <div class='passwordIcon'>
+                <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15.0312 8.6875C15.5137 8.6875 15.9219 8.87305 16.293 9.20703C16.627 9.57812 16.8125 9.98633 16.8125 10.4688V17.5938C16.8125 18.1133 16.627 18.5215 16.293 18.8555C15.9219 19.2266 15.5137 19.375 15.0312 19.375H1.96875C1.44922 19.375 1.04102 19.2266 0.707031 18.8555C0.335938 18.5215 0.1875 18.1133 0.1875 17.5938V10.4688C0.1875 9.98633 0.335938 9.57812 0.707031 9.20703C1.04102 8.87305 1.44922 8.6875 1.96875 8.6875H2.85938V6.01562C2.85938 5.01367 3.08203 4.08594 3.60156 3.19531C4.12109 2.3418 4.78906 1.67383 5.67969 1.1543C6.5332 0.634766 7.46094 0.375 8.5 0.375C9.50195 0.375 10.4297 0.634766 11.3203 1.1543C12.1738 1.67383 12.8418 2.3418 13.3613 3.19531C13.8809 4.08594 14.1406 5.01367 14.1406 6.01562V8.6875H15.0312ZM11.1719 8.6875V6.01562C11.1719 5.27344 10.9121 4.64258 10.3926 4.12305C9.87305 3.60352 9.24219 3.34375 8.5 3.34375C7.75781 3.34375 7.12695 3.60352 6.60742 4.12305C6.08789 4.64258 5.82812 5.27344 5.82812 6.01562V8.6875H11.1719Z" fill="#286BA6"/>
+                </svg>
+              </div>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %>
+              <%= f.password_field :password, autocomplete: "new-password", class:'passwordInput' %>
           </div>
-      </div>
+        </div>
 
-      <div class="emailContainer " >
-            <%= f.label :email_address, class:'emailLabel'%>
-            <div class="emailInputContainer">
-                <div class='emailIcon'>
-                    <svg width="19" height="15" viewBox="0 0 19 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M18.6289 5.46289C17.7383 6.16797 15.8086 7.57812 12.9141 9.65625L12.543 9.95312C11.9492 10.3984 11.5039 10.7324 11.1328 10.918C10.5391 11.2891 9.98242 11.4375 9.5 11.4375C8.98047 11.4375 8.46094 11.2891 7.86719 10.9551C7.49609 10.7695 7.05078 10.4355 6.45703 9.99023L6.08594 9.65625C3.08008 7.50391 1.1875 6.09375 0.371094 5.46289C0.296875 5.42578 0.185547 5.42578 0.111328 5.46289C0.0371094 5.5 0 5.57422 0 5.64844V13.2188C0 13.7383 0.148438 14.1465 0.519531 14.4805C0.853516 14.8516 1.26172 15 1.78125 15H17.2188C17.7012 15 18.1094 14.8516 18.4805 14.4805C18.8145 14.1465 19 13.7383 19 13.2188V5.64844C19 5.57422 18.9258 5.5 18.8516 5.42578C18.7773 5.38867 18.7031 5.38867 18.6289 5.46289ZM9.5 10.25C9.16602 10.25 8.75781 10.1016 8.3125 9.80469C8.01562 9.65625 7.64453 9.39648 7.16211 8.98828L6.79102 8.72852C3.74805 6.50195 1.66992 4.98047 0.59375 4.12695L0.333984 3.94141C0.111328 3.79297 0 3.5332 0 3.23633V2.53125C0 2.04883 0.148438 1.64062 0.519531 1.26953C0.853516 0.935547 1.26172 0.75 1.78125 0.75H17.2188C17.7012 0.75 18.1094 0.935547 18.4805 1.26953C18.8145 1.64062 19 2.04883 19 2.53125V3.23633C19 3.5332 18.8887 3.79297 18.666 3.94141L18.4805 4.08984C17.4043 4.94336 15.3262 6.50195 12.209 8.72852L11.8379 8.98828C11.3184 9.39648 10.9473 9.65625 10.6875 9.80469C10.2051 10.1016 9.79688 10.25 9.5 10.25Z" fill="#286BA6"/>
-                    </svg>
-                </div>
-                <%= f.email_field :email, autofocus: true, autocomplete: "email", class:'emailInput' %>
-            </div>
-      </div>
+        <div class='passwordContainer'>
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'passwordInput' %>
+        </div>
 
-      <div class='passwordContainer'>
-        <%= f.label :password %>
-        <div class="passwordInputContainer">
-            <div class='passwordIcon'>
-              <svg width="17" height="20" viewBox="0 0 17 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15.0312 8.6875C15.5137 8.6875 15.9219 8.87305 16.293 9.20703C16.627 9.57812 16.8125 9.98633 16.8125 10.4688V17.5938C16.8125 18.1133 16.627 18.5215 16.293 18.8555C15.9219 19.2266 15.5137 19.375 15.0312 19.375H1.96875C1.44922 19.375 1.04102 19.2266 0.707031 18.8555C0.335938 18.5215 0.1875 18.1133 0.1875 17.5938V10.4688C0.1875 9.98633 0.335938 9.57812 0.707031 9.20703C1.04102 8.87305 1.44922 8.6875 1.96875 8.6875H2.85938V6.01562C2.85938 5.01367 3.08203 4.08594 3.60156 3.19531C4.12109 2.3418 4.78906 1.67383 5.67969 1.1543C6.5332 0.634766 7.46094 0.375 8.5 0.375C9.50195 0.375 10.4297 0.634766 11.3203 1.1543C12.1738 1.67383 12.8418 2.3418 13.3613 3.19531C13.8809 4.08594 14.1406 5.01367 14.1406 6.01562V8.6875H15.0312ZM11.1719 8.6875V6.01562C11.1719 5.27344 10.9121 4.64258 10.3926 4.12305C9.87305 3.60352 9.24219 3.34375 8.5 3.34375C7.75781 3.34375 7.12695 3.60352 6.60742 4.12305C6.08789 4.64258 5.82812 5.27344 5.82812 6.01562V8.6875H11.1719Z" fill="#286BA6"/>
-              </svg>
-            </div>
-            <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
-            <% end %></br>
-            <%= f.password_field :password, autocomplete: "new-password", class:'passwordInput' %>
+        <div class="actions">
+          <%= f.submit "Sign up", class:'signupButton' %>
         </div>
       </div>
-
-      <div class='passwordContainer'>
-        <%= f.label :password_confirmation %></br>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:'passwordInput' %>
-      </div>
-
-      <div class="actions">
-        <%= f.submit "Sign up", class:'signupButton' %>
-      </div>
     <% end %>
-  </div>
+  
 
 <%
 =begin%>
  <%= render "devise/shared/links" %> 
 <%
 =end%>
+
+  </div>
 </div>
 
