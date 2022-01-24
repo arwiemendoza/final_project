@@ -1,50 +1,77 @@
-</br>
-</br>
-</br>
-<center>
-<h2>Sign up</h2>
+<div class='signupContainer'>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+   <div class='logoContainer'> 
+      <svg width="182" height="249" viewBox="0 0 182 249" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.2163 17.725C18.3011 24.0864 18.9774 30.4177 19.0899 36.7806C19.4476 57.0185 16.9383 77.1483 14.0666 97.1415C12.6243 107.183 11.3273 117.314 9.39829 127.281C9.11814 128.728 8.46149 122.181 8.38818 121.411" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M2 85.0474C4.79178 80.2083 9.64295 79.1199 14.6673 77.2395C25.8735 73.0456 37.3497 69.1923 48.274 64.2992C50.4143 63.3405 55.0717 62.0596 55.0717 59.0029" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M47.2093 2C48.3434 66.6449 44.4519 131.107 41.6127 195.668C41.1182 206.914 40.6963 218.161 40.3296 229.411C40.1512 234.884 39.4734 240.688 39.9474 246.174C40.1046 247.993 39.9662 243.065 39.8382 242.297" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M19 110.786C25.1585 109.771 79.8682 107.058 78.2428 111.333C75.0175 119.817 60.251 127.779 52.5794 130.215C44.3385 132.832 40.1947 132.952 51.941 132.952C63.7341 132.952 133.082 127.91 115.014 160.18C95.8675 194.378 43.6156 174.248 19 160.044" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M54.965 73.3513C57.8766 66.1225 59.4012 56.8743 64.9907 51.1045C66.1906 49.8659 69.2456 46.7399 69.6011 49.8604C70.9309 61.5328 69.7915 73.6286 68.1375 85.2066" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M56.2822 63.4721C63.6781 60.9544 72.2749 61.0639 79.9927 59.5204" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M78.0167 70.0583C79.0466 65.023 79.0949 57.5273 81.822 53.2268C82.9254 51.4869 83.6264 53.3045 84.0906 54.5074C86.022 59.5114 87.2289 64.843 89.7255 69.6192C93.2992 76.4557 95.3219 60.1253 95.5068 58.2762C95.968 53.6636 95.7995 49.0021 95.7995 44.3719" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M101.727 53.5927C102.649 59.6987 102.386 65.8748 102.386 72.0341" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M99.165 53.9817C102.948 52.3233 107.174 54.3957 110.451 56.394C112.627 57.7208 119.751 61.4172 117.085 64.8804C114.44 68.3177 109.012 70.0663 104.97 71.0083C103.647 71.3164 101.904 72.3023 101.491 70.6529" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M117.775 52.4308C119.653 53.8332 121.499 55.285 123.504 56.5017C124.212 56.9311 124.863 57.4709 125.723 57.4709" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M131.732 51.0739C130.921 52.8698 129.845 54.6507 128.62 56.2001C127.95 57.0473 127.011 57.7805 126.649 58.8279C126.451 59.3995 126.492 60.0663 126.455 60.6587C126.331 62.631 126.136 64.5979 126.024 66.5712C125.911 68.5772 125.917 70.5832 125.917 72.5914" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M126.701 135.188C127.623 130.642 127.666 123.876 130.107 119.993C131.094 118.423 131.722 120.064 132.137 121.15C133.866 125.667 134.946 130.48 137.18 134.791C140.379 140.963 142.189 126.221 142.354 124.552C142.767 120.388 142.616 116.18 142.616 112" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M146.439 135.188C147.361 130.642 147.404 123.876 149.845 119.993C150.832 118.423 151.46 120.064 151.875 121.15C153.604 125.667 154.684 130.48 156.918 134.791C160.117 140.963 161.927 126.221 162.092 124.552C162.505 120.388 162.354 116.18 162.354 112" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M110.884 120.774C110.341 124.525 109.491 128.73 110.4 132.489C111.129 135.509 115.244 137.961 118.394 136.628C124.526 134.035 122.766 124.161 122.766 119" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M166 120.339C167.854 121.724 169.676 123.157 171.655 124.358C172.354 124.782 172.997 125.314 173.845 125.314" stroke="black" stroke-width="3" stroke-linecap="round"/>
+          <path d="M179.777 119C178.976 120.773 177.914 122.531 176.705 124.06C176.044 124.896 175.117 125.62 174.759 126.654C174.564 127.218 174.605 127.876 174.568 128.461C174.446 130.408 174.253 132.349 174.143 134.297C174.031 136.277 174.036 138.257 174.036 140.239" stroke="black" stroke-width="3" stroke-linecap="round"/>
+      </svg>
 
-  <div class="field">
-    <%= f.label 'Signing up to be a helper?' %>
-    <%= f.check_box :helper, value: true %></br>
+   </div>
+
+  <div class='signupFormContainer'>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class=''>
+          <div class="field">
+            <%= f.label 'Signing up to be a helper?' %>
+            <%= f.check_box :helper, value: true %></br>
+          </div>
+
+          <div class="field">
+            <%= f.label :first_name %></br>
+            <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+          </div>
+      </div>
+
+
+      <div class="field">
+        <%= f.label :last_name %></br>
+        <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :email %></br>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %></br>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :password_confirmation %></br>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Sign up" %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="field">
-    <%= f.label :first_name %></br>
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %></br>
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %></br>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %></br>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %></br>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
-</center>
+<%
+=begin%>
+ <%= render "devise/shared/links" %> 
+<%
+=end%>
+</div>
 
