@@ -238,7 +238,7 @@
     padding: 0 15px 0 15px;
 }
 
-.aHeader , .aPendingCount {
+.aHeader, .aPendingCount {
     font-size: 27px;
 }
 
@@ -263,8 +263,8 @@
 .aPendingUsers {
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+	align-items: center;
     gap: 8.55px;
 }
 
@@ -274,11 +274,12 @@
     justify-content: center;
     align-items: center;
     gap: 5px;
- 
+
 }
 
 .aPendingNames {
     font-size: 22px;
+    padding:0;
 }
 
 .aDetails{
@@ -292,9 +293,13 @@
     font-size: 16px;
 }
 
-.aDetailsButton{
+.aDetailsButton, .aDetailsButton:visited{
     color: white;
     text-decoration: none;
+}
+
+.aDetailsButton:hover{
+    background-color: #157145;
 }
 
 @media only screen and (min-width: 600px) {
@@ -321,7 +326,11 @@
         width: 200px;
     }
 
-    .aLine {
+    .aHeaderContainer, .aLine {
+        width: 62.5em;
+    }
+
+    .aPendingContainer {
         width: 62.5em;
     }
 }
