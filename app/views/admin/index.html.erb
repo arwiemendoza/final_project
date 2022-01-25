@@ -6,7 +6,7 @@
 <div class='adminIndexContainer'>
     <div class='aHeaderContainer'>
         <h2 class='aHeader'>Pending Users:</h2>
-        <%= @users.count(:user_status => pending) %>
+        <%= @users.where(:user_status => 'pending').count %>
     </div>
     <div>
         <hr>
