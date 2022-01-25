@@ -218,29 +218,84 @@
 .adminIndexContainer {
 	display: flex;
 	flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 	align-items: center;
     background: #9BD1E5;
 	height: 100vh;    
-    gap: 2em;
+    gap: 8.5px;
+    padding-top: 70px
 }
 
 .aHeaderContainer {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-	align-items: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+	align-items: center;
     background: #7BC675;
     border-radius: 15px;
     width: 338px;
     height: 44px;
-    padding-left: 15px;
+    padding: 0 15px 0 15px;
 }
 
-.aHeader {
+.aHeader , .aPendingCount {
     font-size: 27px;
 }
 
+.aLine {
+    width: 338px;
+    color: white;
+    border: 2px solid #FFFFFF;
+    opacity: 100%;
+}
+
+.aPendingContainer {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.41);
+    border: 2px solid rgba(7, 7, 7, 0.25);
+    box-sizing: border-box;
+    border-radius: 7px;
+    padding: 10px;
+    width: 338px;
+}
+
+.aPendingUsers {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8.55px;
+}
+
+.aPendingNamesContainer {
+    display: flex;
+    flex-direction: row;    
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+ 
+}
+
+.aPendingNames {
+    font-size: 22px;
+}
+
+.aDetails{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 101px;
+    height: 21px;
+    background: #157145;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.aDetailsButton{
+    color: white;
+    text-decoration: none;
+}
 
 @media only screen and (min-width: 600px) {
     .loginContainer, .signupContainer {
@@ -264,5 +319,9 @@
 
     .fnameContainer, .lnameContainer {
         width: 200px;
+    }
+
+    .aLine {
+        width: 62.5em;
     }
 }

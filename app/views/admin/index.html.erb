@@ -6,35 +6,36 @@
 <div class='adminIndexContainer'>
     <div class='aHeaderContainer'>
         <h2 class='aHeader'>Pending Users:</h2>
-        <%= @users.where(:user_status => 'pending').count %>
+        <h2 class='aPendingCount'><%= @users.where(:user_status => 'Pending').count %></h2>
     </div>
     <div>
-        <hr>
+        <hr class='aLine'>
     </div>
     <div class='aPendingContainer'>
-        <table class="table table-hover table-striped table-bordered table-sm">
-            <tr class="table-dark">
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Helper</th>
-                <th colspan="1"></th>
-            </tr>
-
             <% @users.each do |user|%>
                 <% if user.user_status == 'Pending' %>
-                    <tr>
-                        <td><%= user.first_name %></td>
-                        <td><%= user.last_name %></td>
-                        <td><%= user.email %></td>
-                        <td><%= user.helper %></td>
-                        <td class="d-inline justify-content-lg-center">
-                                <%= link_to 'Review', admin_path(user.id), class: "btn btn-outline-dark btn-sm" %>
-                        </td>
-                    </tr>    
+                <div class='aPendingUsers'>
+                        <div class='aPendingNamesContainer'>
+                            <svg width="30" height="29" viewBox="0 0 30 29" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_139_511)">
+                                    <path d="M14.9593 0.452515C6.69551 0.452515 0 6.73159 0 14.4814C0 22.2313 6.69551 28.5104 14.9593 28.5104C23.2232 28.5104 29.9187 22.2313 29.9187 14.4814C29.9187 6.73159 23.2232 0.452515 14.9593 0.452515ZM14.9593 5.88307C17.8909 5.88307 20.2675 8.11186 20.2675 10.8611C20.2675 13.6103 17.8909 15.8391 14.9593 15.8391C12.0278 15.8391 9.65119 13.6103 9.65119 10.8611C9.65119 8.11186 12.0278 5.88307 14.9593 5.88307ZM14.9593 25.3426C11.4186 25.3426 8.24573 23.8378 6.12247 21.4846C7.25648 19.4821 9.47626 18.1018 12.064 18.1018C12.2087 18.1018 12.3535 18.1244 12.4923 18.164C13.2764 18.4016 14.0968 18.5544 14.9593 18.5544C15.8219 18.5544 16.6483 18.4016 17.4264 18.164C17.5652 18.1244 17.7099 18.1018 17.8547 18.1018C20.4424 18.1018 22.6622 19.4821 23.7962 21.4846C21.6729 23.8378 18.5001 25.3426 14.9593 25.3426Z" fill="black"/>
+                                    <rect opacity="0.2" x="-13" y="-14" width="321" height="61" rx="10" fill="#D1FAFF"/>
+                                </g>
+                                <defs>
+                                    <clipPath id="clip0_139_511">
+                                        <rect width="29.9187" height="28.963" rx="10" fill="white"/>
+                                    </clipPath>
+                                </defs>
+                            </svg>
+
+                            <p class='aPendingNames'><%= user.first_name %></p>
+                            <p class='aPendingNames'><%= user.last_name %></p>
+                        </div>
+                        <p class="aDetails ">
+                                <%= link_to 'Details', admin_path(user.id), class: "aDetailsButton" %>
+                        </p>
+                </div>
                 <%end%>
             <%end%>
-            
-        </table>
     </div>
 </div>
