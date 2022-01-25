@@ -1,53 +1,41 @@
-<%
-=begin%>
- <marquee>Hello</marquee>
-
-<div class="container h-2/4 flex justify-center items-center ">
-<h5><%= @user.first_name %></h1>
-<h5><%= @user.last_name %></h1>
-<h5><%= @user.email %></h1>
-<br>
-
-<%= link_to 'Back', :back %>
-
-</div>
- 
-<%
-=end%>
-
-
  <% if current_user.admin || current_user.helper %>
-                <div class="container h-2/4 flex justify-center items-center ">
-                    <h5><%= @user.first_name %></h5>
-                    <h5><%= @user.last_name %></h5>
-                    <h5><%= @user.email %></h5>
-                    <h5><%= @user.balance %></h5>
-                    <br>
-                      <h1> Withdraw Money </h1>
-                    <%= form_with url: withdraw_path do |f| %>
+ 
+    <div class="container h-2/4 flex justify-center items-center ">
+        <h5><%= @user.first_name %> <%= @user.last_name %></h5>
+        <h5><%= @user.email %></h5>
+        <h5><%= @user.balance %></h5>
+        <br>
 
-                        <div class="field">
-                            <%= f.label :amount %><br/>
-                            <%= f.number_field :amount %>
-                        </div>   
+        <h3> Current Balance </h3>
+            <h5><%= @user.balance %></h5>
+            <h3> Withdraw Money </h3>
 
-                        <div class="actions">
-                            <%= f.submit "Withdraw" %>
-                        </div>
+        <%= form_with url: withdraw_path do |f| %>
+            <div class="field">
+                <%= f.label :amount %><br/>
+                <%= f.number_field :amount %>
+            </div>   
 
-                    <% end %>
-                    <br>
-                    <br>
-                    <%= link_to 'Back', :back %>
-                </div>
-            <% else %>    
-                <div class="container h-2/4 flex justify-center items-center ">
-                    <h5><%= @user.first_name %></h5>
-                    <h5><%= @user.last_name %></h5>
-                    <h5><%= @user.email %></h5>
-                    <h5><%= @user.balance %></h5>
-                    <h5>hidden bal</h5>
-                    <br>
-                    <%= link_to 'Back', :back %>
-                </div>
-            <% end %>
+            <div class="actions">
+                <%= f.submit "Withdraw" %>
+            </div>
+
+        <% end %>
+        <br>
+        <br>
+        <%= link_to 'Back', :back %>
+    </div>
+
+<% else %>   
+
+    <div class="container h-2/4 flex justify-center items-center ">
+        <h5><%= @user.first_name %> <%= @user.last_name %></h5>
+        <p><%= @user.email %></p>
+        <p><%= @user.balance %></p>
+        <p><%= @user.mobile_number %></p>
+        <h5>hidden bal</h5>
+        <br>
+        <%= link_to 'Back', :back %>
+    </div>
+
+<% end %>

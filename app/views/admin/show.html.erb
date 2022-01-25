@@ -1,16 +1,21 @@
-<h1><center>Admin BOKBOK</center></h1>
+<% if @user.helper == false%>
+<h1><center>Client Info</center></h1>
+<% else %>
+<h1><center>Helper Info</center></h1>
+<% end %>
 
 <div class="container h-2/4 flex justify-center items-center ">
-<h5><%= @user.first_name %></h5>
-<h5><%= @user.last_name %></h5>
-<h5><%= @user.email %></h5>
-<h5><%= @user.balance %></h5>
+<h3>Name: </h3><p><%= @user.first_name %> <%= @user.last_name %></p>
+
+<h3>Email: </h3><p><%= @user.email %></p>
+<h3>Mobile Number: </h3><p><%= @user.mobile_number %></p>
+<h3>Balance: </h3><h6><%= @user.balance %></h6>
 <br>
 <% if @user.user_status == "Pending"%>
     <%= link_to 'Approve', approve_status_path(@user), class: "btn btn-outline-dark btn-sm" %>
     <%= link_to 'Reject', reject_status_path(@user), class: "btn btn-outline-dark btn-sm" %>
-    <%= link_to 'Back', :back %>
+    <%= link_to 'Back', root_path %>
 <% else %>
-    <%= link_to 'Back', :back %>
+    <%= link_to 'Back', user_list_path %>
 <% end %>
 </div>
