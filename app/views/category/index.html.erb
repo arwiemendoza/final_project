@@ -1,7 +1,7 @@
 
 <h1> Category </h1>
     <% if current_user.admin %>
-        <div class="d-none">
+        <div class="d-block">
             <%= form_for @ccategories, url: category_index_path do |f| %>
                 <div class="field">
                     <%= f.label :name %><br/>
