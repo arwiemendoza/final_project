@@ -1,13 +1,20 @@
-<h1><center>USER SHOW</center></h1>
 
-<div class="container h-2/4 flex justify-center items-center ">
-<h5><%= @user.first_name %></h5>
-<h5><%= @user.last_name %></h5>
-<h5><%= @user.email %></h5>
-<h5><%= @balance %></h5>
+
+<h1><center>My Account</center></h1>
+
+<center><div class="container h-2/4 flex justify-center items-center ">
+<h3><%= @user.first_name %> <%= @user.last_name %></h3>
+<p><%= @user.email %></p>
+<p><%= @user.mobile_number %></p>
+
 <br>
+        
+<%= link_to 'Edit My Account', edit_user_registration_path%>
 
-<h1> Deposit Money </h1>
+
+<h2> Current Balance </h2>
+<h5><%= @balance %></h5>
+<h3> Deposit Money </h3>
 <%= form_with url: deposit_path do |f| %>
 
     <div class="field">
@@ -22,8 +29,7 @@
 <% end %>
 
 <br>
-
-<h1> Withdraw Money </h1>
+<h3> Withdraw Money </h3>
 <%= form_with url: withdraw_path do |f| %>
 
     <div class="field">
@@ -40,4 +46,4 @@
 <%= link_to 'Back', :back %>
 </div>
 
-
+</center>
