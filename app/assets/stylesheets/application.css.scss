@@ -48,7 +48,6 @@ body {
 }
 
 .formContainer{
-    padding: 2em;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,7 +78,9 @@ body {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     gap: 5px;
 } 
-.emailLabel, .passwordLabel {
+
+.emailLabel, .passwordLabel, .userTypeLabel, .fnameLabel, .lnameLabel {
+    font-weight: 500;
     font-size: 11px;
 }
 
@@ -89,7 +90,7 @@ body {
     gap: 10px;
 }
 
-.emailInput {
+.emailInput, .passwordInput {
     width: 100%;
     border-style: none;
     background: rgba(255, 255, 255, 0.1);
@@ -114,12 +115,6 @@ body {
     display: flex;
     flex-direction: row;
     gap: 10px;
-}
-
-.passwordInput {
-    width: 100%;
-    border-style: none;
-    background: rgba(255, 255, 255, 0.1);
 }
 
 .checkbox {
@@ -160,21 +155,6 @@ body {
     gap: 5px;
 }
 
-.nameContainer{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-	align-items: stretch;
-    width: 300px;
-    height: 55px;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 1em 1em 1em 1.2em;
-    border-radius: 15px;
-    color: rgb(78, 77, 77);
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    gap: 5px;
-}
-
 .userTypeContainer {
     display: flex;
     flex-direction: column;
@@ -190,25 +170,70 @@ body {
     gap: 0px;
 }
 
+
 .answerContainer, .yesContainer, .noContainer {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    gap:5px;
+}
+
+.nameContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+	align-items: stretch;
+    width: 300px;
+    height: 55px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 0.5em 1em 1em 1em;
+    border-radius: 15px;
+    color: rgb(78, 77, 77);
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    gap: 10px;
 }
 
 
+.fnameContainer, .lnameContainer {
+    width: 130px;
+}
+
+.fnameInput, .lnameInput {
+    width: 100%;
+    border-style: hidden;
+    border-bottom: .5px solid gray;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.passwordHeader {
+    display: flex;
+    flex-direction: row;
+    font-size: 11px;
+}
 
 
 @media only screen and (min-width: 600px) {
-    .emailContainer {
-        width: 300px;
+    .loginContainer, .signupContainer {
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
     }
 
-    .passwordContainer {
+    .logoContainer svg{
+        width: 451px;
+        height: 625px;
+    }
+    
+    .emailContainer, .passwordContainer {
         width: 300px;
     }
 
     .loginButton, .signupButton {
         width: 300px;
+    }
+
+    .fnameContainer, .lnameContainer {
+        width: 200px;
     }
 }
