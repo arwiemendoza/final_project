@@ -65,13 +65,13 @@
                   </li>
 
                   <li class="nav-item">
-                    <%= link_to 'Account', user_show_path(current_user), class:'nav-link' %>
-                  </li>  
-
-                  <li class="nav-item">
                     <%= link_to 'Category', category_index_path(params[:id]), class:'nav-link'%>
                   </li>
-                
+
+                  <li class="nav-item">
+                    <%= link_to 'My Account', user_show_path(current_user), class:'nav-link' %>
+                  </li> 
+
                   <li class="nav-item">
                     <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class:'nav-link'%>
                   </li>
