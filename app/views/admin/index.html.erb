@@ -1,28 +1,40 @@
-<h1><center>Admin Landing Page</center></h1>
+<%
+=begin%>
+ <h1>Admin Landing Page</h1> 
+<%
+=end%>
+<div class='adminIndexContainer'>
+    <div class='aHeaderContainer'>
+        <h2 class='aHeader'>Pending Users:</h2>
+        <%= @users.count(:user_status => pending) %>
+    </div>
+    <div>
+        <hr>
+    </div>
+    <div class='aPendingContainer'>
+        <table class="table table-hover table-striped table-bordered table-sm">
+            <tr class="table-dark">
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Helper</th>
+                <th colspan="1"></th>
+            </tr>
 
-<h2>Pending Users:</h2>
-
-
-<table class="table table-hover table-striped table-bordered table-sm">
-    <tr class="table-dark">
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Helper</th>
-        <th colspan="1"></th>
-    </tr>
-
-    <% @users.each do |user|%>
-        <% if user.user_status == 'Pending' %>
-            <tr>
-                <td><%= user.first_name %></td>
-                <td><%= user.last_name %></td>
-                <td><%= user.email %></td>
-                <td><%= user.helper %></td>
-                <td class="d-inline justify-content-lg-center">
-                        <%= link_to 'Review', admin_path(user.id), class: "btn btn-outline-dark btn-sm" %>
-                </td>
-            </tr>    
-        <%end%>
-    <%end%>
-</table>
+            <% @users.each do |user|%>
+                <% if user.user_status == 'Pending' %>
+                    <tr>
+                        <td><%= user.first_name %></td>
+                        <td><%= user.last_name %></td>
+                        <td><%= user.email %></td>
+                        <td><%= user.helper %></td>
+                        <td class="d-inline justify-content-lg-center">
+                                <%= link_to 'Review', admin_path(user.id), class: "btn btn-outline-dark btn-sm" %>
+                        </td>
+                    </tr>    
+                <%end%>
+            <%end%>
+            
+        </table>
+    </div>
+</div>
