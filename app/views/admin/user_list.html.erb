@@ -1,44 +1,40 @@
-<h1><center>Approved Clients</center></h1>
+<div class='adminIndexContainer'>  
+    <div class='aUserTypeContainer'>
+        <div class='aHeaderContainer'>
+            <h2 class='aHeader'>Clients</h2>
+        </div>
+        <div>
+            <hr class='aLine'>
+        </div>
+        <div>
+            <% @user.each do |user|%>
+                <% if user.user_status == 'Approved' && user.admin == false && user.helper == false%>
+                        <p><%= user.first_name %> <%= user.last_name %></p>
+                        <p class="d-inline justify-content-lg-center">
+                                <%= link_to 'Review', admin_path(user.id), class: "btn btn-outline-dark btn-sm" %>
+                        </p>
+                <%end%>
+            <%end%>
+        </div>
+    </div>
 
-<table class="table table-hover table-striped table-bordered table-sm">
-    <tr class="table-dark">
-        <th>Name</th>
-        <th>Email</th>
-        <th colspan="1"></th>
-    </tr>
+    <div class='d-none aUserContainer'>
+        <div class='aHeaderContainer'>
+            <h2 class='aHeader'>Clients</h2>
+        </div>
+        <div>
+            <hr class='aLine'>
+        </div>
+        <div>
+            <% @user.each do |user|%>
+                <% if user.user_status == 'Approved' && user.helper%>
+                        <p><%= user.first_name %> <%= user.last_name %></p>
+                        <p class="d-inline justify-content-lg-center">
+                                <%= link_to 'Review', admin_path(user.id), class: "btn btn-outline-dark btn-sm" %>
+                        </p>
+                <%end%>
+            <%end%>
+        </div>
+    </div>
 
-    <% @user.each do |user|%>
-        <% if user.user_status == 'Approved' && user.helper == false%>
-            <tr>
-                <td><%= user.first_name %> <%= user.last_name %></td>
-                <td><%= user.email %></td>
-                <td class="d-inline justify-content-lg-center">
-                        <%= link_to 'Review', admin_path(user.id), class: "btn btn-outline-dark btn-sm" %>
-                </td>
-            </tr>    
-        <%end%>
-    <%end%>
-</table>
-
-<h1><center>Approved Helpers</center></h1>
-
-<table class="table table-hover table-striped table-bordered table-sm">
-    <tr class="table-dark">
-        <th>Name</th>
-        <th>Email</th>
-        <th colspan="1"></th>
-    </tr>
-
-    <% @user.each do |user|%>
-        <% if user.user_status == 'Approved' && user.helper%>
-            <tr>
-                <td><%= user.first_name %> <%= user.last_name %></td>
-                <td><%= user.email %></td>
-                <td class="d-inline justify-content-lg-center">
-                        <%= link_to 'Review', admin_path(user.id), class: "btn btn-outline-dark btn-sm" %>
-                </td>
-            </tr>    
-        <%end%>
-    <%end%>
-</table>
-
+</div>
