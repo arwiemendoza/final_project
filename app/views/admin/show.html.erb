@@ -1,6 +1,6 @@
 <div class='adminIndexContainer'>
     <div class='aHeaderContainer'>
-        <h2 class='aHeader'>Pending User's Info</h2>
+        <h2 class='aHeader'>User Information</h2>
     </div>
     <div>
         <hr class='aLine'>
@@ -62,8 +62,11 @@
                             <p class='aPendingButtons'><%= link_to 'Reject', reject_status_path(@user), class: 'aRejectBtn' %></p>
                 <% end %> 
         </div>
-        
+        <% if @user.user_status == "Pending" %>
+        <%= link_to 'Back', root_path %>
+        <% else @user.user_status == "Approved" %>
         <%= link_to 'Back', user_list_path %>
+        <% end %>
     </div>
     
 
