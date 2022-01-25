@@ -31,7 +31,7 @@ gem 'bootstrap', '~> 5.1.3'
 gem 'bootsnap', '>= 1.4.4', require: false
 
 #file upload
-gem 'carrierwave', '1.3.1'
+gem 'carrierwave', '1.3.2'
 gem 'cloudinary', '~>1.13.2'
 gem 'rmagick'
 
