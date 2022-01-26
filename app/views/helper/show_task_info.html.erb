@@ -49,9 +49,13 @@
                 </p>
             </div>
         </div>
-
-
-            <%= link_to 'Back' , :back %>
-        
+            <% if current_user.helper %>
+                <%= link_to 'Apply', accept_task_path(@category, @task), class: "btn btn-outline-dark btn-sm" %>
+                <%= link_to 'Back' , :back %>
+            <% else current_user %>
+                <%= link_to 'Edit', edit_category_task_path(@category, @task), class: "btn btn-outline-dark btn-sm" %>
+                <%= link_to 'Delete', category_task_path(@category, @task),method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
+                <%= link_to 'Back' , :back %>
+            <% end %>
     </div>
 </div>
