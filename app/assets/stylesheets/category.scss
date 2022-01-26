@@ -148,6 +148,29 @@
     padding: 0 15px 0 15px;
 }
 
+.cLine {
+    margin: 10px;
+    width: 338px;
+    color: white;
+    border: 2px solid #FFFFFF;
+    opacity: 100%;
+}
+
+.cTaskHeaderContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	align-items: center;
+    gap: 8.55px;
+    width: 338px;
+    margin: 0;
+    
+}
+
+.cTaskHeader{
+    margin: 0;
+    font-size: 20px;
+}
 
 .cTaskContainer {
     width: 338px;
@@ -166,6 +189,7 @@
     flex-direction: row;
     justify-content: space-between;
 	align-items: center;
+    width: 338px;
     padding: 10px;
     gap: 8.55px;
     background: rgba(255, 255, 255, 0.41);
@@ -174,11 +198,38 @@
     border-radius: 7px;
 }
 
+.cTaskLabel, .cTaskLabel:visited, .cTaskLabel:hover {
+    font-size: 16px;
+    text-decoration: none;
+    color:black;
+    background-color: #C4E4F0;
+}
+
+.cEditDeleteAddBtns {
+    position: absolute;
+    left: 25em;
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.delete:hover, .edit:hover, .add:hover{
+    background: #7BC675;
+}
+
+.delete, .edit, .add {
+    width: 25px;
+    height: 25px;
+}
 @media only screen and (min-width: 600px) {
-    .cHeaderContainer, .cContainer, .cCatHeaderContainer, .cTaskContainer{
+    .cHeaderContainer, .cContainer, .cCatHeaderContainer, .cTaskContainer, .cLine{
         width: 62.5em;
     }
-
+    .cTaskHeaderContainer {
+        width: 62.5em;
+        padding: 0 15px 0 15px;
+    }
     .cFormCat {
         width: 25%;
         height: 40%;
@@ -189,6 +240,11 @@
     }
 
     .cTask{
-        width:60em;
+        width:60.5em;
+    }
+
+    .cEditDeleteAddBtns {
+        left: 70vw;
+        padding-top: 5px;
     }
 }
