@@ -1,7 +1,11 @@
 <div class='cIndexContainer'>
     <div class='cCatHeaderContainer'>
         <h1 class='cHeader'> <%= @category.name %> </h1>
-        <p> <%= @category.description %></p>
+        <% if @category.description == '' %>
+            <p> - </p>
+        <% else %>
+            <p> <%= @category.description %></p>
+        <%end%>
         <div class='cEditDeleteAddBtns'>
             <% if current_user.admin %> 
                 <img src='../assets/edit.png' class='edit' id='editBtn'/>
@@ -34,7 +38,9 @@
                 <p class='cTaskLabel'><%= task.name %></p>
                 <p class='cTaskLabel'><%= task.date %></p>
                 <p class='cTaskLabel'><%= task.hourly_rate %></p>
-                <p><%= link_to 'View', show_task_info_path(task.id, task.client_id) %></p>           
+                <p class='cTaskView'>
+                    <%= link_to 'View', show_task_info_path(task.id, task.client_id) , class: 'cTaskViewBtn'%>
+                </p>           
             </div>
         <%end%>
     </div>

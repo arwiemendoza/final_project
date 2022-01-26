@@ -145,6 +145,7 @@
     background: #7BC675;
     border-radius: 15px;
     width: 338px;
+    min-height: 70px;
     padding: 0 15px 0 15px;
 }
 
@@ -222,6 +223,27 @@
     width: 25px;
     height: 25px;
 }
+
+.cTaskView{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 101px;
+    height: 21px;
+    background: #157145;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.cTaskViewBtn, .cTaskViewBtn:visited{
+    color: white;
+    text-decoration: none;
+}
+
+.cTaskViewBtn:hover{
+    background-color: #157145;
+}
+
 @media only screen and (min-width: 600px) {
     .cHeaderContainer, .cContainer, .cCatHeaderContainer, .cTaskContainer, .cLine{
         width: 62.5em;
@@ -233,6 +255,10 @@
     .cFormCat {
         width: 25%;
         height: 40%;
+    }
+
+    .cCatHeaderContainer{
+        min-height: 75px;
     }
 
     #catBtn {
