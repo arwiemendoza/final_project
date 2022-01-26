@@ -112,7 +112,7 @@
     font-size: 17px;
 }
 
-.cCreateBtn {
+.cCreateBtn, .cEditBtn{
     height: 25px;
     width: 150px;
     margin-top: 20px;
@@ -123,7 +123,7 @@
     font-size: 14px;
 }
 
-.cCreateBtn:hover {
+.cCreateBtn:hover, .cEditBtn:hover {
     background: #286BA6;
 }
 
