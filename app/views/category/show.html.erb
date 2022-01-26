@@ -1,50 +1,40 @@
+<div class='cIndexContainer'>
+    <div class='cCatHeaderContainer'>
+        <h1 class='cHeader'> <%= @category.name %> </h1>
+        <p> <%= @category.description %></p>
+    </div>
+    <div>
+        <hr class='aLine'>
+    </div>
+    <div class='cTaskContainer'>
+        <% @tasks.each do |task|%> 
+            <div class='cTask'>
+                <p><%= link_to task.name, show_task_info_path(task.id, task.client_id) %></p>
+                <p><%= task.date %></p>
+                <p><%= task.hourly_rate %></p>
+                
+                <% if current_user.admin %>
+                    <td><%= link_to 'Delete', category_task_path(params[:id], task.id), method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
+                <% elsif current_user.helper%>
+                    <td><%= link_to 'Apply', accept_task_path(@category, task.id), class: "btn btn-outline-dark btn-sm" %></td>
+                <% elsif task.client_id == current_user.id %>    
+                    <td><%= link_to 'Edit', edit_category_task_path(params[:id], task), class: "btn btn-outline-dark btn-sm" %></td>
+                    <td><%= link_to 'Delete', category_task_path(params[:id], task),method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
+                <% end %>
+            </div>
+        <%end%>
+    </div>
 
-<h1><%= @category.name %></h1>
-<h5> Category description </h5>
-<%= @category.description %><br />
-</br>
-<% if current_user.admin %> 
-    <%= link_to 'Edit', edit_category_path(@category), class: "btn btn-outline-dark btn-sm" %>
-    <%= link_to 'Delete', category_path(@category), method: :delete,class: "btn btn-outline-dark btn-sm" %>
-    <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %></br>
-<% elsif current_user.helper %>
-    <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %>
-<% else %>
-    <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %>
-    <%= link_to 'Create Task', category_tasks_path(@category.id), class: "btn btn-outline-dark btn-sm" %>
-<% end %>
-</br>
-
-<table class="table table-hover table-striped table-bordered table-sm">
-    <tr class="table-dark">
-        <th>Name</th>
-        <th>Date</th>
-        <th>Hourly Rate</th>
-         <% if current_user.helper%>
-            <th>Action</th>
-        <% elsif current_user.admin %>
-            <th></th>
+    <div class='d-flex flex-row'>
+        <% if current_user.admin %> 
+            <%= link_to 'Edit', edit_category_path(@category), class: "btn btn-outline-dark btn-sm" %>
+            <%= link_to 'Delete', category_path(@category), method: :delete,class: "btn btn-outline-dark btn-sm" %>
+            <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %></br>
+        <% elsif current_user.helper %>
+            <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %>
         <% else %>
-            <th></th>
-            <th></th>
+            <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %>
+            <%= link_to 'Create Task', category_tasks_path(@category.id), class: "btn btn-outline-dark btn-sm" %>
         <% end %>
-
-    </tr>
-
-    <% @tasks.each do |task|%> 
-        <tr>
-            <td><%= link_to task.name, show_task_info_path(task.id, task.client_id) %></td>
-            <td><%= task.date %></td>
-            <td><%= task.hourly_rate %></td>
-            
-            <% if current_user.admin %>
-                <td><%= link_to 'Delete', category_task_path(params[:id], task.id), method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
-            <% elsif current_user.helper%>
-                <td><%= link_to 'Apply', accept_task_path(@category, task.id), class: "btn btn-outline-dark btn-sm" %></td>
-            <% elsif task.client_id == current_user.id %>    
-                <td><%= link_to 'Edit', edit_category_task_path(params[:id], task), class: "btn btn-outline-dark btn-sm" %></td>
-                <td><%= link_to 'Delete', category_task_path(params[:id], task),method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
-            <% end %>
-        </tr>  
-    <%end%>
-</table>
+    </div>
+</div>

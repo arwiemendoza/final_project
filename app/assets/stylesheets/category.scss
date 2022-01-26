@@ -137,18 +137,58 @@
     font-size: 16px;
 }
 
+.cCatHeaderContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+	align-items: center;
+    background: #7BC675;
+    border-radius: 15px;
+    width: 338px;
+    padding: 0 15px 0 15px;
+}
+
+
+.cTaskContainer {
+    width: 338px;
+    max-height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+	align-items: center;  
+    padding: 10px;
+    gap: 10px;
+    overflow: auto;
+}
+
+.cTask{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	align-items: center;
+    padding: 10px;
+    gap: 8.55px;
+    background: rgba(255, 255, 255, 0.41);
+    border: 2px solid rgba(7, 7, 7, 0.25);
+    box-sizing: border-box;
+    border-radius: 7px;
+}
 
 @media only screen and (min-width: 600px) {
-    .cHeaderContainer, .cContainer {
+    .cHeaderContainer, .cContainer, .cCatHeaderContainer, .cTaskContainer{
         width: 62.5em;
     }
 
     .cFormCat {
-        width: 50%;
-        height: 45%;
+        width: 25%;
+        height: 40%;
     }
 
     #catBtn {
         width: 300px;
+    }
+
+    .cTask{
+        width:60em;
     }
 }
