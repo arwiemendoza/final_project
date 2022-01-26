@@ -1,3 +1,154 @@
-// Place all the styles related to the category controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.cIndexContainer {
+	display: flex;
+	flex-direction: column;
+    justify-content: flex-start;
+	align-items: center;
+    background: #9BD1E5;
+	height: 100vh;    
+    gap: 8.5px;
+    padding-top: 30px;
+    overflow:hidden;
+}
+
+.cHeaderContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	align-items: center;
+    background: #7BC675;
+    border-radius: 15px;
+    width: 338px;
+    height: 44px;
+    padding: 0 15px 0 15px;
+}
+
+.cHeader {
+    font-size: 27px;
+}
+
+.cContainer {
+    width: 338px;
+    height: 480px;
+    display: flex;
+    flex-wrap: wrap;
+    background: rgba(255, 255, 255, 0.41);
+    border: 2px solid rgba(7, 7, 7, 0.25);
+    box-sizing: border-box;
+    border-radius: 7px;
+    padding: 10px;
+    gap: 10px;
+    overflow: auto;
+}
+
+.cNewCatContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 146px;
+    height: 77px;
+    background: rgba(173, 204, 150, 0.61);
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.cLabel, .cLabel:visited, .cLabel:hover {
+    font-size: 20px;
+    text-decoration: none;
+    color:black;
+    background-color: #b6d6b8;
+}
+
+
+.cFormContainer {
+    display: none; 
+    position: fixed; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    padding-top: 100px; 
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+    z-index: 1; 
+    overflow: auto; 
+}
+
+.cFormCat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 80%;
+    height: 60%;
+    background-color: #ADCC96;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 20px;
+    gap: 10px;
+}
+
+.cFormHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	align-items: center;
+    width: 100%;
+    padding: 0 15px 0 15px;
+}
+
+.close{
+    height: 20px;
+    width: 20px;
+}
+
+.cFormDetails{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	align-items: center;
+    gap:8px;
+    font-size: 17px;
+}
+
+.cCreateBtn {
+    height: 25px;
+    width: 150px;
+    margin-top: 20px;
+    border-radius: 20PX;
+    background: #ffffff;
+    border-style: none;
+    color: black;
+    font-size: 14px;
+}
+
+.cCreateBtn:hover {
+    background: #286BA6;
+}
+
+#catBtn {
+    height: 40px;
+    width: 299px;
+    border-radius: 20PX;
+    background: #286BA6;
+    border-style: none;
+    color: white;
+    font-size: 16px;
+}
+
+
+@media only screen and (min-width: 600px) {
+    .cHeaderContainer, .cContainer {
+        width: 62.5em;
+    }
+
+    .cFormCat {
+        width: 50%;
+        height: 45%;
+    }
+
+    #catBtn {
+        width: 300px;
+    }
+}
