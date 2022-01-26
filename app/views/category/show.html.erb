@@ -1,30 +1,10 @@
-
-<h1><%= @category.name %></h1>
-<h5> Category description </h5>
-<%= @category.description %><br />
-</br>
-<% if current_user.admin %> 
-    <%= link_to 'Edit', edit_category_path(@category), class: "btn btn-outline-dark btn-sm" %>
-    <%= link_to 'Delete', category_path(@category), method: :delete,class: "btn btn-outline-dark btn-sm" %>
-    <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %></br>
-<% elsif current_user.helper %>
-    <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %>
-<% else %>
-    <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %>
-    <%= link_to 'Create Task', category_tasks_path(@category.id), class: "btn btn-outline-dark btn-sm" %>
-<% end %>
-</br>
-
-<table class="table table-hover table-striped table-bordered table-sm">
-    <tr class="table-dark">
-        <th>Name</th>
-        <th>Date</th>
-        <th>Hourly Rate</th>
-         <% if current_user.helper%>
-            <th>Action</th>
-        <% elsif current_user.admin %>
-            <th></th>
+<div class='cIndexContainer'>
+    <div class='cCatHeaderContainer'>
+        <h1 class='cHeader'> <%= @category.name %> </h1>
+        <% if @category.description == '' %>
+            <p> - </p>
         <% else %>
+<<<<<<< HEAD
             <th>Action</th>
         <% end %>
 
@@ -46,7 +26,101 @@
                 <td><%= link_to 'View Task', show_task_info_path(task.id, task.client_id), class: "btn btn-outline-dark btn-sm" %>  
                 <%= link_to 'Edit', edit_category_task_path(params[:id], task), class: "btn btn-outline-dark btn-sm" %>
                 <%= link_to 'Delete', category_task_path(params[:id], task),method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
+=======
+            <p> <%= @category.description %></p>
+        <%end%>
+        <div class='cEditDeleteAddBtns'>
+            <% if current_user.admin %> 
+                <img src='../assets/edit.png' class='edit' id='editBtn'/>
+                <%= link_to  category_path(@category), method: :delete do %>
+                    <img src='../assets/delete.png' class='delete'/>
+                <%end%>
+            <% elsif %>
+                <%= link_to category_tasks_path(@category.id) do %>
+                    <img src='../assets/add.png' class='add'/>
+                <%end%>
             <% end %>
-        </tr>  
-    <%end%>
-</table>
+        </div>
+    </div>
+    <div>
+        <hr class='cLine'>
+    </div>
+    <div class='cTaskHeaderContainer'>
+            <p class='cTaskHeader'>Task</p>
+            <p class='cTaskHeader'>Date</p>
+            <p class='cTaskHeader'>Rate</p>
+            <p class='cTaskHeader'>Details</p>
+        </div>
+    <div>
+        <hr class='cLine'>
+    </div>
+    <div class='cTaskContainer'>
+        
+        <% @tasks.each do |task|%> 
+            <div class='cTask'>
+                <p class='cTaskLabel'><%= task.name %></p>
+                <p class='cTaskLabel'><%= task.date %></p>
+                <p class='cTaskLabel'><%= task.hourly_rate %></p>
+                <p class='cTaskView'>
+                    <%= link_to 'View', show_task_info_path(task.id, task.client_id) , class: 'cTaskViewBtn'%>
+                </p>           
+            </div>
+        <%end%>
+    </div>
+    <div>
+        <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %>
+    </div>
+
+    <div class='cFormContainer' id='catForm'>
+        <div class='cFormCat'>
+            <div class='cFormHeader'>
+                <div></div>
+                <img src='../assets/close.png' class="close"/>
+            </div>
+            <h2>Edit Category</h2>
+            <%= form_for @category, url: category_path do |f| %>
+                <div class="field cFormDetails">
+                    <%= f.label :name %><br />
+                    <%= f.text_field :name, autocomplete: "name" %>
+                </div>
+
+                <div class="field cFormDetails"> 
+                    <%= f.label :description %>
+                    <%= f.text_field :description %>
+                </div>
+
+                <div class="actions d-flex justify-content-center">
+                    <%= f.submit "Edit" , class: 'cEditBtn'%>
+                </div>
+>>>>>>> 7306aac1ec40029e90243ccf816617fe1915fe8a
+            <% end %>
+        </div>
+    </div>
+</div>
+
+
+<%
+=begin%>
+        VANILLA JAVASCRIPT
+<%
+=end%>
+
+<script>
+    var modal = document.getElementById("catForm");
+    var button = document.getElementById("editBtn");
+    var close = document.getElementsByClassName("close")[0];
+
+    button.onclick = function() {
+    modal.style.display = "block";
+    }
+
+    close.onclick = function() {
+    modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+    }
+</script>

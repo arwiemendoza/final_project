@@ -1,37 +1,57 @@
-<h1>Task Information</h1>
-<br>
-<br>
-<h2><%= @task.name %></h2>
-<h4>Details</h4>
-<%= @task.details %>
-<br>
-<br>
-<h4>Date</h4>
-<%= @task.date %>
-<br>
-<br>
-<h4>Rate</h4>
-<%= @task.hourly_rate %>
-<br>
-<br>
-<br>
-<br>
-<h1>Client Information</h1>
-<h2><%= @client.first_name + ' ' + @client.last_name%></h2>
-<h4>Email</h4>
-<%= @client.email %>
-<br>
-<br>
-<h4>Rating</h4>
-<% array = @client.rating.to_a %>
-<% if array.length == 0 %>
-    <% ave = 0 %>
-<% else %>
-    <% ave = array.sum/array.length %>
-<% end %>
-<%= ave %><span>/5</span>
-<br>
-<br>
+<div class='tIndexContainer'>
+    <div class='tHeaderContainer'>
+        <h2 class='tHeader'><%= @task.name %></h2>
+    </div>
+    <div>
+        <hr class='aLine'>
+    </div>
+    <div class='tTaskContainer'>
+        <div class='tInfoContainer'>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>Details:</p>
+                <p class='aInfoDetail'><%= @task.details %></p>
+            </div>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>Date:</p>
+                <p class='aInfoDetail'><%= @task.date %></p>
+            </div>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>Rate:</p>
+                <p class='aInfoDetail'><%= @task.hourly_rate %></p>
+            </div>
+        </div>
 
-<br>
-<%= link_to 'Back' , :back %>
+        <p class='aInfoLabel'>Client Information</p>
+
+        <div>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>Name:</p>
+                <p class='aInfoDetail'><%= @client.first_name + ' ' + @client.last_name%></p>
+            </div>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>Email:</p>
+                <p class='aInfoDetail'><%= @client.email %></p>
+            </div>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>Mobile Number:</p>
+                <p class='aInfoDetail'><%= @client.mobile_number %></p>
+            </div>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>Rating:</p>
+                <p class='aInfoDetail'> 
+                    <% array = @client.rating.to_a %>
+                    <% if array.length == 0 %>
+                        <% ave = 0 %>
+                    <% else %>
+                        <% ave = array.sum/array.length %>
+                    <% end %>
+                    <%= ave %>/5
+                </p>
+            </div>
+        </div>
+
+
+            <%= link_to 'Back' , :back %>
+        
+    </div>
+</div>

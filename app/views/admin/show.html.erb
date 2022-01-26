@@ -53,6 +53,18 @@
                <p class='aInfoLabel'>Balance: </p>
                 <p class='aInfoDetail'><%= @user.balance %></p>
             </div>
+            <div  class='aDetailContainer'>
+               <p class='aInfoLabel'>Rating: </p>
+                <p class='aInfoDetail'>
+                    <% array = @user.rating.to_a %>
+                    <% if array.length == 0 %>
+                        <% ave = 0 %>
+                    <% else %>
+                        <% ave = array.sum/array.length %>
+                    <% end %>
+                    <%= ave %>/5
+                </p>
+            </div>
         </div>
     
 
