@@ -2,9 +2,9 @@
      <div class='uFloatContainer'>
         <div class='uSwitchContainer'>
             <div id="slideBtn"></div>
-            <button type="button" class="uToggleBtn" id='bOpen' onclick="open()">Open Tasks</button>
-            <button type="button" class="uToggleBtn" id='bOnGoing' onclick="going()">On-going Tasks</button>
-            <button type="button" class="uToggleBtn" id='bHistory' onclick="complete()">History</button>
+            <button type="button" class="uToggleBtn" id='bOpen' onclick="Open()">Open Tasks</button>
+            <button type="button" class="uToggleBtn" id='bOnGoing' onclick="Going()">On-going Tasks</button>
+            <button type="button" class="uToggleBtn" id='bHistory' onclick="History()">Completed</button>
         </div>
         <div class='uLineBreak'>
                 <hr class='aLine'>
@@ -19,11 +19,9 @@
                 <hr class='aLine'>
         </div>
     
-        <div class='uTasksContainer' id='open'>
-            <div class='uContainer'>
+        <div class='uAllTasksContainer' id='open'>
                 <% @tasks.each do |task|%>
                     <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id == nil%>
-                        <div class='uTasksContainer'>
                             <div class='uTasks'>
                                 <p><%= task.name %></p>
                                 <p class='aEachTask'><%= task.date %></p>
@@ -39,17 +37,92 @@
                                     </p>
                                 <% end %> 
                                 <p> View </p>
-                            </div>
                         </div>
                     <%end%>
                 <%end%>
-            </div>
         </div>
-        <div class='uTasksContainer' id='onGoing'>
+        <div class=' uTasksContainer' id='onGoing'>
+            <% @tasks.each do |task|%>
+                <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id != nil && task.task_status == "Approved" %>
+                    <div class='uTasks'>
+                            <p><%= task.name %></p>
+                            <p class='aEachTask'><%= task.date %></p>
+                            <% ids = task.helper_applicants.to_a%>
+                                <% task_id = task.id%>
+                                <% ids = task.helper_applicants.to_a%>
+                                <% task_id = task.id%>
+                                <p>
+                                    <% ids.each do |id|%>
+                                        <%= link_to User.find(id).first_name, show_applicant_path(task_id, id)  %>
+                                    <% end %>
+                                </p>
+                            <p> View </p>
+                    </div>
+                <%end%>
+            <%end%> 
         </div>
-        <div class='uTasksContainer' id='History'>
+
+        <div class='uTasksContainer' id='history'>
+                 <% @tasks.each do |task|%>
+                    <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id == nil && task.task_status == "Completed"%>
+                        <div class='uTasks'>
+                                <p><%= task.name %></p>
+                                <p class='aEachTask'><%= task.date %></p>
+                                <% ids = task.helper_applicants.to_a%>
+                                <% task_id = task.id%>
+                                    <p>
+                                        <% ids.each do |id|%>
+                                            <%= link_to User.find(id).first_name, show_applicant_path(task_id, id)  %>
+                                        <% end %>
+                                    </p>
+                                <p> <%= link_to 'Confirm', finish_task_path(task.id) %> </p>
+                        </div>
+                    <%end%>
+                <%end%> 
         </div>
 
 
     </div>
 </div>
+
+
+
+<script>
+    var open = document.getElementById("open");
+    var onGoing = document.getElementById("onGoing");
+    var done = document.getElementById("history");
+    var slideBtn = document.getElementById("slideBtn");
+    var bOpen = document.getElementById("bOpen");
+    var bOnGoing = document.getElementById("bOnGoing");
+    var bHistory = document.getElementById("bHistory");
+
+    function Open () {
+        open.style.opacity = '1';
+        onGoing.style.opacity = '0';
+        done.style.opacity = '0';
+        slideBtn.style.left = '0%';
+        bOpen.style.color = 'white'
+        bOnGoing.style.color = 'black'
+        bHistory.style.color = 'black'
+    }
+
+    function Going () {
+        open.style.opacity = '0';
+        onGoing.style.opacity = '1';
+        done.style.opacity = '0';
+        slideBtn.style.left = '33%';
+        bOpen.style.color = 'black'
+        bOnGoing.style.color = 'white'
+        bHistory.style.color = 'black'
+    }
+
+    function History () {
+        open.style.opacity = '0';
+        onGoing.style.opacity = '0';
+        done.style.opacity = '1';
+        slideBtn.style.left = '67%';
+        bOpen.style.color = 'black'
+        bOnGoing.style.color = 'black'
+        bHistory.style.color = 'white'
+    }
+</script>
