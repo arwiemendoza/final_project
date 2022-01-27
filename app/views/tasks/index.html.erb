@@ -37,7 +37,15 @@
         <%= f.hidden_field :client_id, value: current_user.id %>
     </div>
 
-    
+    <div class="field">
+        <%= f.label :longitude %><br/>
+        <%= f.hidden_field :longitude, id:'task_longitude' %>
+    </div>
+
+    <div class="field">
+        <%= f.label :latitude %><br/>
+        <%= f.hidden_field :latitude, id:'task_latitude'  %>
+    </div>
 
     <div class="actions">
         <%= f.submit "Create" %>
@@ -46,6 +54,8 @@
     <%= link_to 'Back', category_path(@category.id), class: "btn btn-outline-dark btn-sm" %>
 
 <% end %>
+<div id='map'></div>
+<%= javascript_pack_tag 'map_js', 'data-turbolinks-track': 'reload' %>
 <br/>
 <br/>
 
@@ -56,6 +66,8 @@
         <th>Details</th>
         <th>Date</th>
         <th>Hourly Rate</th>
+        <th>Longitude</th>
+        <th>Latitude</th>
         <th></th>
         <th></th>
     </tr>
@@ -67,6 +79,8 @@
                 <td><%= task.details %></td>
                 <td><%= task.date %></td>
                 <td><%= task.hourly_rate %></td>
+                <td><%= task.longitude %></td>
+                <td><%= task.latitude %></td>
                 <td><%= link_to 'Edit', edit_category_task_path(params[:category_id], task), class: "btn btn-outline-dark btn-sm" %></td>
                 <td><%= link_to 'Delete', category_task_path(params[:category_id], task),method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
             </tr>  

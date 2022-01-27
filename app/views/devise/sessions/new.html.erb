@@ -1,3 +1,5 @@
+<%= javascript_pack_tag 'current_location', 'data-turbolinks-track': 'reload' %>
+
 <div class='loginContainer'>
 
    <div class='logoContainer'> 
@@ -50,7 +52,6 @@
                   <%= f.password_field :password, autocomplete: "current-password", class:'passwordInput' %>
             </div>
           </div>
-
 
           <div class='loginRememberContainer'>
             <% if devise_mapping.rememberable? %>

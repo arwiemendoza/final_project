@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
     def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:sign_up, keys: [:helper, :first_name, :last_name])
+        devise_parameter_sanitizer.permit(:sign_in, keys: [:longitude, :latitude])
     end
 
 
@@ -12,5 +13,5 @@ class ApplicationController < ActionController::Base
         file_path = "#{Rails.root}/app/assets/images/#{name}.svg"
         return File.read(file_path).html_safe if File.exists?(file_path)
         '(not found)'
-      end
+    end
 end

@@ -60,7 +60,8 @@ class UserController < ApplicationController
         # no_input = params[:mobile_number].to_i
         # loc_input = params[:location]
         @user.update(mobile_number: params[:mobile_number])
-        @user.update(location: params[:location])
+        @user.update(longitude: params[:longitude])
+        @user.update(latitude: params[:latitude])
         @user.save!
         redirect_to user_index_path
     end

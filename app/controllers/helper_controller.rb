@@ -54,7 +54,6 @@ class HelperController < ApplicationController
     def helper_patch_additional_info
         @user = current_user
         @user.update(mobile_number: params[:mobile_number])
-        @user.update(location: params[:location])
         @user.save!
         redirect_to user_index_path
     end
