@@ -43,4 +43,5 @@ Rails.application.routes.draw do
 
   post 'user/:id/deposit' => 'user#deposit', as: :deposit
   post 'user/:id/withdraw' => 'user#withdraw', as: :withdraw
+
 end

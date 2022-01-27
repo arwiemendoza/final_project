@@ -74,6 +74,12 @@ class TasksController < ApplicationController
         redirect_to user_index_path
     end
 
+    def show_task_info
+        @task = Task.find(params[:task_id])
+        @client = User.find(params[:client_id])
+        @category = Category.all
+    end
+
     def complete_task
         task = Task.find(params[:task_id])
         task.update(task_status: "Completed")
