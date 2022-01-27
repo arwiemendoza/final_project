@@ -79,7 +79,7 @@ rails s
 
         password: 123456
 
-\*_please delete categories and tasks that you create while testing_
+\*_please delete tasks that you create while testing_
 
 ## Features
 
