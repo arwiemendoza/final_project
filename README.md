@@ -12,13 +12,13 @@ Installation
 
     cd final_project
 
-For Windows:
+    For Windows:
 
-    sudo service postgresql start
+        sudo service postgresql start
 
-For Mac:
+    For Mac:
 
-    brew services start postgresql
+        brew services start postgresql
 
     bundle install
 
@@ -26,15 +26,15 @@ For Mac:
 
     rails db:seed
 
-For Windows:
+    For Windows:
 
-    Open database.yml
-    Uncomment username and password
+        Open database.yml
+        Uncomment username and password
 
-For Mac:
+    For Mac:
 
-    Open database.yml
-    Comment username and password
+        Open database.yml
+        Comment username and password
 
     rails s
 
