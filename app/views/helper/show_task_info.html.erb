@@ -19,6 +19,12 @@
                 <p class='aInfoLabel'>Rate:</p>
                 <p class='aInfoDetail'><%= @task.hourly_rate %></p>
             </div>
+            <div id='task_longitude'>
+                <%= @task.longitude %>
+            </div>
+            <div id='task_latitude'>
+                <%= @task.latitude %>
+            </div>
         </div>
         <div>
         </div>
@@ -61,16 +67,7 @@
         </div>
             <%= link_to 'Back' , :back %>
     </div>
-
 </div>
-</div>
-
-
-<%
-=begin%>
-        VANILLA JAVASCRIPT
-<%
-=end%>
 
 <script>
     var modal = document.getElementById("catForm");
@@ -97,10 +94,10 @@
     }
 
     window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    } else if (event.target == modal2) {
-        modal2.style.display = "none";
-    }
+        if (event.target == modal) {
+            modal.style.display = "none";
+        } else if (event.target == modal2) {
+            modal2.style.display = "none";
+        }
     }
 </script>
