@@ -6,48 +6,57 @@ Ruby Version ruby-2.7.4
 
 <br/>
 
-Installation
+## Installation
 
-    ```
-    git clone https://github.com/arwiemendoza/final_project.git
-    ```
-    ```
-    cd final_project
-    ```
-    ```
-    For Windows:
+```
+git clone https://github.com/arwiemendoza/final_project.git
+```
 
-        sudo service postgresql start
-    ```
-    ```
-    For Mac:
+```
+cd final_project
+```
 
-        brew services start postgresql
-    ```
-    ```
-    bundle install
-    ```
-    ```
-    rails db:migrate
-    ```
-    ```
-    rails db:seed
-    ```
-    ```
-    For Windows:
+```
+For Windows:
 
-        Open database.yml
-        Uncomment username and password
-    ```
-    ```
-    For Mac:
+    sudo service postgresql start
+```
 
-        Open database.yml
-        Comment username and password
-    ```
-    ```
-    rails s
-    ```
+```
+For Mac:
+
+    brew services start postgresql
+```
+
+```
+bundle install
+```
+
+```
+rails db:migrate
+```
+
+```
+rails db:seed
+```
+
+```
+For Windows:
+
+    Open database.yml
+    Uncomment username and password
+```
+
+```
+For Mac:
+
+    Open database.yml
+    Comment username and password
+```
+
+```
+rails s
+```
 
 ## Demo
 
@@ -75,7 +84,7 @@ Sample Credentials
 
 \*_please delete categories and tasks that you create while testing_
 
-Features
+## Features
 
 -
 
