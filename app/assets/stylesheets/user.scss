@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .uIndexContainer {
   display: flex;
   flex-direction: column;
@@ -165,4 +166,147 @@
         width: 33%;
     }
 
+=======
+.uIndexContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: #9bd1e5;
+  height: 100vh;
+  gap: 8.5px;
+  padding-top: 30px;
+  overflow: hidden;
+}
+
+.uFloatContainer {
+  width: 338px;
+  height: 480px;
+  position: relative;
+  margin: 0% auto;
+  padding: 5px;
+}
+
+.uSwitchContainer {
+  width: 338px;
+  height: 55px;
+  margin: 25px 0 5px 0;
+  position: relative;
+  border-radius: 15px;
+  background: #157145;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.uToggleBtn {
+    padding: 2px 10px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+}
+
+#slideBtn {
+    top:0;
+    left:0;
+    position: absolute;
+    width: 108px;
+    height: 100%;
+    background: #7BC675;
+    border-radius: 15px;
+    transition: 0.5s;
+}
+
+#open {
+    opacity: 1;
+}
+
+#onGoing, #history {
+    opacity: 0;
+}
+
+#bOnGoing, #bHistory {
+    color: black;
+}
+
+#bOnGoing{
+    padding-right: 50px;
+}
+
+.uLineBreak {
+    width: 338px;
+    text-align: center;
+}
+
+.uTasksContainer{
+    top: 35%;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+}
+
+.uTaskHeaderContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+	align-items: center;
+    gap: 8.55px;
+    width: 338px;
+    margin: 0;
+    padding: 0 5px 0 5px;
+}
+
+.uTaskHeader{
+    margin: 0;
+    font-size: 18px;
+}
+
+.uAllTasksContainer {
+    display: flex;
+    flex-direction: column;
+    width: 338px;
+    gap: 10px
+}
+
+.uTasks  {
+    display: flex;
+    flex-direction: row;    
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.41);
+    border: 2px solid rgba(7, 7, 7, 0.25);
+    box-sizing: border-box;
+    border-radius: 7px;
+    width: 338px;
+    padding: 2px;
+
+}
+
+
+
+
+@media only screen and (min-width: 600px) {
+    .uFloatContainer, .uSwitchContainer, .uTaskHeaderContainer, .uAllTasksContainer,.uTasksContainer, .uTasks {
+        width: 62.5em;
+    }
+
+    .aDetailContainer {
+        width: 35em;
+    }
+ 
+    .aInfoLabel, .aInfoDetail {
+        font-size: 20px;
+    }
+
+    #slideBtn{
+        width: 33%;
+    }
+
+>>>>>>> 1687136c911343ae9a903a24234c2a32e26f2be8
 }
