@@ -89,3 +89,9 @@ rails s
 -   Helper is able to view and apply on a specific task
 -   User can choose from the helpers that have applied on the task
 -   Helper/client can rate the client/helper upon finishing the task
+
+## Extra Features
+
+-   New accounts will be required to upload a photo for verification
+-   On creating tasks, user will be required to pinpoint the location for helpers to use to navigate task location
+-
