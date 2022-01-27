@@ -61,7 +61,8 @@ rails s
 ## Demo
 
 <br/>
-Sample Credentials
+
+## Sample Credentials
 
     Admin
 
