@@ -83,6 +83,9 @@ rails s
 
 ## Features
 
--
-
--
+-   User is able to create new account
+-   User has an option to create an account as a helper
+-   User is able to create, read, update, delete tasks by category
+-   Helper is able to view and apply on a specific task
+-   User can choose from the helpers that have applied on the task
+-   Helper/client can rate the client/helper upon finishing the task
