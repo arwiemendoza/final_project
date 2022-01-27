@@ -1,71 +1,97 @@
 # Handy Bunny
 
-<br/>
+    Ruby Version ruby-2.7.4
 
-Ruby Version ruby-2.7.4
+## Installation
 
-<br/>
+```
+git clone https://github.com/arwiemendoza/final_project.git
+```
 
-Installation
+```
+cd final_project
+```
 
-    git clone https://github.com/arwiemendoza/final_project.git
+```
+For Windows:
 
-    cd final_project
+    sudo service postgresql start
+```
 
-    For Windows:
+```
+For Mac:
 
-        sudo service postgresql start
+    brew services start postgresql
+```
 
-    For Mac:
+```
+bundle install
+```
 
-        brew services start postgresql
+```
+rails db:migrate
+```
 
-    bundle install
+```
+rails db:seed
+```
 
-    rails db:migrate
+```
+For Windows:
 
-    rails db:seed
+    Open database.yml
+    Uncomment username and password
+```
 
-    For Windows:
+```
+For Mac:
 
-        Open database.yml
-        Uncomment username and password
+    Open database.yml
+    Comment username and password
+```
 
-    For Mac:
-
-        Open database.yml
-        Comment username and password
-
-    rails s
+```
+rails s
+```
 
 ## Demo
 
 <br/>
-Sample Credentials
+
+## Sample Credentials
 
     Admin
 
-    email: admin@gmail.com
+        email: admin@gmail.com
 
-    password: 123456
+        password: 123456
 
     Helper
 
-    email: helper@gmail.com
+        email: helper@gmail.com
 
-    password: 123456
+        password: 123456
 
 
     Client
 
-    email: user@gmail.com
+        email: user@gmail.com
 
-    password: 123456
+        password: 123456
 
-\*_please delete categories and tasks that you create while testing_
+\*_please delete tasks that you create while testing_
 
-Features
+## Features
 
--
+-   User is able to create new account
+-   User has an option to create an account as a helper
+-   User is able to create, read, update, delete tasks by category
+-   Helper is able to view and apply on a specific task
+-   User can choose from the helpers that have applied on the task
+-   Helper/client can rate the client/helper upon finishing the task
 
+## Extra Features
+
+-   New accounts will be required to upload a photo for verification
+-   On creating tasks, user will be required to pinpoint the location for helpers to use to navigate task location
 -
