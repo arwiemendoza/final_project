@@ -1,20 +1,16 @@
 <div class='cIndexContainer'>
     <div class='cCatHeaderContainer'>
         <h1 class='cHeader'> <%= @category.name %> </h1>
-        <% if @category.description == '' %>
-            <p> - </p>
+        <p class='cDescription'><% if @category.description == '' %>
+             - 
         <% else %>
-            <th>Action</th>
+            <%= @category.description %>
         <% end %>
-
-    </tr>
-    
-        <div class='cEditDeleteAddBtns'>
+        </p>
+        <div class='cMethodBtns'>
             <% if current_user.admin %> 
                 <img src='../assets/edit.png' class='edit' id='editBtn'/>
-                <%= link_to  category_path(@category), method: :delete do %>
-                    <img src='../assets/delete.png' class='delete'/>
-                <%end%>
+                <img src='../assets/delete.png' class='delete' id='deleteBtn'/>
             <% elsif %>
                 <%= link_to category_tasks_path(@category.id) do %>
                     <img src='../assets/add.png' class='add'/>
@@ -71,10 +67,24 @@
                     <%= f.text_field :description %>
                 </div>
 
-                <div class="actions d-flex justify-content-center">
+                <div class="actions d-flex justify-content-center align-items-center">
                     <%= f.submit "Edit" , class: 'cEditBtn'%>
                 </div>
             <% end %>
+        </div>
+    </div>
+
+    <div class='cFormContainer' id='catForm2'>
+        <div class='cFormCat'>
+            <div class='cFormHeader'>
+                <div></div>
+                <img src='../assets/close.png' class="close"/>
+            </div>
+            <h3>Are you sure you want to delete "<%= @category.name %>"?</h3>
+            <p class='cDescription'>This category will be deleted immediately. You can't undo this action.</p>
+            <div class="actions d-flex justify-content-center align-items-center">
+                    <%= link_to "Delete",  category_path(@category), method: :delete, class: 'cDeleteBtn' %>
+            </div>
         </div>
     </div>
 </div>
@@ -88,20 +98,33 @@
 
 <script>
     var modal = document.getElementById("catForm");
+    var modal2 = document.getElementById("catForm2");
     var button = document.getElementById("editBtn");
+    var button2 = document.getElementById("deleteBtn");
     var close = document.getElementsByClassName("close")[0];
+    var close2 = document.getElementsByClassName("close")[1];
 
     button.onclick = function() {
-    modal.style.display = "block";
+        modal.style.display = "block";
+    }
+
+    button2.onclick = function() {
+        modal2.style.display = "block";
     }
 
     close.onclick = function() {
     modal.style.display = "none";
     }
 
+    close2.onclick = function() {
+    modal2.style.display = "none";
+    }
+
     window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
+    } else if (event.target == modal2) {
+        modal2.style.display = "none";
     }
     }
 </script>

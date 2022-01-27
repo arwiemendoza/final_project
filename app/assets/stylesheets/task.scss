@@ -12,10 +12,13 @@
 }
 
 .tHeaderContainer {
-    display: flex;
-    flex-direction: row;
+    display: grid; 
+    grid-template-columns: 50px 220px 65px; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        ". tHeader tMethodBtns";
     justify-content: center;
-	align-items: center;
+    align-items: center;
     background: #7BC675;
     border-radius: 15px;
     width: 338px;
@@ -24,7 +27,17 @@
 }
 
 .tHeader {
+    grid-area: tHeader;
     font-size: 27px;
+}
+
+.tMethodBtns{
+    grid-area: tMethodBtns;
+}
+
+.edit{
+    width: 25px;
+    height: 25px;
 }
 
 .tTaskContainer {
@@ -63,16 +76,12 @@
         font-size: 20px;
     }
 
-    .aSwitchContainer {
-        width: 62.5em;
+    .tHeaderContainer {
+        grid-template-columns: 20px 280px 140px 300px 40px; 
+        grid-template-areas: 
+        ". tHeader .  . tMethodBtns";
     }
 
-    .aToggleBtn {
-        padding: 5px 150px;
-    }
-    
-   #slider {
-        width: 31.25em;
-    } 
-
-}
+}// Place all the styles related to the helper controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/

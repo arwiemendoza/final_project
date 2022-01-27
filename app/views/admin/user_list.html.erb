@@ -2,8 +2,8 @@
     <div class='aFloatContainer'>
         <div class='aSwitchContainer'>
             <div id="slider"></div>
-            <button type="button" class="aToggleBtn" onclick="Client()">CLIENTS</button>
-            <button type="button" class="aToggleBtn" onclick="Helper()"> HELPERS</button>
+            <button type="button" class="aToggleBtn" id='bClient' onclick="Client()">CLIENTS</button>
+            <button type="button" class="aToggleBtn" id='bHelper' onclick="Helper()"> HELPERS</button>
             
         </div>
 
@@ -59,16 +59,22 @@
     var client = document.getElementById("client");
     var helper = document.getElementById("helper");
     var slider = document.getElementById("slider");
+    var bclient = document.getElementById("bClient");
+    var bhelper = document.getElementById("bHelper");
 
     function Helper () {
-        client.style.opacity = "0";
-        helper.style.opacity = "1";
-        slider.style.left = "50%";
+        client.style.opacity = '0';
+        helper.style.opacity = '1';
+        slider.style.left = '50%';
+        bhelper.style.color = 'white'
+        bclient.style.color = 'black'
     }
 
     function Client () {
-        client.style.opacity = "1";
-        helper.style.opacity = "0";
-        slider.style.left = "0";
+        client.style.opacity = '1';
+        helper.style.opacity = '0';
+        slider.style.left = '0';
+        bhelper.style.color = 'black'
+        bclient.style.color = 'white'
     }
 </script>

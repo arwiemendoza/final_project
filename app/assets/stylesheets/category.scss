@@ -23,7 +23,12 @@
 }
 
 .cHeader {
+    grid-area: cHeader;
     font-size: 27px;
+}
+
+.cDescription {
+    grid-area: cDescription
 }
 
 .cContainer {
@@ -112,7 +117,7 @@
     font-size: 17px;
 }
 
-.cCreateBtn, .cEditBtn{
+.cCreateBtn, .cEditBtn, .cDeleteBtn, .cDeleteBtn:visited{
     height: 25px;
     width: 150px;
     margin-top: 20px;
@@ -121,9 +126,13 @@
     border-style: none;
     color: black;
     font-size: 14px;
+    text-align: center;
+    text-decoration: none;
 }
 
-.cCreateBtn:hover, .cEditBtn:hover {
+.cCreateBtn:hover, .cEditBtn:hover, .cDeleteBtn:hover {
+    color: white;
+    text-decoration: none;
     background: #286BA6;
 }
 
@@ -138,10 +147,18 @@
 }
 
 .cCatHeaderContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-	align-items: center;
+    display: grid; 
+    grid-template-columns: 10px 55px 65px 65px 65px 65px; 
+    grid-template-rows: 20px 20px 20px 20px 20px; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+        ". . . . . ."
+        ". cHeader cHeader cHeader . cMethodBtns"
+        ". . . . . cMethodBtns"
+        ". cDescription cDescription cDescription cDescription ."
+        ". cDescription cDescription cDescription cDescription ."; 
+    justify-content: center;
+    align-items: center;
     background: #7BC675;
     border-radius: 15px;
     width: 338px;
@@ -206,10 +223,8 @@
     background-color: #C4E4F0;
 }
 
-.cEditDeleteAddBtns {
-    position: absolute;
-    left: 25em;
-    padding-top: 5px;
+.cMethodBtns {
+    grid-area: cMethodBtns;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -257,7 +272,9 @@
         height: 40%;
     }
 
-    .cCatHeaderContainer{
+    .cCatHeaderContainer {
+        grid-template-columns: 20px 140px 140px 140px 200px 140px; 
+        grid-template-rows: 20px 20px 20px 20px 20px; 
         min-height: 75px;
     }
 
@@ -269,7 +286,7 @@
         width:60.5em;
     }
 
-    .cEditDeleteAddBtns {
+    .cMethodBtns {
         left: 70vw;
         padding-top: 5px;
     }
