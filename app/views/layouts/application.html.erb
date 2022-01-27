@@ -23,10 +23,14 @@
   </head>
 
   <body>
-    
-    <%= render 'home/header' %>
-     <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p> 
+
+    <%= render 'home/header' , class: 'appNav'%>
+    <%
+=begin%>
+  <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>  
+<%
+=end%>
     <%= yield %>
 
   </body>

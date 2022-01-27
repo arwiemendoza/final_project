@@ -82,8 +82,7 @@ ActiveRecord::Schema.define(version: 2022_01_26_032819) do
     t.integer "rating", default: [], array: true
     t.integer "input_rating"
     t.string "mobile_number"
-    t.float "latitude"
-    t.float "longitude"
+    t.text "location"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

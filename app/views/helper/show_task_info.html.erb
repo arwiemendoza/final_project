@@ -1,16 +1,6 @@
 <div class='tIndexContainer'>
     <div class='tHeaderContainer'>
         <h2 class='tHeader'><%= @task.name %></h2>
-        <div class='tMethodBtns'>
-            <% if current_user %> 
-                <img src='../assets/edit.png' class='edit' id='editBtn'/>
-                <img src='../assets/delete.png' class='delete' id='deleteBtn'/>
-            <% else current_user.helper %>
-                <%= link_to category_tasks_path(@category, @task) do %>
-                    <img src='../assets/add.png' class='add'/>
-                <%end%>
-            <% end %>
-        </div>
     </div>
     <div>
         <hr class='aLine'>

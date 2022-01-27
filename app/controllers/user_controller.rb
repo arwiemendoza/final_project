@@ -56,12 +56,10 @@ class UserController < ApplicationController
         @attachment = Attachment.new
     end
 
-    def client_patch_additional_infoex
+    def client_patch_additional_info
         @attachment = Attachment.create!(image: params[:image], user_id: current_user.id)
         @user = current_user
         @user.update(mobile_number: params[:mobile_number])
-        @user.update(longitude: params[:longitude])
-        @user.update(latitude: params[:latitude])
         @user.save!
         redirect_to user_index_path
     end

@@ -12,11 +12,8 @@
 }
 
 .tHeaderContainer {
-    display: grid; 
-    grid-template-columns: 50px 220px 65px; 
-    gap: 0px 0px; 
-    grid-template-areas: 
-        ". tHeader tMethodBtns";
+    display: flex;
+	flex-direction: column;
     justify-content: center;
     align-items: center;
     background: #7BC675;
@@ -76,11 +73,6 @@
         font-size: 20px;
     }
 
-    .tHeaderContainer {
-        grid-template-columns: 20px 280px 140px 300px 40px; 
-        grid-template-areas: 
-        ". tHeader .  . tMethodBtns";
-    }
 
 }// Place all the styles related to the helper controller here.
 // They will automatically be included in application.css.

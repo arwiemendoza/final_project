@@ -1,4 +1,5 @@
 <div class='adminIndexContainer'>
+
     <div class='aHeaderContainer'>
         <h1 class='aHeader'>Pending Users:</h1>
         <h1 class='aPendingCount'><%= @users.where(:user_status => 'Pending').count %></h1>
