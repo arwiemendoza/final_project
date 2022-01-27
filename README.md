@@ -1,24 +1,77 @@
-# README
+# Handy Bunny
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+<br/>
 
-Things you may want to cover:
+Ruby Version ruby-2.7.4
 
-* Ruby version
+<br/>
 
-* System dependencies
+Installation
 
-* Configuration
+1.) git clone https://github.com/arwiemendoza/final_project.git
 
-* Database creation
+2.) cd final_project
 
-* Database initialization
+3.)
 
-* How to run the test suite
+For Windows:
 
-* Services (job queues, cache servers, search engines, etc.)
+    sudo service postgresql start
 
-* Deployment instructions
+For Mac:
 
-* ...
+    brew services start postgresql
+
+4.) bundle install
+
+5.) rails db:migrate
+
+6.) rails db:seed
+
+7.)
+
+For Windows:
+
+    Open database.yml
+    Uncomment username and password
+
+For Mac:
+
+    Open database.yml
+    Comment username and password
+
+8.) rails s
+
+<br />
+## Demo
+
+<br/>
+Sample Credentials
+
+    Admin
+    <br/>
+    email: admin@gmail.com
+    <br/>
+    password: 123456
+    <br/>
+    Helper
+    <br/>
+    email: helper@gmail.com
+    <br/>
+    password: 123456
+    <br/>
+
+    Client
+    <br/>
+    email: user@gmail.com
+    <br/>
+    password: 123456
+    <br/>
+
+    <br/> \*_please delete categories and tasks that you create while testing_
+
+Features
+
+-
+
+-
