@@ -20,30 +20,44 @@
         </div>
     
         <div class='uAllTasksContainer' id='open'>
-                <% @tasks.each do |task|%>
-                    <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id == nil%>
-                            <div class='uTasks'>
-                                <p><%= task.name %></p>
-                                <p class='aEachTask'><%= task.date %></p>
-                                <% if task.helper_applicants == [] %>
-                                    <p>No Helper Applicants</p>
-                                <% else %>
-                                    <% ids = task.helper_applicants.to_a%>
-                                    <% task_id = task.id%>
-                                    <p>
-                                        <% ids.each do |id|%>
-                                            <%= link_to User.find(id).first_name, show_applicant_path(task_id, id)  %>
-                                        <% end %>
-                                    </p>
-                                <% end %> 
-                                <p class='cTaskView'>
-                                    <%= link_to 'View', show_task_info_path(task.id, task.client_id) , class: 'cTaskViewBtn'%>
-                                </p>  
-                        </div>
-                    <%end%>
+            <% @tasks.each do |task|%>
+                <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id == nil%>
+                        <div class='uTasks'>
+                            <p><%= task.name %></p>
+                            <p class='aEachTask'><%= task.date %></p>
+                            <% if task.helper_applicants == [] %>
+                                <p>No Helper Applicants</p>
+                            <% else %>
+                                <button class='cTaskView' id='listApplicantsBtn'> Applicants  </button>
+                                <div class='uApplicantContainer' id='applicantsForm'>
+                                    <div class='uFormApp'>
+                                        <div class='uAppHeader'>
+                                            <div></div>
+                                            <img src='../assets/close.png' class="close"/>
+                                        </div>
+                                        <h2>List of Applicants</h2>
+                                        <div class='d-flex flex-column  justify-content-center align-items-center'>
+                                            <% ids = task.helper_applicants.to_a%>
+                                            <% task_id = task.id%>
+                                                <% ids.each do |id|%>
+                                                <div class='ARWIE'>
+                                                    <p><%= User.find(id).first_name %></p>
+                                                    <p><%= User.find(id).last_name %></p>
+                                                    <%= link_to User.find(id).first_name, show_applicant_path(task_id, id)  %>
+                                                </div>
+                                                <% end %>           
+                                        </div>
+                                    </div>
+                                </div>
+                            <% end %> 
+                            <p class='cTaskView'>
+                                <%= link_to 'View', show_task_info_path(task.id, task.client_id) , class: 'cTaskViewBtn'%>
+                            </p>  
+                    </div>
                 <%end%>
+            <%end%>
         </div>
-        <div class=' uTasksContainer' id='onGoing'>
+        <div class='uAllTasksContainer' id='onGoing'>
             <% @tasks.each do |task|%>
                 <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id != nil && task.task_status == "Approved" %>
                     <div class='uTasks'>
@@ -66,7 +80,7 @@
             <%end%> 
         </div>
 
-        <div class='uTasksContainer' id='history'>
+        <div class='uAllTasksContainer' id='history'>
                  <% @tasks.each do |task|%>
                     <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id == nil && task.task_status == "Completed"%>
                         <div class='uTasks'>
@@ -85,6 +99,7 @@
                 <%end%> 
         </div>
 
+        
 
     </div>
 </div>
@@ -99,6 +114,9 @@
     var bOpen = document.getElementById("bOpen");
     var bOnGoing = document.getElementById("bOnGoing");
     var bHistory = document.getElementById("bHistory");
+    var applicantListModal = document.getElementById("applicantsForm");
+    var applicantListBtn = document.getElementById('listApplicantsBtn');
+    var applicantListClose = document.getElementsByClassName("close")[0];
 
     function Open () {
         open.style.opacity = '1';
@@ -128,5 +146,19 @@
         bOpen.style.color = 'black'
         bOnGoing.style.color = 'black'
         bHistory.style.color = 'white'
+    }
+
+    applicantListBtn.onclick = function() {
+        applicantListModal.style.display = "block";
+    }
+
+    applicantListClose.onclick = function() {
+        applicantListModal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+    if (event.target == applicantListModal) {
+        applicantListModal.style.display = "none";
+    }
     }
 </script>
