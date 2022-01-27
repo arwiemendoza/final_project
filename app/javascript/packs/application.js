@@ -13,3 +13,6 @@ require("packs/current_location")
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+

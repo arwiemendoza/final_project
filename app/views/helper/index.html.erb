@@ -12,7 +12,6 @@
         <th>Rate</th>
     </tr>
 
-
     <% @tasks.each do |task|%>
         <% array = task.helper_applicants.to_a %>
         <% if array.include?(current_user.id) == true && task.helper_id == nil%> 

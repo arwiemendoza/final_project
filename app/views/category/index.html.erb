@@ -1,46 +1,71 @@
-
-<h1> Category </h1>
-    <% if current_user.admin %>
-        <%= form_for @ccategories, url: category_index_path do |f| %>
-            <div class="field">
-                <%= f.label :name %><br/>
-                <%= f.text_field :name %>
-            </div>
-
-            <div class="field">
-                <%= f.label :description %><br/>
-                <%= f.text_field :description %>
-            </div>
-
-            <div class="actions">
-                <%= f.submit "Create" %>
+<div class='cIndexContainer'>
+    <div class='cHeaderContainer'>
+        <h1 class='cHeader'> Category </h1>
+    </div>
+    <div>
+        <hr class='aLine'>
+    </div>
+    <div class='cContainer'>
+        <% @categories.each do |category|%>
+            <div class='cNewCatContainer'>
+                <p class='cLabel'><%= link_to category.name, category_path(category.id), class:'cLabel' %></p>
             </div>
         <% end %>
-    <% end %>
-<br/>
-<br/>
-<table class="table table-hover table-striped table-bordered table-sm">
-    <tr class="table-dark">
-        <th>Category name</th>
-        <th>Category description</th>
-        <th colspan="2"></th>
-    </tr>
+    </div>
+    <div class='cFormContainer' id='catForm'>
+        <div class='cFormCat'>
+            <div class='cFormHeader'>
+                <div></div>
+                <img src='../assets/close.png' class="close"/>
+            </div>
+            <h2>Add a Category</h2>
+            <%= form_for @ccategories, url: category_index_path do |f| %>
+                <div class="field cFormDetails">
+                    <%= f.label :name %>
+                    <%= f.text_field :name %>
+                </div>
 
-    <% @categories.each do |category|%>
-        <tr>
-            <td><%= category.name %></td>
-            <td><%= category.description %></td>
-            <td class="d-inline justify-content-lg-center">
-                <%= link_to 'Show', category_path(category.id), class: "btn btn-outline-dark btn-sm" %>
-            </td>
-            <% if current_user.admin %>
-                <td class="d-inline justify-content-lg-center">
-                    <%= link_to 'Edit', edit_category_path(category.id), class: "btn btn-outline-dark btn-sm" %>
-                </td>
-                <td class="d-inline justify-content-lg-center">
-                    <%= link_to 'Delete', category_path(category.id), method: :delete,class: "btn btn-outline-dark btn-sm" %>
-                </td>
+                <div class="field cFormDetails"> 
+                    <%= f.label :description %>
+                    <%= f.text_field :description %>
+                </div>
+
+                <div class="actions d-flex justify-content-center">
+                    <%= f.submit "Create" , class: 'cCreateBtn'%>
+                </div>
             <% end %>
-        </tr>    
-    <%end%>
-</table>
+        </div>
+    </div>
+    <div>
+        <% if current_user.admin %>
+                <button id='catBtn'> Add a category </button>
+        <% end %>
+    </div>
+</div>
+
+
+<%
+=begin%>
+        VANILLA JAVASCRIPT
+<%
+=end%>
+
+<script>
+    var modal = document.getElementById("catForm");
+    var button = document.getElementById("catBtn");
+    var close = document.getElementsByClassName("close")[0];
+
+    button.onclick = function() {
+    modal.style.display = "block";
+    }
+
+    close.onclick = function() {
+    modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+    }
+</script>

@@ -1,52 +1,130 @@
-<h1> Category </h1>
-
-<h5> Category name </h5>
-<%= @category.name %><br />
-<h5> Category description </h5>
-<%= @category.description %><br />
-</br>
-<% if current_user.admin %>  
-    <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %>
-<% elsif current_user.helper %>
-    <%= link_to 'Back', user_index_url, class: "btn btn-outline-dark btn-sm" %>
-<% else %>
-    <%= link_to 'Back', user_index_url, class: "btn btn-outline-dark btn-sm" %>
-    <%= link_to 'Create Task', category_tasks_path(@category.id), class: "btn btn-outline-dark btn-sm" %>
-<% end %>
-</br>
-</br>
-</br>
-
-<table class="table table-hover table-striped table-bordered table-sm">
-    <tr class="table-dark">
-        <th>Name</th>
-        <th>Date</th>
-        <th>Hourly Rate</th>
-         <% if current_user.helper%>
-            <th>Action</th>
-        <% elsif current_user.admin %>
-            <th></th>
+<div class='cIndexContainer'>
+    <div class='cCatHeaderContainer'>
+        <h1 class='cHeader'> <%= @category.name %> </h1>
+        <p class='cDescription'><% if @category.description == '' %>
+             - 
         <% else %>
-            <th></th>
-            <th></th>
+            <%= @category.description %>
         <% end %>
-
-    </tr>
-
-    <% @tasks.each do |task|%> 
-        <tr>
-            <td><%= link_to task.name, show_task_info_path(task.id, task.client_id) %></td>
-            <td><%= task.date %></td>
-            <td><%= task.hourly_rate %></td>
-            
-            <% if current_user.admin %>
-                <td><%= link_to 'Delete', category_task_path(params[:id], task.id), method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
-            <% elsif current_user.helper%>
-                <td><%= link_to 'Accept', accept_task_path(@category, task.id), class: "btn btn-outline-dark btn-sm" %></td>
-            <% elsif task.client_id == current_user.id %>    
-                <td><%= link_to 'Edit', edit_category_task_path(params[:id], task), class: "btn btn-outline-dark btn-sm" %></td>
-                <td><%= link_to 'Delete', category_task_path(params[:id], task),method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
+        </p>
+        <div class='cMethodBtns'>
+            <% if current_user.admin %> 
+                <img src='../assets/edit.png' class='edit' id='editBtn'/>
+                <img src='../assets/delete.png' class='delete' id='deleteBtn'/>
+            <% elsif %>
+                <%= link_to category_tasks_path(@category.id) do %>
+                    <img src='../assets/add.png' class='add'/>
+                <%end%>
             <% end %>
-        </tr>  
-    <%end%>
-</table>
+        </div>
+    </div>
+    <div>
+        <hr class='cLine'>
+    </div>
+    <div class='cTaskHeaderContainer'>
+            <p class='cTaskHeader'>Task</p>
+            <p class='cTaskHeader'>Date</p>
+            <p class='cTaskHeader'>Rate</p>
+            <p class='cTaskHeader'>Details</p>
+        </div>
+    <div>
+        <hr class='cLine'>
+    </div>
+
+    <div class='cTaskContainer'>
+        
+        <% @tasks.each do |task|%> 
+            <div class='cTask'>
+                <p class='cTaskLabel'><%= task.name %></p>
+                <p class='cTaskLabel'><%= task.date %></p>
+                <p class='cTaskLabel'><%= task.hourly_rate %></p>
+                <p class='cTaskView'>
+                    <%= link_to 'View', show_task_info_path(task.id, task.client_id) , class: 'cTaskViewBtn'%>
+                </p>           
+            </div>
+        <%end%>
+    </div>
+    
+    <div>
+        <%= link_to 'Back', category_index_path, class: "btn btn-outline-dark btn-sm" %>
+    </div>
+
+    <div class='cFormContainer' id='catForm'>
+        <div class='cFormCat'>
+            <div class='cFormHeader'>
+                <div></div>
+                <img src='../assets/close.png' class="close"/>
+            </div>
+            <h2>Edit Category</h2>
+            <%= form_for @category, url: category_path do |f| %>
+                <div class="field cFormDetails">
+                    <%= f.label :name %><br />
+                    <%= f.text_field :name, autocomplete: "name" %>
+                </div>
+
+                <div class="field cFormDetails"> 
+                    <%= f.label :description %>
+                    <%= f.text_field :description %>
+                </div>
+
+                <div class="actions d-flex justify-content-center align-items-center">
+                    <%= f.submit "Edit" , class: 'cEditBtn'%>
+                </div>
+            <% end %>
+        </div>
+    </div>
+
+    <div class='cFormContainer' id='catForm2'>
+        <div class='cFormCat'>
+            <div class='cFormHeader'>
+                <div></div>
+                <img src='../assets/close.png' class="close"/>
+            </div>
+            <h3>Are you sure you want to delete "<%= @category.name %>"?</h3>
+            <p class='cDescription'>This category will be deleted immediately. You can't undo this action.</p>
+            <div class="actions d-flex justify-content-center align-items-center">
+                    <%= link_to "Delete",  category_path(@category), method: :delete, class: 'cDeleteBtn' %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%
+=begin%>
+        VANILLA JAVASCRIPT
+<%
+=end%>
+
+<script>
+    var modal = document.getElementById("catForm");
+    var modal2 = document.getElementById("catForm2");
+    var button = document.getElementById("editBtn");
+    var button2 = document.getElementById("deleteBtn");
+    var close = document.getElementsByClassName("close")[0];
+    var close2 = document.getElementsByClassName("close")[1];
+
+    button.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    button2.onclick = function() {
+        modal2.style.display = "block";
+    }
+
+    close.onclick = function() {
+    modal.style.display = "none";
+    }
+
+    close2.onclick = function() {
+    modal2.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    } else if (event.target == modal2) {
+        modal2.style.display = "none";
+    }
+    }
+</script>

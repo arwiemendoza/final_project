@@ -1,52 +1,80 @@
-<h1><center>Approved Users</center></h1>
+<div class='aApprovedContainer'>  
+    <div class='aFloatContainer'>
+        <div class='aSwitchContainer'>
+            <div id="slider"></div>
+            <button type="button" class="aToggleBtn" id='bClient' onclick="Client()">CLIENTS</button>
+            <button type="button" class="aToggleBtn" id='bHelper' onclick="Helper()"> HELPERS</button>
+            
+        </div>
 
-<table class="table table-hover table-striped table-bordered table-sm">
-    <tr class="table-dark">
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Helper</th>
-        <th colspan="1"></th>
-    </tr>
+        <div class='aLineBreak'>
+                <hr class='aLine'>
+        </div>
 
-    <% @user.each do |user|%>
-        <% if user.user_status == 'Approved' && user.helper == false%>
-            <tr>
-                <td><%= user.first_name %></td>
-                <td><%= user.last_name %></td>
-                <td><%= user.email %></td>
-                <td><%= user.helper %></td>
-                <td class="d-inline justify-content-lg-center">
-                        <%= link_to 'Review', admin_path(user.id), class: "btn btn-outline-dark btn-sm" %>
-                </td>
-            </tr>    
-        <%end%>
-    <%end%>
-</table>
+        <div class='aUserTypeContainer' id='client'>   
+                 <div class='aContainer'>
+                    <% @user.each do |user|%>
+                        <% if user.user_status == 'Approved' && user.admin == false && user.helper == false%>
+                        <div class='aApprovedUsers'>
+                            <div class='aApprovedNamesContainer'>
+                                <p><img src="../assets/user_solid.png"/>
+                                    </p>
+                                <p class='aApprovedNames'><%= user.first_name %></p> 
+                                <p class='aApprovedNames'><%= user.last_name %></p>
+                            </div>
+                            <p class='aInfo'>
+                                        <%= link_to  admin_path(user.id) do %>
+                                            <img src="../assets/info.png"/>
+                                        <% end %>
+                                </p>
+                        </div>
+                        <%end%>
+                    <%end%>
+                </div>
+        </div>
+        <div class='aUserTypeContainer' id='helper'>   
+                <div class='aContainer'>
+                <% @user.each do |user|%>
+                    <% if user.user_status == 'Approved' && user.helper%>
+                           <div class='aApprovedUsers'>
+                            <div class='aApprovedNamesContainer'>
+                                <p><img src="../assets/user_solid.png"/>
+                                    </p>
+                                <p class='aApprovedNames'><%= user.first_name %></p> 
+                                <p class='aApprovedNames'><%= user.last_name %></p>
+                            </div>
+                            <p class='aInfo'>
+                                        <%= link_to admin_path(user.id) do %>
+                                            <img src="../assets/info.png"/>
+                                        <% end %>
+                                </p>
+                    <%end%>
+                <%end%>
+            </div>
+        </div>
+    </div>
+</div>
 
-<h1><center>Approved Helpers</center></h1>
+<script>
+    var client = document.getElementById("client");
+    var helper = document.getElementById("helper");
+    var slider = document.getElementById("slider");
+    var bclient = document.getElementById("bClient");
+    var bhelper = document.getElementById("bHelper");
 
-<table class="table table-hover table-striped table-bordered table-sm">
-    <tr class="table-dark">
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Helper</th>
-        <th colspan="1"></th>
-    </tr>
+    function Helper () {
+        client.style.opacity = '0';
+        helper.style.opacity = '1';
+        slider.style.left = '50%';
+        bhelper.style.color = 'white'
+        bclient.style.color = 'black'
+    }
 
-    <% @user.each do |user|%>
-        <% if user.user_status == 'Approved' && user.helper%>
-            <tr>
-                <td><%= user.first_name %></td>
-                <td><%= user.last_name %></td>
-                <td><%= user.email %></td>
-                <td><%= user.helper %></td>
-                <td class="d-inline justify-content-lg-center">
-                        <%= link_to 'Review', admin_path(user.id), class: "btn btn-outline-dark btn-sm" %>
-                </td>
-            </tr>    
-        <%end%>
-    <%end%>
-</table>
-
+    function Client () {
+        client.style.opacity = '1';
+        helper.style.opacity = '0';
+        slider.style.left = '0';
+        bhelper.style.color = 'black'
+        bclient.style.color = 'white'
+    }
+</script>
