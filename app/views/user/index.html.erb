@@ -36,7 +36,9 @@
                                         <% end %>
                                     </p>
                                 <% end %> 
-                                <p> View </p>
+                                <p class='cTaskView'>
+                                    <%= link_to 'View', show_task_info_path(task.id, task.client_id) , class: 'cTaskViewBtn'%>
+                                </p>  
                         </div>
                     <%end%>
                 <%end%>
@@ -56,7 +58,9 @@
                                         <%= link_to User.find(id).first_name, show_applicant_path(task_id, id)  %>
                                     <% end %>
                                 </p>
-                            <p> View </p>
+                           <p class='cTaskView'>
+                                <%= link_to 'View', show_task_info_path(task.id, task.client_id) , class: 'cTaskViewBtn'%>
+                        </p>  
                     </div>
                 <%end%>
             <%end%> 
