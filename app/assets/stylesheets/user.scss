@@ -55,11 +55,11 @@
 }
 
 #open {
-    opacity: 1;
+    display: block;
 }
 
 #onGoing, #history {
-    opacity: 0;
+    display:none;
 }
 
 #bOnGoing, #bHistory {
@@ -148,7 +148,6 @@
     padding: 20px;
     border: 1px solid #888;
     border-radius: 20px;
-    gap: 10px;
 }
 
 .uAppHeader {
@@ -171,6 +170,16 @@
     border-radius: 7px;
     width: 238px;
     padding: 2px;
+}
+
+.uPerApp{
+    display: flex;
+    flex-direction: row;    
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+    width: 200px;
+    padding: 0;
 }
 
 .uTaskView {

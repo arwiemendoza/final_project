@@ -12,7 +12,7 @@
         <div class='uTaskHeaderContainer'>
             <p class='uTaskHeader'>Task</p>
             <p class='uTaskHeader'>Date</p>
-            <p class='uTaskHeader'>Applicants</p>
+            <p class='uTaskHeader'>Helper</p>
             <p class='uTaskHeader'>Details</p>
         </div>
         <div class='uLineBreak'>
@@ -26,7 +26,7 @@
                         <p class='uTaskLabels'><%= task.name %></p>
                         <p class='uTaskLabels'><%= task.date %></p>
                         <% if task.helper_applicants == [] %>
-                            <p>No Helper Applicants</p>
+                            <p class='uTaskLabels'>No Helper Applicants</p>
                         <% else %>
                             <button class='uTaskView' id='listApplicantsBtn'> 
                                 <% if task.helper_applicants.count == 1 %>  
@@ -42,16 +42,30 @@
                                         <img src='../assets/close.png' class="close"/>
                                     </div>
                                     <h2>List of Applicants</h2>
-                                    <div class='uAppsShow'>
+                                    <div class='uPerApp'>
+                                            <p class='uTaskLabels'>No.</p>
+                                            <p class='uTaskLabels'>Applicant's Name</p>
+                                            <p class='uTaskLabels'>Rating</p>
+                                            <p class='uTaskLabels'></p>
+                                       </div>
+                                    <div class='uAppsShow'>        
                                         <% ids = task.helper_applicants.to_a%>
                                         <% task_id = task.id%>
                                         <% @count = 0 %>
+                                       
                                             <% ids.each do |id|%>
-                                            <div class='d-flex flex-row  justify-content-center align-items-center g-5px'>
-                                                <%= @count += 1 %>
-                                                <p><%= User.find(id).first_name %></p>
-                                                <p><%= User.find(id).last_name %></p>
-                                                <%= link_to User.find(id).first_name, show_applicant_path(task_id, id)  %>
+                                            <div class='uPerApp'>
+                                                <p class='uTaskLabels'><%= @count += 1 %></p>
+                                                <p class='uTaskLabels'><%= User.find(id).first_name %> <%= User.find(id).last_name %></p>
+                                                 <% array = User.find(id).rating.to_a %>
+                                                <p class='uTaskLabels'>
+                                                    <% if array.length == 0 %>
+                                                        <% ave = 0 %>
+                                                    <% else %>
+                                                        <% ave = array.sum/array.length %>
+                                                    <% end %>
+                                                    <%= ave %>/5</p>
+                                                <p class='uTaskLabels'><%= link_to 'Accept', accept_helper_path(task_id, id), class: "btn btn-outline-dark btn-sm" %></p>
                                             </div>
                                             <% end %>           
                                     </div>
@@ -69,19 +83,19 @@
             <% @tasks.each do |task|%>
                 <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id != nil && task.task_status == "Approved" %>
                     <div class='uTasks'>
-                            <p><%= task.name %></p>
-                            <p class='aEachTask'><%= task.date %></p>
+                        <p class='uTaskLabels'><%= task.name %></p>
+                        <p class='uTaskLabels'><%= task.date %></p>
+                        <% ids = task.helper_applicants.to_a%>
+                            <% task_id = task.id%>
                             <% ids = task.helper_applicants.to_a%>
-                                <% task_id = task.id%>
-                                <% ids = task.helper_applicants.to_a%>
-                                <% task_id = task.id%>
-                                <p>
-                                    <% ids.each do |id|%>
-                                        <%= link_to User.find(id).first_name, show_applicant_path(task_id, id)  %>
-                                    <% end %>
-                                </p>
-                           <p class='cTaskView'>
-                                <%= link_to 'View', show_task_info_path(task.id, task.client_id) , class: 'cTaskViewBtn'%>
+                            <% task_id = task.id%>
+                            <p class='uTaskLabels'>
+                                <% ids.each do |id|%>
+                                    <p class='uTaskLabels'><%= User.find(id).first_name %> <%= User.find(id).last_name %></p>
+                                <% end %>
+                            </p>
+                        <p class='uTaskView' id='uViewTask'>
+                            <%= link_to 'View', show_task_info_path(task.id, task.client_id) , class: 'uTaskViewBtn'%>
                         </p>  
                     </div>
                 <%end%>
@@ -127,9 +141,9 @@
     var applicantListClose = document.getElementsByClassName("close")[0];
 
     function Open () {
-        open.style.opacity = '1';
-        onGoing.style.opacity = '0';
-        done.style.opacity = '0';
+        open.style.display = 'block';
+        onGoing.style.display = 'none';
+        done.style.display = 'none';
         slideBtn.style.left = '0%';
         bOpen.style.color = 'white'
         bOnGoing.style.color = 'black'
@@ -137,9 +151,9 @@
     }
 
     function Going () {
-        open.style.opacity = '0';
-        onGoing.style.opacity = '1';
-        done.style.opacity = '0';
+        open.style.display = 'none';
+        onGoing.style.display = 'block';
+        done.style.display = 'none';
         slideBtn.style.left = '33.3%';
         bOpen.style.color = 'black'
         bOnGoing.style.color = 'white'
@@ -147,9 +161,9 @@
     }
 
     function History () {
-        open.style.opacity = '0';
-        onGoing.style.opacity = '0';
-        done.style.opacity = '1';
+        open.style.display = 'none';
+        onGoing.style.display = 'block';
+        done.style.display = 'none';
         slideBtn.style.left = '67.3%';
         bOpen.style.color = 'black'
         bOnGoing.style.color = 'black'

@@ -1,48 +1,66 @@
-
-
-<h1><center>My Account</center></h1>
-
-<center><div class="container h-2/4 flex justify-center items-center ">
-<h3><%= @user.first_name %> <%= @user.last_name %></h3>
-<p><%= @user.email %></p>
-<p><%= @user.mobile_number %></p>
-
-<br>
-        
-<%= link_to 'Edit My Account', edit_user_registration_path%>
-
-
-<h2> Current Balance </h2>
-<h5><%= @balance %></h5>
-<h3> Deposit Money </h3>
-<%= form_with url: deposit_path do |f| %>
-
-    <div class="field">
-        <%= f.label :amount %><br/>
-        <%= f.number_field :amount %>
-    </div>   
-
-    <div class="actions">
-        <%= f.submit "Deposit" %>
+<div class='adminIndexContainer'>
+    <div class='aHeaderContainer'>
+        <h2 class='aHeader'>Account Information</h2>
     </div>
-
-<% end %>
-
-<br>
-<h3> Withdraw Money </h3>
-<%= form_with url: withdraw_path do |f| %>
-
-    <div class="field">
-        <%= f.label :amount %><br/>
-        <%= f.number_field :amount %>
-    </div>   
-
-    <div class="actions">
-        <%= f.submit "Withdraw" %>
+    <div>
+        <hr class='aLine'>
     </div>
+    
+    <div class='aUserContainer'>
+        <div>
+        <img src="../assets/user_proxy_picture.png"/>
+        </div>
+        <div class='aInfoContainer'>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>First Name:</p>
+                <p class='aInfoDetail'><%= @user.first_name %></p>
+            </div>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>Last Name: </p> 
+                <p class='aInfoDetail'><%= @user.last_name %></p>
+            </div>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>Email: </p>
+                <p class='aInfoDetail'><%= @user.email %></p>
+            </div>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>Mobile Number: </p>
+                <p class='aInfoDetail'><%= @user.mobile_number %></p>
+            </div>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>User Type: </p>
+                <p class='aInfoDetail'> 
+                    <% if @user.helper == true %>
+                        Helper 
+                    <%else%> 
+                        Client
+                    <%end%>
+                </p>
+            </div>
+            <div class='aDetailContainer'>
+                <p class='aInfoLabel'>Status: </p>
+                 <p class='aInfoDetail'><%= @user.user_status %></p>
+            </div>
+            <div  class='aDetailContainer'>
+               <p class='aInfoLabel'>Balance: </p>
+                <p class='aInfoDetail'><%= @user.balance %></p>
+            </div>
+            <div  class='aDetailContainer'>
+               <p class='aInfoLabel'>Rating: </p>
+                <p class='aInfoDetail'>
+                    <% array = @user.rating.to_a %>
+                    <% if array.length == 0 %>
+                        <% ave = 0 %>
+                    <% else %>
+                        <% ave = array.sum/array.length %>
+                    <% end %>
+                    <%= ave %>/5
+                </p>
 
-<% end %>
+            </div>
+        </div>
+
+    </div>
+    
 
 </div>
-
-</center>
