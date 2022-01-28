@@ -47,7 +47,7 @@
     top:0;
     left:0;
     position: absolute;
-    width: 108px;
+    width: 33%;
     height: 100%;
     background: #7BC675;
     border-radius: 15px;
@@ -67,7 +67,7 @@
 }
 
 #bOnGoing{
-    padding-right: 50px;
+    padding-right: 10px;
 }
 
 .uLineBreak {
@@ -116,7 +116,10 @@
     border-radius: 7px;
     width: 338px;
     padding: 2px;
+}
 
+.uTaskLabels, #uViewTask{
+    margin-top:5%;
 }
 
 .uApplicantContainer {
@@ -138,16 +141,64 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 80%;
+    width: 338px;
     height: 60%;
     background-color: #adcc96;
-    margin: auto;
+    margin: 1% auto;
     padding: 20px;
     border: 1px solid #888;
     border-radius: 20px;
     gap: 10px;
 }
 
+.uAppHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 15px 0 15px;
+}
+
+.uAppsShow {
+    display: flex;
+    flex-direction: row;    
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.41);
+    border: 2px solid rgba(7, 7, 7, 0.25);
+    box-sizing: border-box;
+    border-radius: 7px;
+    width: 238px;
+    padding: 2px;
+}
+
+.uTaskView {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 65px;
+    height: 21px;
+    background: #157145;
+    border-radius: 10px;
+    font-size: 14px;
+    color: white;
+    border:none;
+}
+
+.uTaskViewBtn,
+.uTaskViewBtn:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.uTaskViewBtn:hover {
+    background-color: #157145;
+}
+
+#listApplicantsBtn {
+    font-size: 12px;
+}
 @media only screen and (min-width: 600px) {
     .uFloatContainer, .uSwitchContainer, .uTaskHeaderContainer, .uAllTasksContainer,.uTasksContainer, .uTasks {
         width: 62.5em;
@@ -163,6 +214,17 @@
 
     #slideBtn{
         width: 33%;
+    }
+
+    .uFormApp {
+        width: 40%;
+    }
+    .uTaskView {
+        width: 101px;
+    }
+
+    .uTaskLabels, #uViewTask{
+        margin-top:2%;
     }
 
 }
