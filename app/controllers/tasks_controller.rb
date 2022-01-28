@@ -59,7 +59,7 @@ class TasksController < ApplicationController
             @array.push(current_user.id)
             task.update(helper_applicants: @array)
             task.save
-            flash[:notice] = "Thank you for applyin."
+            flash[:notice] = "Thank you for applying."
             redirect_to helper_index_path
         end
     end

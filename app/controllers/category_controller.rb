@@ -1,6 +1,6 @@
 class CategoryController < ApplicationController
     before_action :is_user_admin
-    before_action :admin_only, only: [:new,:create,:edit,:update,:destroy] 
+    before_action :admin_only, only: [:new,:create,:edit,:update,:delete] 
     before_action :is_user_helper
     
     def index

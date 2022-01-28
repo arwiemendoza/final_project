@@ -3,10 +3,6 @@ class HelperController < ApplicationController
     def index
         @users = User.all
         @categories = Category.all
-        if @categories == []
-        else
-            @category = @categories.find(1)
-        end
         @tasks = Task.all
     end
 

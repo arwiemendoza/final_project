@@ -11,7 +11,7 @@
             <% if current_user.admin %> 
                 <img src='../assets/edit.png' class='edit' id='editBtn'/>
                 <img src='../assets/delete.png' class='delete' id='deleteBtn'/>
-            <% elsif %>
+            <% elsif current_user.admin == false && current_user.helper == false %>
                 <%= link_to category_tasks_path(@category.id) do %>
                     <img src='../assets/add.png' class='add'/>
                 <%end%>
@@ -83,7 +83,7 @@
             <h3>Are you sure you want to delete "<%= @category.name %>"?</h3>
             <p class='cDescription'>This category will be deleted immediately. You can't undo this action.</p>
             <div class="actions d-flex justify-content-center align-items-center">
-                    <%= link_to "Delete",  category_path(@category), method: :delete, class: 'cDeleteBtn' %>
+                    <%= link_to 'Delete', category_path, method: :delete, class: 'cDeleteBtn' %>
             </div>
         </div>
     </div>

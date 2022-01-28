@@ -81,7 +81,8 @@
         </div>
         <div class='uAllTasksContainer' id='onGoing'>
             <% @tasks.each do |task|%>
-                <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id != nil && task.task_status == "Approved" %>
+                <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id != nil && task.task_status == 
+                "Approved" %>
                     <div class='uTasks'>
                         <p class='uTaskLabels'><%= task.name %></p>
                         <p class='uTaskLabels'><%= task.date %></p>
@@ -104,7 +105,7 @@
 
         <div class='uAllTasksContainer' id='history'>
                  <% @tasks.each do |task|%>
-                    <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id == nil && task.task_status == "Completed"%>
+                    <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id == nil && task.task_status == "Completed" %>
                         <div class='uTasks'>
                                 <p><%= task.name %></p>
                                 <p class='aEachTask'><%= task.date %></p>
