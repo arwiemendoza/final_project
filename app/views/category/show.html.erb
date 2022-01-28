@@ -83,7 +83,7 @@
             <h3>Are you sure you want to delete "<%= @category.name %>"?</h3>
             <p class='cDescription'>This category will be deleted immediately. You can't undo this action.</p>
             <div class="actions d-flex justify-content-center align-items-center">
-                    <%= link_to 'Delete', category_path, method: :delete, class: 'cDeleteBtn' %>
+                <%= button_to 'Delete', category_path(@category.id), method: :delete, class: 'cDeleteBtn' %>
             </div>
         </div>
     </div>

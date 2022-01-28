@@ -54,7 +54,7 @@ class TasksController < ApplicationController
         @array = task.helper_applicants.to_a
         if @array.include?(current_user.id) == true
             flash[:notice] = "You already applied for this task."
-            redirect_to category_path
+            redirect_to category_path(task.category_id)
         else
             @array.push(current_user.id)
             task.update(helper_applicants: @array)
