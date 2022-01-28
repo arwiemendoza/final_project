@@ -56,10 +56,13 @@
                     <% end %>
                     <%= ave %>/5
                 </p>
-
             </div>
+            <div>        
+                <%= link_to 'Edit', edit_user_registration_path(@user.id), class: "btn btn-outline-dark btn-sm" %>
+            </div>
+                <%= link_to 'Back' , :back %>
         </div>
-
+        </div>
     </div>
     
 
