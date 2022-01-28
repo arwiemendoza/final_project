@@ -43,31 +43,29 @@
                                     </div>
                                     <h2>List of Applicants</h2>
                                     <div class='uPerApp'>
-                                            <p class='uTaskLabels'>No.</p>
-                                            <p class='uTaskLabels'>Applicant's Name</p>
-                                            <p class='uTaskLabels'>Rating</p>
-                                            <p class='uTaskLabels'></p>
-                                       </div>
+                                        <p class='uTaskLabels'>No.</p>
+                                        <p class='uTaskLabels'>Applicant's Name</p>
+                                        <p class='uTaskLabels'>Rating</p>
+                                        <p class='uTaskLabels'></p>
+                                    </div>
                                     <div class='uAppsShow'>        
                                         <% ids = task.helper_applicants.to_a%>
                                         <% task_id = task.id%>
                                         <% @count = 0 %>
-                                       
-                                            <% ids.each do |id|%>
+                                        <% ids.each do |id|%>
                                             <div class='uPerApp'>
                                                 <p class='uTaskLabels'><%= @count += 1 %></p>
                                                 <p class='uTaskLabels'><%= User.find(id).first_name %> <%= User.find(id).last_name %></p>
-                                                 <% array = User.find(id).rating.to_a %>
+                                                <% array = User.find(id).rating.to_a %>
                                                 <p class='uTaskLabels'>
                                                     <% if array.length == 0 %>
                                                         <% ave = 0 %>
                                                     <% else %>
                                                         <% ave = array.sum/array.length %>
                                                     <% end %>
-                                                    <%= ave %>/5</p>
                                                 <p class='uTaskLabels'><%= link_to 'Accept', accept_helper_path(task_id, id), class: "btn btn-outline-dark btn-sm" %></p>
                                             </div>
-                                            <% end %>           
+                                        <% end %>           
                                     </div>
                                 </div>
                             </div>
@@ -85,17 +83,9 @@
                     <div class='uTasks'>
                         <p class='uTaskLabels'><%= task.name %></p>
                         <p class='uTaskLabels'><%= task.date %></p>
-                        <% ids = task.helper_applicants.to_a%>
-                            <% task_id = task.id%>
-                            <% ids = task.helper_applicants.to_a%>
-                            <% task_id = task.id%>
-                            <p class='uTaskLabels'>
-                                <% ids.each do |id|%>
-                                    <p class='uTaskLabels'><%= User.find(id).first_name %> <%= User.find(id).last_name %></p>
-                                <% end %>
-                            </p>
+                        <p class='uTaskLabels'><%= User.find(task.helper_id).first_name %> <%= User.find(task.helper_id).last_name %></p> 
                         <p class='uTaskView' id='uViewTask'>
-                            <%= link_to 'View', show_task_info_path(task.id, task.client_id) , class: 'uTaskViewBtn'%>
+                            <%= link_to 'View', show_task_info_path(task.id, task.client_id), class: 'uTaskViewBtn'%>
                         </p>  
                     </div>
                 <%end%>
@@ -103,26 +93,23 @@
         </div>
 
         <div class='uAllTasksContainer' id='history'>
-                 <% @tasks.each do |task|%>
-                    <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.task_status == "Completed" || task.task_status == "Finished" %>
-                        <div class='uTasks'>
-                                <p><%= task.name %></p>
-                                <p class='aEachTask'><%= task.date %></p>
-                                <% ids = task.helper_applicants.to_a%>
-                                <% task_id = task.id%>
-                                    <p>
-                                        <% ids.each do |id|%>
-                                            <%= link_to User.find(id).first_name, show_applicant_path(task_id, id)  %>
-                                        <% end %>
-                                    </p>
-                                <p> <%= link_to 'Confirm', finish_task_path(task.id) %> </p>
-                        </div>
-                    <%end%>
-                <%end%> 
+                <% @tasks.each do |task|%>
+                <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.task_status == "Completed" || task.task_status == "Finished" %>
+                    <div class='uTasks'>
+                        <p class='uTaskLabels'><%= task.name %></p>
+                        <p class='uTaskLabels'><%= task.date %></p>
+                        <p class='uTaskLabels'><%= User.find(task.helper_id).first_name %> <%= User.find(task.helper_id).last_name %></p> 
+                        <p class='uTaskView' id='uViewTask'>
+                            <% if task.rated_by_client? %>
+                                <td>Done</td>
+                            <% else %>
+                                <%= link_to 'Rate', get_rate_helper_path(task.id, task.helper_id), class: 'uTaskViewBtn'%>
+                            <%end%>
+                        </p>
+                    </div>
+                <%end%>
+            <%end%> 
         </div>
-
-        
-
     </div>
 </div>
 
@@ -162,8 +149,8 @@
 
     function History () {
         open.style.display = 'none';
-        onGoing.style.display = 'block';
-        done.style.display = 'none';
+        onGoing.style.display = 'none';
+        done.style.display = 'block';
         slideBtn.style.left = '67.3%';
         bOpen.style.color = 'black'
         bOnGoing.style.color = 'black'
