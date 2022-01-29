@@ -26,8 +26,6 @@
                 <%= @task.latitude %>
             </div>
         </div>
-        <div>
-        </div>
         <p class='aInfoLabel'>Client Information</p>
         <div>
             <div class='aDetailContainer'>
@@ -56,15 +54,13 @@
             </div>
         </div>
         <div>
-        
             <% if current_user.helper? %>
                 <%= link_to 'Apply', accept_task_path(@task.category_id, @task), class: "btn btn-outline-dark btn-sm" %>
-            <% elsif current_user.admin == false && current_user.helper == false %>
+            <% elsif current_user.admin == false && current_user.helper == false && @task.helper_id = nil%>
                 <%= link_to 'Edit', edit_category_task_path(@task.category_id, @task.id), class: "btn btn-outline-dark btn-sm" %>
                 <%= link_to 'Delete', category_task_path(@task.category_id, @task.id),method: :delete, class: "btn btn-outline-dark btn-sm" %></td>
             <% else %>
             <% end %>
-
         </div>
             <%= link_to 'Back' , :back %>
     </div>
