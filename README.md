@@ -56,6 +56,8 @@ rails s
 
 ## Demo
 
+    https://thehandybunny.herokuapp.com/
+
 <br/>
 
 ## Sample Credentials
