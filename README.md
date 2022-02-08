@@ -96,4 +96,4 @@ rails s
 
 -   New accounts will be required to upload a photo for verification
 -   On creating tasks, user will be required to pinpoint the location for helpers to use to navigate task location
--
+
