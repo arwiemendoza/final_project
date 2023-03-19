@@ -1,80 +1,77 @@
 <div class='aApprovedContainer'>  
-    <div class='aFloatContainer'>
-        <div class='aSwitchContainer'>
-            <div id="slider"></div>
-            <button type="button" class="aToggleBtn" id='bClient' onclick="Client()">CLIENTS</button>
-            <button type="button" class="aToggleBtn" id='bHelper' onclick="Helper()"> HELPERS</button>
-            
-        </div>
-
-        <div class='aLineBreak'>
-                <hr class='aLine'>
-        </div>
-
-        <div class='aUserTypeContainer' id='client'>   
-                 <div class='aContainer'>
-                    <% @user.each do |user|%>
-                        <% if user.user_status == 'Approved' && user.admin == false && user.helper == false%>
-                        <div class='aApprovedUsers'>
-                            <div class='aApprovedNamesContainer'>
-                                <p><img src="../assets/user_solid.png"/>
-                                    </p>
-                                <p class='aApprovedNames'><%= user.first_name %></p> 
-                                <p class='aApprovedNames'><%= user.last_name %></p>
-                            </div>
-                            <p class='aInfo'>
-                                        <%= link_to  admin_path(user.id) do %>
-                                            <img src="../assets/info.png"/>
-                                        <% end %>
-                                </p>
-                        </div>
-                        <%end%>
-                    <%end%>
-                </div>
-        </div>
-        <div class='aUserTypeContainer' id='helper'>   
-            <div class='aContainer'>
-                <% @user.each do |user|%>
-                    <% if user.user_status == 'Approved' && user.helper%>
-                        <div class='aApprovedUsers'>
-                            <div class='aApprovedNamesContainer'>
-                                <p><img src="../assets/user_solid.png"/>
-                                    </p>
-                                <p class='aApprovedNames'><%= user.first_name %></p> 
-                                <p class='aApprovedNames'><%= user.last_name %></p>
-                            </div>
-                            <p class='aInfo'>
-                                        <%= link_to admin_path(user.id) do %>
-                                            <img src="../assets/info.png"/>
-                                        <% end %>
-                                </p>
-                    <%end%>
-                <%end%>
-            </div>
-        </div>
+  <div class='aFloatContainer'>
+    <div class='aSwitchContainer'>
+      <div id="slider"></div>
+      <button type="button" class="aToggleBtn" id='bClient' onclick="Client()">CLIENTS</button>
+      <button type="button" class="aToggleBtn" id='bHelper' onclick="Helper()"> HELPERS</button>   
     </div>
+
+    <div class='aLineBreak'>
+      <hr class='aLine'>
+    </div>
+
+    <div class='aUserTypeContainer' id='client'>   
+      <div class='aContainer'>
+        <% @user.each do |user|%>
+          <% if user.user_status == 'Approved' && user.admin == false && user.helper == false%>
+            <div class='aApprovedUsers'>
+              <div class='aApprovedNamesContainer'>
+                <p><img src="../assets/user_solid.png"/></p>
+                <p class='aApprovedNames'><%= user.first_name %></p> 
+                <p class='aApprovedNames'><%= user.last_name %></p>
+              </div>
+                <p class='aInfo'>
+                  <%= link_to  admin_path(user.id) do %>
+                      <img src="../assets/info.png"/>
+                  <% end %>
+                </p>
+            </div>
+          <%end%>
+        <%end%>
+      </div>
+    </div>
+      <div class='aUserTypeContainer' id='helper'>   
+        <div class='aContainer'>
+          <% @user.each do |user|%>
+            <% if user.user_status == 'Approved' && user.helper%>
+              <div class='aApprovedUsers'>
+                <div class='aApprovedNamesContainer'>
+                  <p><img src="../assets/user_solid.png"/></p>
+                  <p class='aApprovedNames'><%= user.first_name %></p> 
+                  <p class='aApprovedNames'><%= user.last_name %></p>
+              </div>
+                  <p class='aInfo'>
+                    <%= link_to admin_path(user.id) do %>
+                      <img src="../assets/info.png"/>
+                    <% end %>
+                  </p>
+            <%end%>
+          <%end%>
+        </div>
+      </div>
+  </div>
 </div>
 
 <script>
-    var client = document.getElementById("client");
-    var helper = document.getElementById("helper");
-    var slider = document.getElementById("slider");
-    var bclient = document.getElementById("bClient");
-    var bhelper = document.getElementById("bHelper");
+  var client = document.getElementById("client");
+  var helper = document.getElementById("helper");
+  var slider = document.getElementById("slider");
+  var bclient = document.getElementById("bClient");
+  var bhelper = document.getElementById("bHelper");
 
-    function Helper () {
-        client.style.opacity = '0';
-        helper.style.opacity = '1';
-        slider.style.left = '50%';
-        bhelper.style.color = 'white'
-        bclient.style.color = 'black'
-    }
+  function Helper () {
+      client.style.opacity = '0';
+      helper.style.opacity = '1';
+      slider.style.left = '50%';
+      bhelper.style.color = 'white'
+      bclient.style.color = 'black'
+  }
 
-    function Client () {
-        client.style.opacity = '1';
-        helper.style.opacity = '0';
-        slider.style.left = '0';
-        bhelper.style.color = 'black'
-        bclient.style.color = 'white'
-    }
+  function Client () {
+      client.style.opacity = '1';
+      helper.style.opacity = '0';
+      slider.style.left = '0';
+      bhelper.style.color = 'black'
+      bclient.style.color = 'white'
+  }
 </script>

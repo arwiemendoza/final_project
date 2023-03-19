@@ -1,83 +1,90 @@
 
 <div class='adminIndexContainer'>
-    <div class='aHeaderContainer'>
-        <h2 class='aHeader'>User Information</h2>
-    </div>
+  <div class='aHeaderContainer'>
+    <h2 class='aHeader'>User Information</h2>
+  </div>
+  <div>
+    <hr class='aLine'>
+  </div>
+    
+  <div class='aUserContainer'>
     <div>
-        <hr class='aLine'>
+      <img src="../assets/user_proxy_picture.png"/>
     </div>
-    
-    <div class='aUserContainer'>
-        <div>
-        <img src="../assets/user_proxy_picture.png"/>
-        </div>
-        <div class='aInfoContainer'>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>First Name:</p>
-                <p class='aInfoDetail'><%= @user.first_name %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Last Name: </p> 
-                <p class='aInfoDetail'><%= @user.last_name %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Email: </p>
-                <p class='aInfoDetail'><%= @user.email %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Mobile Number: </p>
-                <p class='aInfoDetail'><%= @user.mobile_number %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>User Type: </p>
-                <p class='aInfoDetail'> 
-                    <% if @user.helper == true %>
-                        Helper 
-                    <%else%> 
-                        Client
-                    <%end%>
-                </p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Status: </p>
-                 <p class='aInfoDetail'><%= @user.user_status %></p>
-            </div>
-            <div  class='aDetailContainer'>
-               <p class='aInfoLabel'>Balance: </p>
-                <p class='aInfoDetail'><%= @user.balance %></p>
-            </div>
-            <div  class='aDetailContainer'>
-               <p class='aInfoLabel'>Rating: </p>
-                <p class='aInfoDetail'>
-                    <% array = @user.rating.to_a %>
-                    <% if array.length == 0 %>
-                        <% ave = 0 %>
-                    <% else %>
-                        <% ave = array.sum/array.length %>
-                    <% end %>
-                    <%= ave %>/5
-                </p>
-            </div>
-        </div>
 
-        <% if @user.attachments.first == nil%>
-        <% else %>
-            <%= image_tag @user.attachments.first.image.to_s %>
-        <% end %>
+    <div class='aInfoContainer'>
 
-        <div class='aStatBtnContainer'>
-            <% if @user.user_status == "Pending"%>
-                        <p class='aPendingButtons'><%= link_to 'Approve', approve_status_path(@user), class: 'aApproveBtn' %></p>
-                        <p class='aPendingButtons'><%= link_to 'Reject', reject_status_path(@user), class: 'aRejectBtn' %></p>
-            <% end %> 
-        </div>
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>First Name:</p>
+        <p class='aInfoDetail'><%= @user.first_name %></p>
+      </div>
 
-        <% if @user.user_status == "Pending" %>
-            <%= link_to 'Back', root_path %>
-        <% else @user.user_status == "Approved" %>
-            <%= link_to 'Back', user_list_path %>
-        <% end %>
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Last Name: </p> 
+        <p class='aInfoDetail'><%= @user.last_name %></p>
+      </div>
+
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Email: </p>
+        <p class='aInfoDetail'><%= @user.email %></p>
+      </div>
+
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Mobile Number: </p>
+        <p class='aInfoDetail'><%= @user.mobile_number %></p>
+      </div>
+
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>User Type: </p>
+        <p class='aInfoDetail'> 
+          <% if @user.helper == true %>
+              Helper 
+          <%else%> 
+              Client
+          <%end%>
+        </p>
+      </div>
+
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Status: </p>
+        <p class='aInfoDetail'><%= @user.user_status %></p>
+      </div>
+
+      <div  class='aDetailContainer'>
+          <p class='aInfoLabel'>Balance: </p>
+          <p class='aInfoDetail'><%= @user.balance %></p>
+      </div>
+
+      <div  class='aDetailContainer'>
+        <p class='aInfoLabel'>Rating: </p>
+        <p class='aInfoDetail'>
+          <% array = @user.rating.to_a %>
+            <% if array.length == 0 %>
+                <% ave = 0 %>
+            <% else %>
+                <% ave = array.sum/array.length %>
+            <% end %>
+            <%= ave %>/5
+        </p>
+      </div>
     </div>
-    
 
+      <% if @user.attachments.first == nil%>
+      <% else %>
+        <%= image_tag @user.attachments.first.image.to_s %>
+      <% end %>
+
+      <div class='aStatBtnContainer'>
+        <% if @user.user_status == "Pending"%>
+          <p class='aPendingButtons'><%= link_to 'Approve', approve_status_path(@user), class: 'aApproveBtn' %></p>
+          <p class='aPendingButtons'><%= link_to 'Reject', reject_status_path(@user), class: 'aRejectBtn' %></p>
+        <% end %> 
+      </div>
+
+      <% if @user.user_status == "Pending" %>
+        <%= link_to 'Back', root_path %>
+      <% else @user.user_status == "Approved" %>
+        <%= link_to 'Back', user_list_path %>
+      <% end %>
+  </div>
 </div>

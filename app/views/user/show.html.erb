@@ -1,69 +1,76 @@
 <div class='adminIndexContainer'>
-    <div class='aHeaderContainer'>
-        <h2 class='aHeader'>Account Information</h2>
-    </div>
-    <div>
-        <hr class='aLine'>
-    </div>
-    
-    <div class='aUserContainer'>
-        <div>
-        <img src="../assets/user_proxy_picture.png"/>
-        </div>
-        <div class='aInfoContainer'>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>First Name:</p>
-                <p class='aInfoDetail'><%= @user.first_name %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Last Name: </p> 
-                <p class='aInfoDetail'><%= @user.last_name %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Email: </p>
-                <p class='aInfoDetail'><%= @user.email %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Mobile Number: </p>
-                <p class='aInfoDetail'><%= @user.mobile_number %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>User Type: </p>
-                <p class='aInfoDetail'> 
-                    <% if @user.helper == true %>
-                        Helper 
-                    <%else%> 
-                        Client
-                    <%end%>
-                </p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Status: </p>
-                 <p class='aInfoDetail'><%= @user.user_status %></p>
-            </div>
-            <div  class='aDetailContainer'>
-               <p class='aInfoLabel'>Balance: </p>
-                <p class='aInfoDetail'><%= @user.balance %></p>
-            </div>
-            <div  class='aDetailContainer'>
-               <p class='aInfoLabel'>Rating: </p>
-                <p class='aInfoDetail'>
-                    <% array = @user.rating.to_a %>
-                    <% if array.length == 0 %>
-                        <% ave = 0 %>
-                    <% else %>
-                        <% ave = array.sum/array.length %>
-                    <% end %>
-                    <%= ave %>/5
-                </p>
-            </div>
-            <div>        
-                <%= link_to 'Edit', edit_user_registration_path(@user.id), class: "btn btn-outline-dark btn-sm" %>
-            </div>
-                <%= link_to 'Back' , :back %>
-        </div>
-        </div>
-    </div>
-    
+  <div class='aHeaderContainer'>
+    <h2 class='aHeader'>Account Information</h2>
+  </div>
 
+  <div>
+    <hr class='aLine'>
+  </div>
+    
+  <div class='aUserContainer'>
+    <div>
+      <img src="../assets/user_proxy_picture.png"/>
+    </div>
+
+    <div class='aInfoContainer'>
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>First Name:</p>
+        <p class='aInfoDetail'><%= @user.first_name %></p>
+      </div>
+
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Last Name: </p> 
+        <p class='aInfoDetail'><%= @user.last_name %></p>
+      </div>
+
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Email: </p>
+        <p class='aInfoDetail'><%= @user.email %></p>
+      </div>
+
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Mobile Number: </p>
+        <p class='aInfoDetail'><%= @user.mobile_number %></p>
+      </div>
+
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>User Type: </p>
+        <p class='aInfoDetail'> 
+          <% if @user.helper == true %>
+            Helper 
+          <%else%> 
+            Client
+          <%end%>
+        </p>
+      </div>
+    
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Status: </p>
+        <p class='aInfoDetail'><%= @user.user_status %></p>
+      </div>
+
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Balance: </p>
+        <p class='aInfoDetail'><%= @user.balance %></p>
+      </div>
+
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Rating: </p>
+        <p class='aInfoDetail'>
+          <% array = @user.rating.to_a %>
+            <% if array.length == 0 %>
+              <% ave = 0 %>
+            <% else %>
+              <% ave = array.sum/array.length %>
+            <% end %>
+          <%= ave %>/5
+        </p>
+      </div>
+
+      <div>        
+        <%= link_to 'Edit', edit_user_registration_path(@user.id), class: "btn btn-outline-dark btn-sm" %>
+      </div>
+        <%= link_to 'Back' , :back %>
+    </div>
+  </div>
 </div>

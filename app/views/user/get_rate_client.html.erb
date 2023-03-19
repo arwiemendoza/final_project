@@ -1,93 +1,102 @@
 <div class='tIndexContainer'>
-    <div class='tHeaderContainer'>
-        <h2 class='tHeader'><%= @task.name %></h2>
-    </div>
-    <div>
-        <hr class='aLine'>
-    </div>
-    <div class='tTaskContainer'>
-        <div class='tInfoContainer'>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Details:</p>
-                <p class='aInfoDetail'><%= @task.details %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Date:</p>
-                <p class='aInfoDetail'><%= @task.date %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Rate:</p>
-                <p class='aInfoDetail'><%= @task.hourly_rate %></p>
-            </div>
-            <p class='aInfoLabel'>Client Information</p>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'> Name:</p>
-                <p class='aInfoDetail'><%= @client.first_name + ' ' + @client.last_name %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Email:</p>
-                <p class='aInfoDetail'><%= @client.email %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Mobile Number:</p>
-                <p class='aInfoDetail'><%= @client.mobile_number %></p>
-            </div>
-            <div class='aDetailContainer'>
-                <p class='aInfoLabel'>Rating:</p>
-                <p class='aInfoDetail'> 
-                    <% array = @client.rating.to_a %>
-                    <% if array.length == 0 %>
-                        <% ave = 0 %>
-                    <% else %>
-                        <% ave = array.sum/array.length %>
-                    <% end %>
-                    <%= ave %>/5
-                </p>
-            </div>
+  <div class='tHeaderContainer'>
+    <h2 class='tHeader'><%= @task.name %></h2>
+  </div>
+
+  <div>
+    <hr class='aLine'>
+  </div>
+
+  <div class='tTaskContainer'>
+    <div class='tInfoContainer'>
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Details:</p>
+        <p class='aInfoDetail'><%= @task.details %></p>
+      </div>
+
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Date:</p>
+        <p class='aInfoDetail'><%= @task.date %></p>
+      </div>
+
+      <div class='aDetailContainer'>
+        <p class='aInfoLabel'>Rate:</p>
+        <p class='aInfoDetail'><%= @task.hourly_rate %></p>
+      </div>
+
+      <p class='aInfoLabel'>Client Information</p>
+
+        <div class='aDetailContainer'>
+          <p class='aInfoLabel'> Name:</p>
+          <p class='aInfoDetail'><%= @client.first_name + ' ' + @client.last_name %></p>
         </div>
 
-        <%= form_with url: patch_rate_client_path do |f| %>
-            <div class="field">
-                <h6><%= f.label 'Rating' %><br/></h6>
-                <%= f.number_field :input_rating %>
-                <%= f.submit "Submit" %>
-            </div>
-        <% end %>
+        <div class='aDetailContainer'>
+          <p class='aInfoLabel'>Email:</p>
+          <p class='aInfoDetail'><%= @client.email %></p>
+        </div>
 
+        <div class='aDetailContainer'>
+          <p class='aInfoLabel'>Mobile Number:</p>
+          <p class='aInfoDetail'><%= @client.mobile_number %></p>
         </div>
-            <%= link_to 'Back' , :back %>
+
+        <div class='aDetailContainer'>
+          <p class='aInfoLabel'>Rating:</p>
+          <p class='aInfoDetail'> 
+            <% array = @client.rating.to_a %>
+            <% if array.length == 0 %>
+              <% ave = 0 %>
+            <% else %>
+              <% ave = array.sum/array.length %>
+            <% end %>
+            <%= ave %>/5
+          </p>
         </div>
+      </div>
+
+      <%= form_with url: patch_rate_client_path do |f| %>
+        <div class="field">
+          <h6><%= f.label 'Rating' %><br/></h6>
+          <%= f.number_field :input_rating %>
+          <%= f.submit "Submit" %>
+        </div>
+      <% end %>
+
+      </div>
+        <%= link_to 'Back' , :back %>
+      </div>
     </div>
 
 <script>
-    var modal = document.getElementById("catForm");
-    var modal2 = document.getElementById("catForm2");
-    var button = document.getElementById("editBtn");
-    var button2 = document.getElementById("deleteBtn");
-    var close = document.getElementsByClassName("close")[0];
-    var close2 = document.getElementsByClassName("close")[1];
+  var modal = document.getElementById("catForm");
+  var modal2 = document.getElementById("catForm2");
+  var button = document.getElementById("editBtn");
+  var button2 = document.getElementById("deleteBtn");
+  var close = document.getElementsByClassName("close")[0];
+  var close2 = document.getElementsByClassName("close")[1];
 
-    button.onclick = function() {
-        modal.style.display = "block";
-    }
+  button.onclick = function() {
+    modal.style.display = "block";
+  }
 
-    button2.onclick = function() {
-        modal2.style.display = "block";
-    }
+  button2.onclick = function() {
+    modal2.style.display = "block";
+  }
 
-    close.onclick = function() {
+  close.onclick = function() {
     modal.style.display = "none";
-    }
+  }
 
-    close2.onclick = function() {
+  close2.onclick = function() {
     modal2.style.display = "none";
-    }
+  }
 
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        } else if (event.target == modal2) {
-            modal2.style.display = "none";
-        }
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    } else if (event.target == modal2) {
+      modal2.style.display = "none";
     }
+  }
 </script>

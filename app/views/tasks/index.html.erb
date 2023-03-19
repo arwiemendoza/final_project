@@ -1,43 +1,42 @@
-<h1> Tasks </h1>
+<h1>Tasks</h1>
 <%= form_for @task, url: category_tasks_path do |f| %>
 
-    <div class="field">
-        <%= f.label :name %><br/>
-        <%= f.text_field :name %>
-    </div>
+  <div class="field">
+    <%= f.label :name %><br/>
+    <%= f.text_field :name %>
+  </div>
 
-    <div class="field">
-        <%= f.label :details %><br/>
-        <%= f.text_field :details %>
-    </div>
+  <div class="field">
+    <%= f.label :details %><br/>
+    <%= f.text_field :details %>
+  </div>
 
-    <div class="field">
-        <%= f.label :date %><br/>
-        <%= f.date_field :date %>
-    </div>
+  <div class="field">
+    <%= f.label :date %><br/>
+    <%= f.date_field :date %>
+  </div>
 
-    <div class="field">
-        <%= f.label :hourly_rate %><br/>
-        <%= f.number_field :hourly_rate %>
-    </div>
+  <div class="field">
+    <%= f.label :hourly_rate %><br/>
+    <%= f.number_field :hourly_rate %>
+  </div>
 
-    <div class="field">
-        <%= f.hidden_field :created_by, value: current_user.first_name + ' ' + current_user.last_name%>
-        <%= f.hidden_field :client_id, value: current_user.id %>
-    </div>
+  <div class="field">
+    <%= f.hidden_field :created_by, value: current_user.first_name + ' ' + current_user.last_name%>
+    <%= f.hidden_field :client_id, value: current_user.id %>
+  </div>
 
-    <div class="field">
-        <%= f.hidden_field :longitude, id:'task_longitude' %>
-    </div>
+  <div class="field">
+    <%= f.hidden_field :longitude, id:'task_longitude' %>
+  </div>
 
-    <div class="field">
-        <%= f.hidden_field :latitude, id:'task_latitude'  %>
-    </div>
+  <div class="field">
+    <%= f.hidden_field :latitude, id:'task_latitude'  %>
+  </div>
 
-    <div class="actions">
-        <%= f.submit "Create" %>
-    </div>
+  <div class="actions">
+    <%= f.submit "Create" %>
+  </div>
 
-    <%= link_to 'Back', category_path(@category.id), class: "btn btn-outline-dark btn-sm" %>
-
+  <%= link_to 'Back', category_path(@category.id), class: "btn btn-outline-dark btn-sm" %>
 <% end %>

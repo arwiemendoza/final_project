@@ -1,171 +1,180 @@
 <div class='uIndexContainer'>
-     <div class='uFloatContainer'>
-        <div class='uSwitchContainer'>
-            <div id="slideBtn"></div>
-            <button type="button" class="uToggleBtn" id='bOpen' onclick="Open()">Open Tasks</button>
-            <button type="button" class="uToggleBtn" id='bOnGoing' onclick="Going()">On-going Tasks</button>
-            <button type="button" class="uToggleBtn" id='bHistory' onclick="History()">Completed</button>
-        </div>
-        <div class='uLineBreak'>
-                <hr class='aLine'>
-        </div>
-        <div class='uTaskHeaderContainer'>
-            <p class='uTaskHeader'>Task</p>
-            <p class='uTaskHeader'>Date</p>
-            <p class='uTaskHeader'>Helper</p>
-            <p class='uTaskHeader'>Details</p>
-        </div>
-        <div class='uLineBreak'>
-                <hr class='aLine'>
-        </div>
-    
-        <div class='uAllTasksContainer' id='open'>
-            <% @tasks.each do |task|%>
-                <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id == nil%>
-                    <div class='uTasks'>
-                        <p class='uTaskLabels'><%= task.name %></p>
-                        <p class='uTaskLabels'><%= task.date %></p>
-                        <% if task.helper_applicants == [] %>
-                            <p class='uTaskLabels'>No Helper Applicants</p>
-                        <% else %>
-                            <button class='uTaskView' id='listApplicantsBtn'> 
-                                <% if task.helper_applicants.count == 1 %>  
-                                    <%= task.helper_applicants.count %> Helper
-                                <% else %>
-                                    <%= task.helper_applicants.count %> Helpers
-                                <% end %>
-                            </button>
-                            <div class='uApplicantContainer' id='applicantsForm'>
-                                <div class='uFormApp'>
-                                    <div class='uAppHeader'>
-                                        <div></div>
-                                        <img src='../assets/close.png' class="close"/>
-                                    </div>
-                                    <h2>List of Applicants</h2>
-                                    <div class='uPerApp'>
-                                        <p class='uTaskLabels'>No.</p>
-                                        <p class='uTaskLabels'>Applicant's Name</p>
-                                        <p class='uTaskLabels'>Rating</p>
-                                        <p class='uTaskLabels'></p>
-                                    </div>
-                                    <div class='uAppsShow'>        
-                                        <% ids = task.helper_applicants.to_a%>
-                                        <% task_id = task.id%>
-                                        <% @count = 0 %>
-                                        <% ids.each do |id|%>
-                                            <div class='uPerApp'>
-                                                <p class='uTaskLabels'><%= @count += 1 %></p>
-                                                <p class='uTaskLabels'><%= User.find(id).first_name %> <%= User.find(id).last_name %></p>
-                                                <% array = User.find(id).rating.to_a %>
-                                                <p class='uTaskLabels'>
-                                                    <% if array.length == 0 %>
-                                                        <% ave = 0 %>
-                                                    <% else %>
-                                                        <% ave = array.sum/array.length %>
-                                                    <% end %>
-                                                <p class='uTaskLabels'><%= link_to 'Accept', accept_helper_path(task_id, id), class: "btn btn-outline-dark btn-sm" %></p>
-                                            </div>
-                                        <% end %>           
-                                    </div>
-                                </div>
-                            </div>
-                        <% end %> 
-                        <p class='uTaskView' id='uViewTask'>
-                            <%= link_to 'View', show_task_info_path(task.id, task.client_id) , class: 'uTaskViewBtn'%>
-                        </p>  
-                    </div>
-                <%end%>
-            <%end%>
-        </div>
-        <div class='uAllTasksContainer' id='onGoing'>
-            <% @tasks.each do |task|%>
-                <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.task_status == "Approved" %>
-                    <div class='uTasks'>
-                        <p class='uTaskLabels'><%= task.name %></p>
-                        <p class='uTaskLabels'><%= task.date %></p>
-                        <p class='uTaskLabels'><%= User.find(task.helper_id).first_name %> <%= User.find(task.helper_id).last_name %></p> 
-                        <p class='uTaskView' id='uViewTask'>
-                            <%= link_to 'View', show_task_info_path(task.id, task.client_id), class: 'uTaskViewBtn'%>
-                        </p>  
-                    </div>
-                <%end%>
-            <%end%> 
-        </div>
+  <div class='uFloatContainer'>
+    <div class='uSwitchContainer'>
+      <div id="slideBtn"></div>
+      <button type="button" class="uToggleBtn" id='bOpen' onclick="Open()">Open Tasks</button>
+      <button type="button" class="uToggleBtn" id='bOnGoing' onclick="Going()">On-going Tasks</button>
+      <button type="button" class="uToggleBtn" id='bHistory' onclick="History()">Completed</button>
+    </div>
 
-        <div class='uAllTasksContainer' id='history'>
-                <% @tasks.each do |task|%>
-                <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.task_status == "Completed" || task.task_status == "Finished" %>
-                    <div class='uTasks'>
-                        <p class='uTaskLabels'><%= task.name %></p>
-                        <p class='uTaskLabels'><%= task.date %></p>
-                        <p class='uTaskLabels'><%= User.find(task.helper_id).first_name %> <%= User.find(task.helper_id).last_name %></p> 
-                        <p class='uTaskView' id='uViewTask'>
-                            <% if task.rated_by_client? %>
-                                <%= link_to 'View', show_task_info_path(task.id, task.client_id), class: 'uTaskViewBtn'%>
-                            <% else %>
-                                <%= link_to 'Rate', get_rate_helper_path(task.id, task.helper_id), class: 'uTaskViewBtn'%>
-                            <%end%>
-                        </p>
+    <div class='uLineBreak'>
+      <hr class='aLine'>
+    </div>
+
+    <div class='uTaskHeaderContainer'>
+      <p class='uTaskHeader'>Task</p>
+      <p class='uTaskHeader'>Date</p>
+      <p class='uTaskHeader'>Helper</p>
+      <p class='uTaskHeader'>Details</p>
+    </div>
+
+    <div class='uLineBreak'>
+      <hr class='aLine'>
+    </div>
+    
+    <div class='uAllTasksContainer' id='open'>
+      <% @tasks.each do |task|%>
+        <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.helper_id == nil%>
+          <div class='uTasks'>
+            <p class='uTaskLabels'><%= task.name %></p>
+            <p class='uTaskLabels'><%= task.date %></p>
+            <% if task.helper_applicants == [] %>
+                <p class='uTaskLabels'>No Helper Applicants</p>
+            <% else %>
+              <button class='uTaskView' id='listApplicantsBtn'> 
+                <% if task.helper_applicants.count == 1 %>  
+                  <%= task.helper_applicants.count %> Helper
+                <% else %>
+                  <%= task.helper_applicants.count %> Helpers
+                <% end %>
+              </button>
+            <% end %>
+
+            <div class='uApplicantContainer' id='applicantsForm'>
+              <div class='uFormApp'>
+                <div class='uAppHeader'>
+                  <div></div>
+                  <img src='../assets/close.png' class="close"/>
+                </div>
+
+                <h2>List of Applicants</h2>
+
+                <div class='uPerApp'>
+                  <p class='uTaskLabels'>No.</p>
+                  <p class='uTaskLabels'>Applicant's Name</p>
+                  <p class='uTaskLabels'>Rating</p>
+                  <p class='uTaskLabels'></p>
+                </div>
+
+                <div class='uAppsShow'>        
+                  <% ids = task.helper_applicants.to_a %>
+                  <% task_id = task.id%>
+                  <% @count = 0 %>
+                  <% ids.each do |id|%>
+                    <div class='uPerApp'>
+                      <p class='uTaskLabels'><%= @count += 1 %></p>
+                      <p class='uTaskLabels'><%= User.find(id).first_name %> <%= User.find(id).last_name %></p>
+                      <% array = User.find(id).rating.to_a %>
+                      <p class='uTaskLabels'>
+                        <% if array.length == 0 %>
+                          <% ave = 0 %>
+                        <% else %>
+                          <% ave = array.sum/array.length %>
+                        <% end %>
+                      <p class='uTaskLabels'><%= link_to 'Accept', accept_helper_path(task_id, id), class: "btn btn-outline-dark btn-sm" %></p>
                     </div>
+                  <% end %>           
+                </div>
+              </div>
+            </div>
+            <% end %> 
+            <p class='uTaskView' id='uViewTask'>
+              <%= link_to 'View', show_task_info_path(task.id, task.client_id) , class: 'uTaskViewBtn'%>
+            </p>  
+          </div>
+        <%end%>
+      <%end%>
+
+    </div>
+      <div class='uAllTasksContainer' id='onGoing'>
+        <% @tasks.each do |task|%>
+          <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.task_status == "Approved" %>
+            <div class='uTasks'>
+              <p class='uTaskLabels'><%= task.name %></p>
+              <p class='uTaskLabels'><%= task.date %></p>
+              <p class='uTaskLabels'><%= User.find(task.helper_id).first_name %> <%= User.find(task.helper_id).last_name %></p> 
+              <p class='uTaskView' id='uViewTask'>
+                <%= link_to 'View', show_task_info_path(task.id, task.client_id), class: 'uTaskViewBtn'%>
+              </p>  
+            </div>
+          <%end%>
+        <%end%> 
+      </div>
+
+      <div class='uAllTasksContainer' id='history'>
+        <% @tasks.each do |task|%>
+          <% if task.created_by == current_user.first_name + ' ' + current_user.last_name && task.task_status == "Completed" || task.task_status == "Finished" %>
+            <div class='uTasks'>
+              <p class='uTaskLabels'><%= task.name %></p>
+              <p class='uTaskLabels'><%= task.date %></p>
+              <p class='uTaskLabels'><%= User.find(task.helper_id).first_name %> <%= User.find(task.helper_id).last_name %></p> 
+              <p class='uTaskView' id='uViewTask'>
+                <% if task.rated_by_client? %>
+                  <%= link_to 'View', show_task_info_path(task.id, task.client_id), class: 'uTaskViewBtn'%>
+                <% else %>
+                  <%= link_to 'Rate', get_rate_helper_path(task.id, task.helper_id), class: 'uTaskViewBtn'%>
                 <%end%>
-            <%end%> 
-        </div>
+              </p>
+            </div>
+          <%end%>
+        <%end%> 
+      </div>
     </div>
 </div>
 
 <script>
-    var open = document.getElementById("open");
-    var onGoing = document.getElementById("onGoing");
-    var done = document.getElementById("history");
-    var slideBtn = document.getElementById("slideBtn");
-    var bOpen = document.getElementById("bOpen");
-    var bOnGoing = document.getElementById("bOnGoing");
-    var bHistory = document.getElementById("bHistory");
-    var applicantListModal = document.getElementById("applicantsForm");
-    var applicantListBtn = document.getElementById('listApplicantsBtn');
-    var applicantListClose = document.getElementsByClassName("close")[0];
+  var open = document.getElementById("open");
+  var onGoing = document.getElementById("onGoing");
+  var done = document.getElementById("history");
+  var slideBtn = document.getElementById("slideBtn");
+  var bOpen = document.getElementById("bOpen");
+  var bOnGoing = document.getElementById("bOnGoing");
+  var bHistory = document.getElementById("bHistory");
+  var applicantListModal = document.getElementById("applicantsForm");
+  var applicantListBtn = document.getElementById('listApplicantsBtn');
+  var applicantListClose = document.getElementsByClassName("close")[0];
 
-    function Open () {
-        open.style.display = 'block';
-        onGoing.style.display = 'none';
-        done.style.display = 'none';
-        slideBtn.style.left = '0%';
-        bOpen.style.color = 'white'
-        bOnGoing.style.color = 'black'
-        bHistory.style.color = 'black'
-    }
+  function Open () {
+    open.style.display = 'block';
+    onGoing.style.display = 'none';
+    done.style.display = 'none';
+    slideBtn.style.left = '0%';
+    bOpen.style.color = 'white'
+    bOnGoing.style.color = 'black'
+    bHistory.style.color = 'black'
+  }
 
-    function Going () {
-        open.style.display = 'none';
-        onGoing.style.display = 'block';
-        done.style.display = 'none';
-        slideBtn.style.left = '33.3%';
-        bOpen.style.color = 'black'
-        bOnGoing.style.color = 'white'
-        bHistory.style.color = 'black'
-    }
+  function Going () {
+    open.style.display = 'none';
+    onGoing.style.display = 'block';
+    done.style.display = 'none';
+    slideBtn.style.left = '33.3%';
+    bOpen.style.color = 'black'
+    bOnGoing.style.color = 'white'
+    bHistory.style.color = 'black'
+  }
 
-    function History () {
-        open.style.display = 'none';
-        onGoing.style.display = 'none';
-        done.style.display = 'block';
-        slideBtn.style.left = '67.3%';
-        bOpen.style.color = 'black'
-        bOnGoing.style.color = 'black'
-        bHistory.style.color = 'white'
-    }
+  function History () {
+    open.style.display = 'none';
+    onGoing.style.display = 'none';
+    done.style.display = 'block';
+    slideBtn.style.left = '67.3%';
+    bOpen.style.color = 'black'
+    bOnGoing.style.color = 'black'
+    bHistory.style.color = 'white'
+  }
 
-    applicantListBtn.onclick = function() {
-        applicantListModal.style.display = "block";
-    }
+  applicantListBtn.onclick = function() {
+    applicantListModal.style.display = "block";
+  }
 
-    applicantListClose.onclick = function() {
-        applicantListModal.style.display = "none";
-    }
+  applicantListClose.onclick = function() {
+    applicantListModal.style.display = "none";
+  }
 
-    window.onclick = function(event) {
+  window.onclick = function(event) {
     if (event.target == applicantListModal) {
-        applicantListModal.style.display = "none";
+      applicantListModal.style.display = "none";
     }
-    }
+  }
 </script>
