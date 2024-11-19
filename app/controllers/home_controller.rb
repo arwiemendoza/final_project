@@ -1,7 +1,5 @@
 class HomeController < ApplicationController
-  before_action :is_user_admin
-  before_action :is_user_helper
-  before_action :is_user_client
+  before_action :is_user_admin, :is_user_helper, :is_user_client
 
   def index
     redirect_to new_user_session_path

@@ -13,7 +13,6 @@
     </div>
 
     <div class='aInfoContainer'>
-
       <div class='aDetailContainer'>
         <p class='aInfoLabel'>First Name:</p>
         <p class='aInfoDetail'><%= @user.first_name %></p>
@@ -39,9 +38,9 @@
         <p class='aInfoDetail'> 
           <% if @user.helper == true %>
               Helper 
-          <%else%> 
+          <% else %> 
               Client
-          <%end%>
+          <% end %>
         </p>
       </div>
 
@@ -69,7 +68,7 @@
       </div>
     </div>
 
-      <% if @user.attachments.first == nil%>
+      <% if @user.attachments.first == nil %>
       <% else %>
         <%= image_tag @user.attachments.first.image.to_s %>
       <% end %>

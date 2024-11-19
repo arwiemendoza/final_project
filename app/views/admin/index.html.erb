@@ -3,11 +3,13 @@
     <h1 class='aHeader'>Pending Users:</h1>
     <h1 class='aPendingCount'><%= @users.where(:user_status => 'Pending').count %></h1>
   </div>
+
   <div>
     <hr class='aLine'>
   </div>
+
   <div class='aContainer'>
-    <% @users.each do |user|%>
+    <% @users.each do |user| %>
       <% if user.user_status == 'Pending' %>
         <div class='aPendingUsers'>
           <div class='aPendingNamesContainer'>
@@ -15,12 +17,12 @@
             <p class='aPendingNames'><%= user.first_name %></p>
             <p class='aPendingNames'><%= user.last_name %></p>
           </div>
+
           <h2 class="aDetails ">
             <%= link_to 'Details', admin_path(user.id), class: "aDetailsButton" %>
           </h2>
         </div>
-      <%end%>
-    <%end%>
+      <% end %>
+    <% end %>
   </div>    
 </div>
-
